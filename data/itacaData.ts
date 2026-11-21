@@ -125,7 +125,7 @@ export type NavLink = { label: string; href: string };
 
 export const drawerLinks: (NavLink & { note: string })[] = [
   { label: "Il Club", href: "/il-club", note: "Il nome, la missione, i sette ideali" },
-  { label: "Formati", href: "/formati", note: "Banchetto, Festival, Le Fasi, Retreats" },
+  { label: "Formati", href: "/formati", note: "Il Banchetto, il Festival, Le Fasi" },
   { label: "Eventi", href: "/eventi", note: "Il calendario de Le Fasi di Itaca" },
   { label: "Diventa socio", href: "/diventa-socio", note: "Tessera associativa, 20 € l'anno" },
   { label: "Journal", href: "/journal", note: "Cronache, riflessioni, mestieri" },
@@ -148,7 +148,6 @@ export const footerColumns: { title: string; links: NavLink[] }[] = [
       { label: "Il Banchetto di Itaca", href: "/formati/il-banchetto-di-itaca" },
       { label: "Itaca Society Festival", href: "/formati/festival" },
       { label: "Le Fasi di Itaca", href: "/formati/le-fasi-di-itaca" },
-      { label: "Itaca Retreats", href: "/formati/retreats" },
     ],
   },
   {
@@ -370,53 +369,6 @@ export const formats: Format[] = [
     ],
     about:
       "Le Fasi di Itaca sono il formato di fidelizzazione di Itaca Society: un calendario ricorrente di talk, mostre, cene e pratiche di benessere, scandito come cicli lunari.",
-  },
-  {
-    slug: "retreats",
-    name: "Itaca Retreats",
-    role: "Approfondimento",
-    status: "orizzonte",
-    tagline: "Due, tre, cinque giorni in natura: il viaggio oltre la Versilia.",
-    summary: "Viaggi esperienziali e immersioni residenziali di 2-5 giorni in natura, sempre nel perimetro dei valori del brand.",
-    card: photos.forestBridge,
-    strip: [photos.forestBridge, photos.peaksClouds, photos.meditation, brandPhotos.mareScogli, photos.hiking, brandPhotos.cappello, photos.coastDusk, photos.alley],
-    statement:
-      "Immersioni residenziali di due-cinque giorni in natura e road trip curati nei minimi dettagli, per estendere l'esperienza oltre la Versilia",
-    body: "Gli Itaca Retreats sono l'orizzonte del progetto: arriveranno quando i formati in corso saranno stabili, perché ogni nuovo formato si introduce solo dopo che il precedente ha trovato il suo equilibrio.",
-    highlights: [
-      { icon: "trees", label: "Natura" },
-      { icon: "bed", label: "2-5 giorni" },
-      { icon: "footprints", label: "Cammini" },
-      { icon: "leaf", label: "Benessere" },
-      { icon: "compass", label: "Road trip curati" },
-      { icon: "utensils", label: "Cucina del luogo" },
-      { icon: "users", label: "Piccoli gruppi" },
-      { icon: "mountain", label: "Oltre la Versilia" },
-    ],
-    features: [
-      {
-        title: "Immersioni residenziali",
-        text: "Pochi giorni in luoghi scelti, con un programma che alterna cammino, pratica, tavola e silenzio.",
-        image: photos.peaksClouds,
-      },
-      {
-        title: "Road trip",
-        text: "Itinerari curati nei minimi dettagli, con incontri, botteghe e paesaggi lontani dai circuiti abituali.",
-        image: photos.coastDusk,
-      },
-    ],
-    block: {
-      title: "Un passo alla volta",
-      text: "Il Festival allarga, Le Fasi trattengono, il Banchetto consacra, i Retreats approfondiscono. Iscriviti alle lettere da Itaca per sapere quando partiranno.",
-      image: photos.forestBridge,
-    },
-    info: [
-      { label: "Formato", value: "Viaggi esperienziali e residenze di 2-5 giorni" },
-      { label: "Stato", value: "In preparazione" },
-      { label: "Accesso", value: "Riservato ai soci" },
-    ],
-    about:
-      "Itaca Retreats è il formato di approfondimento di Itaca Society: viaggi esperienziali e immersioni residenziali in natura, sempre nel perimetro dei sette ideali.",
   },
 ];
 

@@ -15,7 +15,7 @@ const fasi = [
 export default function HomePage() {
   return (
     <>
-      <Intro image={photos.cappello} targetId="inizio" />
+      <Intro targetId="inizio" />
 
       <Hero
         id="inizio"
@@ -65,7 +65,7 @@ export default function HomePage() {
             <em>I</em> formati
           </>
         }
-        text="Il Festival allarga, Le Fasi trattengono, il Banchetto consacra, i Retreats approfondiscono."
+        text="Il Festival allarga, Le Fasi trattengono, il Banchetto consacra."
         cta={{ label: "Scopri di più", href: "/formati" }}
         images={[photos.ritratto, photos.mareScogli]}
       />

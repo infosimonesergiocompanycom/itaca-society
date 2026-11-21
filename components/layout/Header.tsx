@@ -18,11 +18,13 @@ export function Header({ member }: { member: HeaderMember }) {
   const [drawerOpen, setDrawerOpen] = useState(false);
   useEffect(() => setDrawerOpen(false), [pathname]);
 
-  const pill = "pill bg-carbone text-calce hover:bg-terracotta";
+  // Sulla homepage l'header sta sopra la copertina scura: testo e pillole in versione chiara
+  const onDark = pathname === "/";
+  const pill = onDark ? "pill bg-calce text-carbone hover:bg-terracotta hover:text-calce" : "pill bg-carbone text-calce hover:bg-terracotta";
 
   return (
     <>
-      <header className="absolute inset-x-0 top-0 z-40 text-carbone">
+      <header className={cn("absolute inset-x-0 top-0 z-40", onDark ? "text-calce" : "text-carbone")}>
         <div className="grid h-20 grid-cols-[1fr_auto_1fr] items-center px-4 sm:h-24 sm:px-8">
           <div>
             <button

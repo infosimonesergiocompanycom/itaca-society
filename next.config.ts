@@ -26,6 +26,7 @@ const nextConfig: NextConfig = {
       { source: "/portal", destination: "/area-soci", permanent: false },
       { source: "/membership/candidatura", destination: "/diventa-socio", permanent: false },
       { source: "/luoghi", destination: "/formati", permanent: false },
+      { source: "/formati/retreats", destination: "/formati", permanent: false },
       { source: "/luoghi/:slug", destination: "/formati", permanent: false },
     ];
   },
