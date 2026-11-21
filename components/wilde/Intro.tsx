@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 import { BrandMark } from "@/components/ui/Logo";
@@ -8,12 +9,58 @@ import { EASE } from "@/lib/motion";
 /**
  * Apertura a tutto schermo, come la copertina del brand book:
  * fondo ink, claim in terracotta, marchio color crema, tagline e freccia per scendere.
+ * Con `video` il trailer scorre in sottofondo, muto e in loop, sotto un velo ink che tiene leggibile il marchio.
+ * Chi ha chiesto di ridurre le animazioni vede solo il fotogramma di copertina.
  */
-export function Intro({ targetId }: { targetId: string }) {
+export type IntroVideo = { mp4: string; webm?: string; poster: string };
+
+export function Intro({ targetId, video }: { targetId: string; video?: IntroVideo | null }) {
   const go = () => document.getElementById(targetId)?.scrollIntoView({ behavior: "smooth" });
+  const ref = useRef<HTMLVideoElement>(null);
+  const [playing, setPlaying] = useState(false);
+
+  useEffect(() => {
+    const v = ref.current;
+    if (!v) return;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const sync = () => {
+      if (reduce.matches) v.pause();
+      else v.play().catch(() => undefined);
+    };
+    sync();
+    reduce.addEventListener("change", sync);
+    return () => reduce.removeEventListener("change", sync);
+  }, []);
+
   return (
     <section className="relative flex h-[100svh] min-h-[560px] items-center justify-center overflow-hidden bg-carbone text-calce">
-      <div className="flex flex-col items-center px-4 text-center">
+      {video && (
+        <>
+          <video
+            ref={ref}
+            className={`grade absolute inset-0 h-full w-full object-cover transition-opacity duration-[1600ms] ${playing ? "opacity-100" : "opacity-0"}`}
+            poster={video.poster}
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            aria-hidden
+            tabIndex={-1}
+            onPlaying={() => setPlaying(true)}
+          >
+            {video.webm && <source src={video.webm} type="video/webm" />}
+            <source src={video.mp4} type="video/mp4" />
+          </video>
+          {/* fotogramma di copertina finché il video non parte (o se non parte affatto) */}
+          {!playing && (
+            // eslint-disable-next-line @next/next/no-img-element
+            <img src={video.poster} alt="" aria-hidden className="grade absolute inset-0 h-full w-full object-cover" />
+          )}
+          <div className="absolute inset-0 bg-carbone/55" aria-hidden />
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(35,31,32,0.15)_0%,rgba(35,31,32,0.7)_100%)]" aria-hidden />
+        </>
+      )}
+      <div className="relative flex flex-col items-center px-4 text-center">
         <motion.p
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}

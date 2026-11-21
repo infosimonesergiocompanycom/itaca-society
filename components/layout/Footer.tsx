@@ -21,6 +21,7 @@ const columns = [
       { label: "Il patto tra soci", href: "/regole" },
       { label: "Area soci", href: "/area-soci" },
       { label: "Privacy", href: "/privacy" },
+      { label: "Crediti fotografici", href: "/crediti" },
     ],
   },
   {

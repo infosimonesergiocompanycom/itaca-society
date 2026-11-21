@@ -19,30 +19,39 @@ export const brandPhotos = {
   ombra: "/foto/ombra-specchio.jpg",
 } as const;
 
-/** Immagini di supporto. */
+/** Immagini di supporto: luoghi del territorio (public/foto, Wikimedia Commons) e fotografie Unsplash ad alta risoluzione. */
 export const photos = {
   ...brandPhotos,
-  coastDusk: unsplash("1499678329028-101435549a4e"),
-  longTable: unsplash("1528605248644-14dd04022da1"),
-  toast: unsplash("1519671482749-fd09be7ccebf"),
-  sunsetPier: unsplash("1495616811223-4d98c6e9c869"),
-  beachSunset: unsplash("1473116763249-2faaef81ccda"),
-  vinylShelf: unsplash("1483412033650-1015ddeb83d1"),
-  vinylCrates: unsplash("1461360228754-6e81c478b882"),
-  pottery: unsplash("1493106641515-6b5631de4bb9"),
-  vases: unsplash("1565193566173-7a0ee3dbe261"),
-  openBook: unsplash("1456513080510-7bf3a84b82f8"),
-  gallery: unsplash("1518998053901-5348d3961a04"),
-  hiking: unsplash("1551632811-561732d1e306"),
-  meditation: unsplash("1506126613408-eca07ce68773"),
-  forestBridge: unsplash("1447752875215-b2761acb3c5d"),
-  peaksClouds: unsplash("1506905925346-21bda4d32df4"),
-  massage: unsplash("1544161515-4ab6ce6db874"),
-  trumpet: unsplash("1511192336575-5a79af67a629"),
-  projector: unsplash("1478720568477-152d9b164e26"),
-  vineyardGlass: unsplash("1506377247377-2a5b3b417ebb"),
-  alley: unsplash("1515859005217-8a1f08870f59"),
+  // Territorio: Apuane, cave, Marina di Pietrasanta, Forte dei Marmi (crediti in /crediti)
+  procintoAlba: "/foto/alba-procinto.jpg",
+  procinto: "/foto/natura-procinto.jpg",
+  procintoVetta: "/foto/cammini-procinto.jpg",
+  monteForato: "/foto/monte-forato.jpg",
+  marmoCave: "/foto/marmo-cave.jpg",
+  marmoParete: "/foto/marmo-parete.jpg",
+  marinaTramonto: "/foto/marina-tramonto.jpg",
+  marinaOnde: "/foto/marina-onde.jpg",
+  pontile: "/foto/pontile-forte.jpg",
+  // Temi
+  giradischi: unsplash("1458560871784-56d23406c091", 2400),
+  vinile: unsplash("1603048588665-791ca8aea617", 2400),
+  biblioteca: unsplash("1481627834876-b7833e8f5570", 2400),
+  lettura: unsplash("1532012197267-da84d127e765", 2400),
+  poesia: unsplash("1474932430478-367dbb6832c1", 2400),
+  pellicola: unsplash("1440404653325-ab127d49abc1", 2400),
+  campana: unsplash("1593811167562-9cef47bfc4d7", 2400),
+  tornio: unsplash("1493106641515-6b5631de4bb9", 2400),
+  vasi: unsplash("1565193566173-7a0ee3dbe261", 2400),
+  tavolaLunga: unsplash("1528605248644-14dd04022da1", 2400),
+  brindisi: unsplash("1519671482749-fd09be7ccebf", 2400),
+  vignaCalice: unsplash("1506377247377-2a5b3b417ebb", 2400),
 } as const;
+
+/**
+ * Video di sfondo della copertina in homepage (trailer). Lasciare `null` per la copertina ink senza video.
+ * File attesi in public/video: trailer.mp4 (H.264), trailer.webm (facoltativo), trailer-poster.jpg.
+ */
+export const introVideo: { mp4: string; webm?: string; poster: string } | null = null;
 
 /* -------------------------------------------------------------------------- */
 /*  Identità                                                                   */
@@ -163,6 +172,7 @@ export const footerColumns: { title: string; links: NavLink[] }[] = [
     links: [
       { label: "Scrivici", href: "/contatti" },
       { label: "Privacy", href: "/privacy" },
+      { label: "Crediti fotografici", href: "/crediti" },
     ],
   },
 ];
@@ -237,7 +247,7 @@ export const formats: Format[] = [
     tagline: "Un rito prima che un evento: il fuoco, il vino, la tavola condivisa.",
     summary: "Evento serale in formato banchetto: pochi ospiti, cura massima, il brand nella sua versione più pura.",
     card: brandPhotos.fuoco,
-    strip: [brandPhotos.fuoco, brandPhotos.piatto, photos.longTable, brandPhotos.tamburo, photos.toast, brandPhotos.ombra, photos.vineyardGlass, brandPhotos.ritratto],
+    strip: [brandPhotos.fuoco, brandPhotos.piatto, photos.tavolaLunga, brandPhotos.tamburo, photos.brindisi, brandPhotos.ombra, photos.vignaCalice, brandPhotos.ritratto],
     statement:
       "Il cuore della community: una sera in tre atti, una tavola unica, pochi ospiti e la cura di ogni dettaglio",
     body: "Il Banchetto di Itaca reinterpreta il simposio greco-romano nella Versilia di oggi. Si comincia con l'accoglienza, si siede alla stessa tavola, si resta per la musica. È il luogo dove i valori dell'associazione diventano messa in scena concreta.",
@@ -284,7 +294,7 @@ export const formats: Format[] = [
     tagline: "La giornata del benessere, la sera del club: il primo incontro con Itaca.",
     summary: "Formato pubblico a doppia location, con ticket accessibile: il primo incontro con il brand per un pubblico ampio.",
     card: brandPhotos.cappello,
-    strip: [brandPhotos.cappello, brandPhotos.mareScogli, photos.beachSunset, brandPhotos.tamburo, photos.meditation, photos.sunsetPier, brandPhotos.ritratto, photos.gallery],
+    strip: [brandPhotos.cappello, brandPhotos.mareScogli, photos.marinaTramonto, brandPhotos.tamburo, photos.marinaOnde, photos.pontile, brandPhotos.ritratto, photos.marmoCave],
     statement:
       "Una giornata in due tempi: di giorno benessere, workshop e arte, la sera musica e club, in due luoghi diversi",
     body: "Il Festival è la porta d'ingresso a Itaca Society: un formato aperto, con un ticket accessibile, pensato per chi incontra il brand per la prima volta. Da qui si arriva alla community e alle esperienze riservate ai soci.",
@@ -307,7 +317,7 @@ export const formats: Format[] = [
       {
         title: "La sera",
         text: "Il club: musica selezionata tra ambient, elettronica soft e world music, e stand food & beverage curati.",
-        image: photos.beachSunset,
+        image: photos.marinaTramonto,
       },
     ],
     block: {
@@ -331,7 +341,7 @@ export const formats: Format[] = [
     tagline: "Un calendario che segue la luna: talk, mostre, cene, pratiche di benessere.",
     summary: "Calendario ricorrente di eventi minori, scandito come cicli lunari: tiene viva la community tra un Banchetto e un Festival.",
     card: brandPhotos.ritratto,
-    strip: [brandPhotos.ritratto, photos.openBook, photos.vinylShelf, photos.pottery, brandPhotos.ombra, photos.gallery, photos.hiking, photos.longTable],
+    strip: [brandPhotos.ritratto, photos.lettura, photos.giradischi, photos.tornio, brandPhotos.ombra, photos.marmoCave, photos.procinto, photos.tavolaLunga],
     statement:
       "Un appuntamento per ogni fase: incontri piccoli e ricorrenti che tengono viva la comunità durante tutto l'anno",
     body: "Le Fasi di Itaca sono il calendario dei soci: talk, mostre, cene e pratiche di benessere, distribuiti nel mese come cicli lunari. Ogni incontro porta un nome nella forma «Le Fasi di Itaca — tema».",
@@ -349,18 +359,18 @@ export const formats: Format[] = [
       {
         title: "Talk e conoscenza",
         text: "Incontri a numero chiuso su filosofia, arte e cinema: momenti culturali sempre presenti, mai decorativi.",
-        image: photos.openBook,
+        image: photos.biblioteca,
       },
       {
         title: "Pratiche e cammini",
         text: "Mattine di respiro e cammino tra il mare della Versilia e i sentieri delle Apuane.",
-        image: photos.hiking,
+        image: photos.procintoVetta,
       },
     ],
     block: {
       title: "Come partecipare",
       text: "Le Fasi sono riservate ai soci: con la tessera associativa ti iscrivi al calendario e mostri il QR all'ingresso di ogni incontro.",
-      image: photos.longTable,
+      image: photos.tavolaLunga,
     },
     info: [
       { label: "Formato", value: "Calendario ricorrente di eventi minori" },
@@ -436,7 +446,7 @@ export const events: ItacaEvent[] = [
     place: "Pietrasanta",
     room: "Luogo comunicato ai soci",
     category: "Musica & Listening",
-    image: photos.vinylShelf,
+    image: photos.giradischi,
     excerpt: "Un disco ascoltato per intero, dal primo all'ultimo solco, con le luci basse e i telefoni lasciati all'ingresso.",
     seats: 24,
   },
@@ -448,7 +458,7 @@ export const events: ItacaEvent[] = [
     place: "Pietrasanta",
     room: "Luogo comunicato ai soci",
     category: "Talk & Filosofia",
-    image: photos.openBook,
+    image: photos.lettura,
     excerpt: "Una conversazione su Seneca e sulla brevità della vita, seguita da una cena alla stessa tavola.",
     seats: 30,
   },
@@ -460,7 +470,7 @@ export const events: ItacaEvent[] = [
     place: "Pietrasanta",
     room: "Ritrovo in Piazza del Duomo",
     category: "Arte & Design",
-    image: photos.gallery,
+    image: photos.marmoParete,
     excerpt: "Una mattina tra laboratori di scultura e fonderie artistiche, con chi lavora la pietra da generazioni.",
     seats: 16,
   },
@@ -484,7 +494,7 @@ export const events: ItacaEvent[] = [
     place: "Alpi Apuane",
     room: "Partenza da Stazzema",
     category: "Wellness",
-    image: photos.hiking,
+    image: photos.procintoAlba,
     excerpt: "Tre ore di cammino con una guida, colazione in quota e respirazione guidata davanti alla valle.",
     seats: 12,
   },
@@ -496,7 +506,7 @@ export const events: ItacaEvent[] = [
     place: "Pietrasanta",
     room: "Luogo comunicato ai soci",
     category: "Talk & Filosofia",
-    image: photos.projector,
+    image: photos.pellicola,
     excerpt: "Proiezione del film di Roberto Rossellini del 1954, introdotta da un critico e seguita da un bicchiere insieme.",
     seats: 40,
   },
@@ -508,7 +518,7 @@ export const events: ItacaEvent[] = [
     place: "Pietrasanta",
     room: "Bottega ceramica",
     category: "Arte & Design",
-    image: photos.pottery,
+    image: photos.tornio,
     excerpt: "Un pomeriggio al tornio con una ceramista del territorio. I pezzi vengono cotti e consegnati dopo due settimane.",
     seats: 10,
   },
@@ -532,7 +542,7 @@ export const events: ItacaEvent[] = [
     place: "Alpi Apuane",
     room: "Rifugio",
     category: "Wellness",
-    image: photos.meditation,
+    image: photos.monteForato,
     excerpt: "Cammino, meditazione e un pranzo consumato in silenzio. Alla sera, il cerchio della parola accanto al fuoco.",
     seats: 14,
   },
@@ -544,7 +554,7 @@ export const events: ItacaEvent[] = [
     place: "Pietrasanta",
     room: "Luogo comunicato ai soci",
     category: "Talk & Filosofia",
-    image: brandPhotos.ombra,
+    image: photos.poesia,
     excerpt: "Letture ad alta voce delle poesie del viaggio, accompagnate dal violoncello.",
     seats: 36,
   },
@@ -728,7 +738,7 @@ export const articles: Article[] = [
     date: "2026-11-12",
     readTime: "6 minuti",
     excerpt: "Nelle botteghe di Pietrasanta un blocco può restare in attesa per anni. Una mattina con chi sa aspettare la forma giusta.",
-    image: photos.vases,
+    image: photos.marmoCave,
     body: [
       "Alle sette del mattino le serrande delle botteghe di Pietrasanta si alzano una dopo l'altra. Il primo suono è quello dell'acqua che scorre sui banchi, poi arriva il ritmo regolare degli scalpelli. La città lavora il marmo da secoli e conserva, in questo rumore, una sua forma di pazienza.",
       "In un'epoca in cui tutto si misura in giorni, le botteghe custodiscono un tempo diverso, fatto di tentativi, di misure prese a mano, di errori che non si possono cancellare.",

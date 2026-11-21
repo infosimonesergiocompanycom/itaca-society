@@ -1,21 +1,21 @@
-import { photos } from "@/data/itacaData";
+import { introVideo, photos } from "@/data/itacaData";
 import { Intro } from "@/components/wilde/Intro";
 import { CardSlider } from "@/components/wilde/CardSlider";
 import { ApplyBand, Feature, Hero, ImageBand, Split } from "@/components/wilde/Blocks";
 
 const fasi = [
-  { title: "Musica", subtitle: "Ascolti e DJ set organici", image: photos.vinylShelf, href: "/eventi" },
-  { title: "Talk", subtitle: "Conoscenza, mai di riempimento", image: photos.openBook, href: "/eventi" },
-  { title: "Wellness", subtitle: "Corpo, mente, respiro", image: photos.meditation, href: "/eventi" },
-  { title: "Arte", subtitle: "Il marmo e la bottega", image: photos.pottery, href: "/eventi" },
+  { title: "Musica", subtitle: "Ascolti e DJ set organici", image: photos.vinile, href: "/eventi" },
+  { title: "Talk", subtitle: "Conoscenza, mai di riempimento", image: photos.biblioteca, href: "/eventi" },
+  { title: "Wellness", subtitle: "Corpo, mente, respiro", image: photos.campana, href: "/eventi" },
+  { title: "Arte", subtitle: "Il marmo e la bottega", image: photos.marmoParete, href: "/eventi" },
   { title: "Convivio", subtitle: "La tavola condivisa", image: photos.piatto, href: "/eventi" },
-  { title: "Natura", subtitle: "Il mare e le Apuane", image: photos.hiking, href: "/eventi" },
+  { title: "Natura", subtitle: "Il mare e le Apuane", image: photos.procinto, href: "/eventi" },
 ];
 
 export default function HomePage() {
   return (
     <>
-      <Intro targetId="inizio" />
+      <Intro targetId="inizio" video={introVideo} />
 
       <Hero
         id="inizio"
@@ -78,11 +78,11 @@ export default function HomePage() {
         }
         text="Il nome viene dall'Odissea e dalla poesia di Kavafis: conta il cammino, con le esperienze vissute e i legami costruiti lungo la strada. Nasce a Pietrasanta, la «piccola Atene» della Versilia."
         cta={{ label: "Il manifesto", href: "/il-club" }}
-        image={photos.vases}
+        image={photos.vasi}
         alt="Vasi in pietra chiara su fondo scuro"
       />
 
-      <ImageBand image={photos.beachSunset} alt="Il mare della Versilia al tramonto" />
+      <ImageBand image={photos.marinaTramonto} alt="Il tramonto sulla spiaggia di Marina di Pietrasanta" />
 
       <ApplyBand note="Quota associativa 20 € l'anno · Tessera digitale valida 12 mesi" />
     </>
