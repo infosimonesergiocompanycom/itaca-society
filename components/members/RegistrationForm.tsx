@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useActionState, useState } from "react";
 import { registerAction, type FormState } from "@/app/actions";
 import { passions } from "@/data/itacaData";
+import { consentNote, consentTexts } from "@/lib/consents";
 import { cn } from "@/lib/format";
 import { Field } from "./Field";
 
@@ -95,14 +96,35 @@ export function RegistrationForm() {
           <label className="flex items-start gap-3">
             <input type="checkbox" name="privacy" className="mt-1 h-4 w-4 shrink-0 accent-black" />
             <span>
-              Acconsento al trattamento dei miei dati personali secondo l&apos;{" "}
+              Dichiaro di aver letto l&apos;{" "}
               <Link href="/privacy" className="underline underline-offset-4" target="_blank">
                 informativa sulla privacy
-              </Link>
-              .
+              </Link>{" "}
+              sul trattamento dei miei dati per la gestione del rapporto associativo.
             </span>
           </label>
           {e.privacy && <p className="text-xs text-red-800" role="alert">{e.privacy}</p>}
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend className="font-serif text-[1.8rem]">5. Consensi facoltativi</legend>
+        <p className="mt-1 text-sm text-tortora">{consentNote}</p>
+        <div className="mt-6 space-y-5 text-[0.9375rem] leading-relaxed">
+          {(["marketing", "sponsor"] as const).map((kind) => (
+            <div key={kind} className="border border-linea p-4">
+              <p className="text-sm font-medium">{consentTexts[kind].title}</p>
+              <label className="mt-3 flex items-start gap-3">
+                <input
+                  type="checkbox"
+                  name={kind}
+                  defaultChecked={v[kind] === "on"}
+                  className="mt-1 h-4 w-4 shrink-0 accent-black"
+                />
+                <span>{consentTexts[kind].text}</span>
+              </label>
+            </div>
+          ))}
         </div>
       </fieldset>
 

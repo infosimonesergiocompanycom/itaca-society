@@ -1,6 +1,7 @@
 import { randomUUID } from "node:crypto";
 import { one, sql } from "./db";
 import { adminEmails, MEMBERSHIP_MONTHS } from "./config";
+import { CONSENT_VERSION, type ConsentKind } from "@/lib/consents";
 
 export type MemberStatus = "pending" | "approved" | "rejected" | "suspended";
 
@@ -23,6 +24,10 @@ export type Member = {
   paid_until: string | null;
   approved_at: string | null;
   created_at: string;
+  marketing_consent: boolean;
+  marketing_consent_at: string | null;
+  sponsor_consent: boolean;
+  sponsor_consent_at: string | null;
 };
 
 /** Stato effettivo, combinando l'esito della domanda con la validità della quota. */
@@ -30,7 +35,9 @@ export type Standing = "pending" | "awaiting_payment" | "active" | "expired" | "
 
 const COLUMNS = `id, email, role, first_name, last_name, birth_date::text AS birth_date, birth_place,
   fiscal_code, address, city, phone, interests, motivation, status, card_number,
-  paid_until::text AS paid_until, approved_at::text AS approved_at, created_at::text AS created_at`;
+  paid_until::text AS paid_until, approved_at::text AS approved_at, created_at::text AS created_at,
+  marketing_consent, marketing_consent_at::text AS marketing_consent_at,
+  sponsor_consent, sponsor_consent_at::text AS sponsor_consent_at`;
 
 export function todayIso(): string {
   return new Date().toISOString().slice(0, 10);
@@ -77,6 +84,8 @@ export type NewMember = {
   phone?: string;
   interests?: string;
   motivation?: string;
+  marketingConsent: boolean;
+  sponsorConsent: boolean;
 };
 
 export async function createMember(input: NewMember): Promise<Member> {
@@ -85,8 +94,10 @@ export async function createMember(input: NewMember): Promise<Member> {
   const role = adminEmails().includes(email) ? "admin" : "member";
   await sql(
     `INSERT INTO members (id, email, password_hash, role, first_name, last_name, birth_date, birth_place,
-       fiscal_code, address, city, phone, interests, motivation, privacy_accepted_at)
-     VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14, now())`,
+       fiscal_code, address, city, phone, interests, motivation, privacy_accepted_at,
+       marketing_consent, marketing_consent_at, sponsor_consent, sponsor_consent_at)
+     VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14, now(),
+       $15, CASE WHEN $15 THEN now() END, $16, CASE WHEN $16 THEN now() END)`,
     [
       id,
       email,
@@ -102,8 +113,12 @@ export async function createMember(input: NewMember): Promise<Member> {
       input.phone?.trim() || null,
       input.interests?.trim() || null,
       input.motivation?.trim() || null,
+      input.marketingConsent,
+      input.sponsorConsent,
     ],
   );
+  await logConsent(id, "marketing", input.marketingConsent, "registrazione");
+  await logConsent(id, "sponsor", input.sponsorConsent, "registrazione");
   const created = await findMemberById(id);
   if (!created) throw new Error("Creazione del socio non riuscita");
   return created;
@@ -230,4 +245,52 @@ export async function memberStats() {
   const counts: Record<Standing, number> = { pending: 0, awaiting_payment: 0, active: 0, expired: 0, rejected: 0, suspended: 0 };
   for (const r of rows) counts[standing(r as Pick<Member, "status" | "paid_until">)]++;
   return counts;
+}
+
+
+/* -------------------------------------------------------------------------- */
+/*  Consensi promozionali                                                      */
+/* -------------------------------------------------------------------------- */
+
+async function logConsent(memberId: string, kind: ConsentKind, granted: boolean, source: string) {
+  await sql(
+    `INSERT INTO consent_log (id, member_id, kind, granted, version, source) VALUES ($1,$2,$3,$4,$5,$6)`,
+    [randomUUID(), memberId, kind, granted, CONSENT_VERSION, source],
+  );
+}
+
+/**
+ * Aggiorna i consensi del socio. Registra nel log solo ciò che cambia;
+ * la data del consenso riparte da ogni nuova accettazione e si azzera alla revoca.
+ */
+export async function setConsents(
+  member: Pick<Member, "id" | "marketing_consent" | "sponsor_consent">,
+  next: { marketing: boolean; sponsor: boolean },
+  source = "area-soci",
+) {
+  const changes: [ConsentKind, boolean][] = [];
+  if (next.marketing !== member.marketing_consent) changes.push(["marketing", next.marketing]);
+  if (next.sponsor !== member.sponsor_consent) changes.push(["sponsor", next.sponsor]);
+  for (const [kind, granted] of changes) {
+    await sql(
+      `UPDATE members SET ${kind}_consent = $2, ${kind}_consent_at = CASE WHEN $2 THEN now() ELSE NULL END WHERE id = $1`,
+      [member.id, granted],
+    );
+    await logConsent(member.id, kind, granted, source);
+  }
+  return changes.length;
+}
+
+export async function consentHistory(memberId: string) {
+  return sql<{ kind: ConsentKind; granted: boolean; source: string; created_at: string }>(
+    `SELECT kind, granted, source, created_at::text AS created_at FROM consent_log WHERE member_id = $1 ORDER BY created_at DESC LIMIT 20`,
+    [memberId],
+  );
+}
+
+/** Contatti condivisibili con gli sponsor: solo chi ha dato il consenso specifico. */
+export async function sponsorContacts() {
+  return sql<Member>(
+    `SELECT ${COLUMNS} FROM members WHERE sponsor_consent = true AND status NOT IN ('rejected','suspended') ORDER BY last_name, first_name`,
+  );
 }

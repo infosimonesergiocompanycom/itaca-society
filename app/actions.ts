@@ -11,6 +11,7 @@ import {
   findMemberByEmail,
   recordCheckin,
   recordPayment,
+  setConsents,
   setMemberStatus,
   standing,
 } from "@/lib/server/members";
@@ -64,14 +65,25 @@ export async function registerAction(_prev: FormState, fd: FormData): Promise<Fo
   if (password.length < 8) e.password = "La password deve avere almeno 8 caratteri.";
   else if (password !== password2) e.password2 = "Le due password non coincidono.";
   if (fd.get("statute") !== "on") e.statute = "Per associarti devi accettare lo statuto e il regolamento.";
-  if (fd.get("privacy") !== "on") e.privacy = "Serve il consenso al trattamento dei dati.";
+  if (fd.get("privacy") !== "on") e.privacy = "Conferma di aver letto l'informativa sulla privacy.";
 
   if (!e.email && (await findMemberByEmail(v.email))) {
     e.email = "Esiste già un account con questa email. Prova ad accedere.";
   }
-  if (Object.keys(e).length > 0) return { fieldErrors: e, values: v };
+  if (Object.keys(e).length > 0) {
+    return {
+      fieldErrors: e,
+      values: { ...v, marketing: fd.get("marketing") === "on" ? "on" : "", sponsor: fd.get("sponsor") === "on" ? "on" : "" },
+    };
+  }
 
-  const member = await createMember({ ...v, passwordHash: await hashPassword(password) });
+  const member = await createMember({
+    ...v,
+    passwordHash: await hashPassword(password),
+    // Consensi facoltativi, mai preselezionati e indipendenti dall'ammissione
+    marketingConsent: fd.get("marketing") === "on",
+    sponsorConsent: fd.get("sponsor") === "on",
+  });
   await startSession(member.id);
   redirect("/area-soci?benvenuto=1");
 }
@@ -178,4 +190,13 @@ export async function checkinByNumberAction(cardNumber: string, eventSlug: strin
   const member = await findMemberByCardNumber(cardNumber);
   if (!member) return { status: "invalid" };
   return checkinAction(cardToken(member.id), eventSlug);
+}
+
+/* --------------------------- Consensi promozionali -------------------------- */
+
+export async function updateConsentsAction(fd: FormData) {
+  const member = await requireMember();
+  await setConsents(member, { marketing: fd.get("marketing") === "on", sponsor: fd.get("sponsor") === "on" });
+  revalidatePath("/area-soci");
+  redirect("/area-soci?consensi=ok#consensi");
 }

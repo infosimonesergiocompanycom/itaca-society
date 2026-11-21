@@ -62,6 +62,21 @@ CREATE TABLE IF NOT EXISTS checkins (
   created_at TIMESTAMPTZ NOT NULL DEFAULT now(),
   UNIQUE (member_id, event_slug)
 );
+
+ALTER TABLE members ADD COLUMN IF NOT EXISTS marketing_consent BOOLEAN NOT NULL DEFAULT false;
+ALTER TABLE members ADD COLUMN IF NOT EXISTS marketing_consent_at TIMESTAMPTZ;
+ALTER TABLE members ADD COLUMN IF NOT EXISTS sponsor_consent BOOLEAN NOT NULL DEFAULT false;
+ALTER TABLE members ADD COLUMN IF NOT EXISTS sponsor_consent_at TIMESTAMPTZ;
+
+CREATE TABLE IF NOT EXISTS consent_log (
+  id         TEXT PRIMARY KEY,
+  member_id  TEXT NOT NULL REFERENCES members(id) ON DELETE CASCADE,
+  kind       TEXT NOT NULL,
+  granted    BOOLEAN NOT NULL,
+  version    TEXT NOT NULL,
+  source     TEXT NOT NULL,
+  created_at TIMESTAMPTZ NOT NULL DEFAULT now()
+);
 `;
 
 async function createDriver(): Promise<Driver> {

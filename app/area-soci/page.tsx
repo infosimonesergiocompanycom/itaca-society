@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { events } from "@/data/itacaData";
-import { logoutAction, startPaymentAction } from "@/app/actions";
+import { logoutAction, startPaymentAction, updateConsentsAction } from "@/app/actions";
+import { consentNote, consentTexts } from "@/lib/consents";
 import { requireMember } from "@/lib/server/auth";
 import { cardQrSvg } from "@/lib/server/card";
 import { formatFee, paymentMode } from "@/lib/server/config";
@@ -41,7 +42,7 @@ function PayButton({ label }: { label: string }) {
 export default async function MemberAreaPage({
   searchParams,
 }: {
-  searchParams: Promise<{ benvenuto?: string; pagamento?: string }>;
+  searchParams: Promise<{ benvenuto?: string; pagamento?: string; consensi?: string }>;
 }) {
   const member = await requireMember();
   const params = await searchParams;
@@ -223,6 +224,40 @@ export default async function MemberAreaPage({
                   </ul>
                 </div>
               </div>
+            </section>
+
+            <section id="consensi" className="scroll-mt-24">
+              <h2 className="text-[1.8rem]">Privacy e consensi</h2>
+              <p className="mt-2 text-sm text-tortora">{consentNote}</p>
+              {params.consensi === "ok" && (
+                <p className="mt-4 bg-travertino px-4 py-3 text-sm" role="status">
+                  Preferenze salvate.
+                </p>
+              )}
+              <form action={updateConsentsAction} className="mt-5 space-y-4">
+                {(["marketing", "sponsor"] as const).map((kind) => {
+                  const on = member[`${kind}_consent`];
+                  const since = member[`${kind}_consent_at`];
+                  return (
+                    <label key={kind} className="flex items-start gap-3 border border-linea p-4 text-[0.9375rem] leading-relaxed">
+                      <input type="checkbox" name={kind} defaultChecked={on} className="mt-1 h-4 w-4 shrink-0 accent-black" />
+                      <span>
+                        <span className="block font-medium">{consentTexts[kind].title}</span>
+                        <span className="mt-1 block text-sm">{consentTexts[kind].text}</span>
+                        <span className="mt-2 block text-xs text-tortora">
+                          {on && since ? `Consenso attivo dal ${shortDate(since.slice(0, 10))}` : "Consenso non dato"}
+                        </span>
+                      </span>
+                    </label>
+                  );
+                })}
+                <button
+                  type="submit"
+                  className="rounded-full border border-carbone px-5 py-2.5 text-[0.75rem] font-semibold uppercase tracking-[0.06em] transition-colors duration-300 hover:bg-carbone hover:text-calce"
+                >
+                  Salva le preferenze
+                </button>
+              </form>
             </section>
 
             <div className="flex flex-wrap items-center gap-4 border-t border-linea pt-6">

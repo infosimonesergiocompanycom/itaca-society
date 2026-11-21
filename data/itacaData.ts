@@ -665,6 +665,10 @@ export const faqs: { q: string; a: string }[] = [
     a: "Il pagamento avviene su Stripe, uno dei principali circuiti di pagamento al mondo. L'associazione non vede né conserva i dati della tua carta.",
   },
   {
+    q: "Cosa succede ai miei dati se acconsento agli sponsor?",
+    a: "Il consenso è facoltativo e separato dalla domanda di ammissione. Se lo dai, comunichiamo a sponsor e partner dell'associazione soltanto nome, cognome, email, telefono, comune e interessi, perché possano proporti iniziative nei settori cultura, eventi, enogastronomia, benessere e lifestyle. Puoi revocarlo in qualsiasi momento dalla tua Area Soci.",
+  },
+  {
     q: "Perché servono codice fiscale e indirizzo?",
     a: "Sono i dati richiesti per la tenuta del libro soci di un'associazione. Li trattiamo solo per questa finalità, come descritto nell'informativa sulla privacy.",
   },

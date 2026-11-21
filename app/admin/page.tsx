@@ -24,6 +24,7 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
   await requireAdmin();
   const { stato = "pending", q = "" } = await searchParams;
   const [all, stats] = await Promise.all([listMembers(), memberStats()]);
+  const sponsorCount = all.filter((m) => m.sponsor_consent && m.status !== "rejected" && m.status !== "suspended").length;
   const query = q.trim().toLowerCase();
   const rows = all
     .filter((m) => stato === "all" || standing(m) === stato)
@@ -45,6 +46,13 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
           </Link>
           <a href="/admin/export" className="rounded-full border border-carbone px-5 py-2.5 text-[0.8125rem] font-semibold hover:bg-carbone hover:text-calce">
             Esporta libro soci (CSV)
+          </a>
+          <a
+            href="/admin/export?tipo=sponsor"
+            className="rounded-full border border-carbone px-5 py-2.5 text-[0.8125rem] font-semibold hover:bg-carbone hover:text-calce"
+            title="Solo i soci che hanno acconsentito alla comunicazione dei dati a sponsor e partner"
+          >
+            Contatti per sponsor ({sponsorCount})
           </a>
         </div>
       </div>
@@ -129,6 +137,14 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
                     </p>
                     {m.interests && <p className="mt-1 text-xs text-tortora">Interessi: {m.interests}</p>}
                     {m.motivation && <p className="mt-1 max-w-xs text-xs italic text-tortora">«{m.motivation}»</p>}
+                    <p className="mt-2 flex flex-wrap gap-1.5 text-[0.68rem]">
+                      <span className={cn("rounded-full px-2 py-0.5", m.marketing_consent ? "bg-carbone text-calce" : "bg-nebbia text-tortora")}>
+                        Promozioni {m.marketing_consent ? "sì" : "no"}
+                      </span>
+                      <span className={cn("rounded-full px-2 py-0.5", m.sponsor_consent ? "bg-carbone text-calce" : "bg-nebbia text-tortora")}>
+                        Sponsor {m.sponsor_consent ? "sì" : "no"}
+                      </span>
+                    </p>
                   </td>
                   <td className="py-4 pr-4">
                     <p>{m.card_number ?? "—"}</p>
