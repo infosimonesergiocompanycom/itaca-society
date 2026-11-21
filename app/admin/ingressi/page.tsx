@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { events } from "@/data/itacaData";
+import { publishedEvents } from "@/data/itacaData";
 import { requireAdmin } from "@/lib/server/auth";
 import { checkinCounts, todayIso } from "@/lib/server/members";
 import { shortDate } from "@/lib/format";
@@ -13,7 +13,7 @@ export default async function CheckinPage() {
   const counts = await checkinCounts();
   const today = todayIso();
   // Prima gli eventi di oggi e quelli in arrivo, poi quelli passati
-  const sorted = [...events].sort((a, b) => {
+  const sorted = publishedEvents().sort((a, b) => {
     const fa = a.date >= today ? 0 : 1;
     const fb = b.date >= today ? 0 : 1;
     return fa - fb || (fa === 0 ? a.date.localeCompare(b.date) : b.date.localeCompare(a.date));

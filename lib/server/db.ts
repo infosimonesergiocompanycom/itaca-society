@@ -77,6 +77,16 @@ CREATE TABLE IF NOT EXISTS consent_log (
   source     TEXT NOT NULL,
   created_at TIMESTAMPTZ NOT NULL DEFAULT now()
 );
+
+CREATE TABLE IF NOT EXISTS newsletter_subscribers (
+  id              TEXT PRIMARY KEY,
+  email           TEXT NOT NULL UNIQUE,
+  token           TEXT NOT NULL UNIQUE,
+  consent_version TEXT NOT NULL,
+  source          TEXT NOT NULL,
+  created_at      TIMESTAMPTZ NOT NULL DEFAULT now(),
+  unsubscribed_at TIMESTAMPTZ
+);
 `;
 
 async function createDriver(): Promise<Driver> {

@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { events } from "@/data/itacaData";
+import { events, publishedEvents } from "@/data/itacaData";
 import { logoutAction, startPaymentAction, updateConsentsAction } from "@/app/actions";
 import { consentNote, consentTexts } from "@/lib/consents";
 import { requireMember } from "@/lib/server/auth";
@@ -53,7 +53,7 @@ export default async function MemberAreaPage({
   const mode = paymentMode();
   const fee = formatFee();
   const today = todayIso();
-  const upcoming = events.filter((e) => e.date >= today).slice(0, 6);
+  const upcoming = publishedEvents(today).slice(0, 6);
   const daysLeft = member.paid_until
     ? Math.round((Date.parse(member.paid_until) - Date.parse(today)) / 86_400_000)
     : null;

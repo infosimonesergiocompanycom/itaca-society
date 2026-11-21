@@ -39,8 +39,9 @@ const COLUMNS = `id, email, role, first_name, last_name, birth_date::text AS bir
   marketing_consent, marketing_consent_at::text AS marketing_consent_at,
   sponsor_consent, sponsor_consent_at::text AS sponsor_consent_at`;
 
+/** Data odierna (aaaa-mm-gg) secondo il fuso di Pietrasanta, non quello del server. */
 export function todayIso(): string {
-  return new Date().toISOString().slice(0, 10);
+  return new Intl.DateTimeFormat("en-CA", { timeZone: "Europe/Rome" }).format(new Date());
 }
 
 export function standing(m: Pick<Member, "status" | "paid_until">): Standing {

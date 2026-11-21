@@ -22,3 +22,8 @@ export const consentTexts: Record<ConsentKind, { title: string; text: string }> 
 
 export const consentNote =
   "Consensi facoltativi: puoi darli o revocarli in qualsiasi momento dalla tua Area Soci. Non incidono sull'ammissione né sui servizi dell'associazione.";
+
+/** Consenso per le «Lettere da Itaca», la newsletter aperta anche ai non soci. */
+export const NEWSLETTER_CONSENT_VERSION = "2026-11";
+export const newsletterConsentText =
+  "Acconsento a ricevere le Lettere da Itaca, la newsletter dell'associazione su incontri, eventi e attività. Posso disiscrivermi in qualsiasi momento dal link presente in ogni lettera.";

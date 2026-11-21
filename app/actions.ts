@@ -16,6 +16,7 @@ import {
   standing,
 } from "@/lib/server/members";
 import { createCheckout } from "@/lib/server/payments";
+import { subscribe, unsubscribe } from "@/lib/server/newsletter";
 
 export type FormState = {
   error?: string;
@@ -199,4 +200,33 @@ export async function updateConsentsAction(fd: FormData) {
   await setConsents(member, { marketing: fd.get("marketing") === "on", sponsor: fd.get("sponsor") === "on" });
   revalidatePath("/area-soci");
   redirect("/area-soci?consensi=ok#consensi");
+}
+
+/* ------------------------------- Newsletter ------------------------------- */
+
+export type NewsletterState = { status: "idle" | "done" | "error"; message?: string; email?: string };
+
+export async function subscribeNewsletterAction(_prev: NewsletterState, fd: FormData): Promise<NewsletterState> {
+  const email = str(fd, "email").toLowerCase();
+  // campo esca: lo compilano solo i programmi automatici
+  if (str(fd, "website")) return { status: "done" };
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email) || email.length > 254) {
+    return { status: "error", message: "Controlla l'indirizzo email.", email };
+  }
+  if (fd.get("consent") !== "on") {
+    return { status: "error", message: "Per iscriverti serve il consenso a ricevere le lettere.", email };
+  }
+  try {
+    await subscribe(email, "footer");
+  } catch (err) {
+    console.error("newsletter", err);
+    return { status: "error", message: "Non è stato possibile completare l'iscrizione. Riprova tra poco.", email };
+  }
+  return { status: "done" };
+}
+
+export async function unsubscribeNewsletterAction(fd: FormData) {
+  const token = str(fd, "t");
+  const ok = token ? await unsubscribe(token) : false;
+  redirect(`/newsletter/disiscrizione?t=${encodeURIComponent(token)}&esito=${ok ? "ok" : "errore"}`);
 }

@@ -435,7 +435,28 @@ export type ItacaEvent = {
   image: string;
   excerpt: string;
   seats: number;
+  /** true = evento in preparazione: non compare sul sito finché non viene tolto. */
+  bozza?: boolean;
 };
+
+/**
+ * Intestazione della pagina Eventi. Aggiornarla a ogni nuova stagione.
+ * Gli eventi si aggiungono all'elenco `events` qui sotto: quelli con data passata spariscono da soli,
+ * quelli con `bozza: true` restano nascosti finché non si toglie il segno.
+ */
+export const calendar = {
+  eyebrow: "Le Fasi di Itaca",
+  title: "Il calendario d'inverno",
+  intro:
+    "Da novembre a gennaio, tra Pietrasanta, il mare e le Apuane. Gli incontri sono a numero chiuso e riservati ai soci: all'ingresso basta mostrare la tessera digitale.",
+};
+
+/** Eventi pubblicati, dal più vicino; con `today` (aaaa-mm-gg) solo quelli da oggi in poi. */
+export function publishedEvents(today?: string): ItacaEvent[] {
+  return events
+    .filter((e) => !e.bozza && (!today || e.date >= today))
+    .sort((a, b) => a.date.localeCompare(b.date) || a.time.localeCompare(b.time));
+}
 
 export const events: ItacaEvent[] = [
   {

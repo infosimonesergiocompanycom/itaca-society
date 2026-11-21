@@ -1,5 +1,7 @@
 import { currentMember } from "@/lib/server/auth";
 import { listMembers, sponsorContacts, standing, standingLabel } from "@/lib/server/members";
+import { activeSubscribers } from "@/lib/server/newsletter";
+import { siteUrl } from "@/lib/server/config";
 
 const esc = (v: string | null | undefined) => {
   const s = String(v ?? "");
@@ -21,7 +23,9 @@ function csvResponse(header: string[], rows: (string | null | undefined)[][], fi
  * Esportazioni in CSV (separatore ";" per Excel in italiano):
  * - senza parametri: libro soci completo, con lo stato dei consensi;
  * - ?tipo=sponsor: solo i soci che hanno acconsentito alla comunicazione dei dati a sponsor
- *   e partner, limitata ai dati indicati nel testo del consenso.
+ *   e partner, limitata ai dati indicati nel testo del consenso;
+ * - ?tipo=newsletter: destinatari delle Lettere da Itaca, cioè gli iscritti dal sito più i soci
+ *   con consenso alle comunicazioni promozionali, senza doppioni.
  */
 export async function GET(req: Request) {
   const me = await currentMember();
@@ -36,6 +40,25 @@ export async function GET(req: Request) {
       ["Cognome", "Nome", "Email", "Telefono", "Comune", "Interessi", "Consenso sponsor dal"],
       contacts.map((m) => [m.last_name, m.first_name, m.email, m.phone, m.city, m.interests, m.sponsor_consent_at?.slice(0, 10)]),
       `contatti-sponsor-${date}.csv`,
+    );
+  }
+
+  if (new URL(req.url).searchParams.get("tipo") === "newsletter") {
+    const [subs, members] = await Promise.all([activeSubscribers(), listMembers()]);
+    const base = siteUrl();
+    const rows = new Map<string, (string | null | undefined)[]>();
+    for (const m of members) {
+      if (!m.marketing_consent || m.status === "rejected" || m.status === "suspended") continue;
+      rows.set(m.email.toLowerCase(), [m.email, `${m.first_name} ${m.last_name}`, "Socio", m.marketing_consent_at?.slice(0, 10), `${base}/area-soci`]);
+    }
+    for (const s of subs) {
+      if (rows.has(s.email)) continue;
+      rows.set(s.email, [s.email, "", "Iscrizione dal sito", s.created_at.slice(0, 10), `${base}/newsletter/disiscrizione?t=${s.token}`]);
+    }
+    return csvResponse(
+      ["Email", "Nome", "Provenienza", "Consenso dal", "Link per disiscriversi"],
+      [...rows.values()],
+      `destinatari-newsletter-${date}.csv`,
     );
   }
 

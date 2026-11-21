@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { subscriberCount } from "@/lib/server/newsletter";
 import Link from "next/link";
 import { approveAction, manualPaymentAction, rejectAction, suspendAction } from "@/app/actions";
 import { requireAdmin } from "@/lib/server/auth";
@@ -23,7 +24,7 @@ const btn = "rounded-full border px-3 py-1.5 text-xs font-semibold transition-co
 export default async function AdminPage({ searchParams }: { searchParams: Promise<{ stato?: string; q?: string }> }) {
   await requireAdmin();
   const { stato = "pending", q = "" } = await searchParams;
-  const [all, stats] = await Promise.all([listMembers(), memberStats()]);
+  const [all, stats, newsletterCount] = await Promise.all([listMembers(), memberStats(), subscriberCount()]);
   const sponsorCount = all.filter((m) => m.sponsor_consent && m.status !== "rejected" && m.status !== "suspended").length;
   const query = q.trim().toLowerCase();
   const rows = all
@@ -53,6 +54,13 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
             title="Solo i soci che hanno acconsentito alla comunicazione dei dati a sponsor e partner"
           >
             Contatti per sponsor ({sponsorCount})
+          </a>
+          <a
+            href="/admin/export?tipo=newsletter"
+            className="rounded-full border border-carbone px-5 py-2.5 text-[0.8125rem] font-semibold hover:bg-carbone hover:text-calce"
+            title="Iscritti alle Lettere da Itaca e soci con consenso alle comunicazioni promozionali"
+          >
+            Destinatari newsletter ({newsletterCount})
           </a>
         </div>
       </div>

@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { eventCategories, events, type ItacaEvent } from "@/data/itacaData";
+import { eventCategories, type ItacaEvent } from "@/data/itacaData";
 import { EASE } from "@/lib/motion";
 import { cn } from "@/lib/format";
 import { EventCard } from "./EventCard";
@@ -42,9 +42,11 @@ export function EventFilters({ value, onChange }: { value: Filter; onChange: (f:
 }
 
 export function EventGrid({
+  events,
   limit,
   renderAction,
 }: {
+  events: ItacaEvent[];
   limit?: number;
   renderAction?: (e: ItacaEvent) => React.ReactNode;
 }) {
@@ -53,7 +55,7 @@ export function EventGrid({
   const list = useMemo(() => {
     const filtered = filter === "Tutti" ? events : events.filter((e) => e.category === filter);
     return typeof limit === "number" ? filtered.slice(0, limit) : filtered;
-  }, [filter, limit]);
+  }, [events, filter, limit]);
 
   return (
     <div>

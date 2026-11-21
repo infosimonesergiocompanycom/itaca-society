@@ -17,6 +17,10 @@ const sections = [
     text: "I dati servono a valutare la domanda di ammissione, a tenere il libro soci e a gestire quote, tessere e accessi agli eventi. La base giuridica è il rapporto associativo che instauri con la domanda di ammissione e gli obblighi di legge connessi (art. 6, par. 1, lett. b e c del Regolamento UE 2016/679). Senza questi dati non è possibile associarsi.",
   },
   {
+    title: "Lettere da Itaca (newsletter)",
+    text: "Chi si iscrive alla newsletter dal sito, anche senza essere socio, ci affida soltanto il proprio indirizzo email, che usiamo per inviare le Lettere da Itaca su incontri, eventi e attività dell'associazione. La base giuridica è il consenso, registrato con data e versione del testo accettato. Ogni lettera contiene un link per disiscriversi con un clic; dopo la disiscrizione l'indirizzo non riceve più alcun invio.",
+  },
+  {
     title: "Comunicazioni promozionali (facoltativo)",
     text: "Solo se ci dai il consenso specifico, usiamo email, telefono e interessi per inviarti comunicazioni promozionali su eventi, iniziative e attività dell'associazione, anche realizzate insieme a sponsor e partner. La base giuridica è il tuo consenso (art. 6, par. 1, lett. a). Il consenso è facoltativo e non incide sull'ammissione.",
   },
