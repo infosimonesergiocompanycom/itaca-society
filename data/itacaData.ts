@@ -568,6 +568,13 @@ export const events: ItacaEvent[] = [
 
 export const membershipFee = "20 €";
 
+/** Coordinate per il versamento della quota con bonifico (dati pubblici destinati ai soci). */
+export const bankTransfer = {
+  beneficiary: "Itaca Society",
+  bank: "Intesa Sanpaolo",
+  iban: "IT66R0306909606100000417186",
+};
+
 export const admission = [
   {
     step: "1",
@@ -582,7 +589,7 @@ export const admission = [
   {
     step: "3",
     title: "Versa la quota",
-    text: "Una volta approvata la domanda, paghi la quota associativa di 20 € con carta, direttamente dall'Area Soci.",
+    text: "Una volta approvata la domanda, versi la quota associativa di 20 € con bonifico bancario o con carta, seguendo le indicazioni nella tua Area Soci.",
   },
   {
     step: "4",
@@ -611,6 +618,10 @@ export const faqs: { q: string; a: string }[] = [
   {
     q: "Quanto dura la tessera?",
     a: "Dodici mesi dalla data del pagamento. Puoi rinnovarla anche prima della scadenza: i nuovi dodici mesi partono dal giorno successivo alla scadenza attuale.",
+  },
+  {
+    q: "Come posso pagare la quota?",
+    a: "Con bonifico bancario sul conto dell'associazione presso Intesa Sanpaolo, usando la causale indicata nella tua Area Soci: la tessera si attiva appena la segreteria registra il versamento. Quando sarà attivo, potrai pagare anche con carta e la tessera si attiverà all'istante.",
   },
   {
     q: "Il pagamento online è sicuro?",

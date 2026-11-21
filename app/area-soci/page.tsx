@@ -10,6 +10,7 @@ import { checkinsFor, paymentsFor, standing, standingLabel, todayIso, type Stand
 import { cn, dateParts, shortDate } from "@/lib/format";
 import { PageTitle } from "@/components/house/HouseBlocks";
 import { MemberCard } from "@/components/members/MemberCard";
+import { BankTransfer } from "@/components/members/BankTransfer";
 
 export const metadata: Metadata = { title: "Area Soci", robots: { index: false } };
 
@@ -23,7 +24,7 @@ const notices: Record<string, string> = {
   ok: "Pagamento ricevuto: la tua tessera è attiva. Benvenuto a Itaca.",
   annullato: "Il pagamento è stato annullato. Puoi riprovare quando vuoi.",
   attesa: "Il pagamento è in fase di conferma: la tessera si attiverà a breve. Ricarica la pagina tra qualche istante.",
-  "non-attivo": "I pagamenti online non sono ancora attivi. Contatta la segreteria per versare la quota.",
+  "non-attivo": "Il pagamento con carta non è ancora attivo: puoi versare la quota con bonifico, usando i dati qui sotto.",
 };
 
 function PayButton({ label }: { label: string }) {
@@ -57,6 +58,8 @@ export default async function MemberAreaPage({
     ? Math.round((Date.parse(member.paid_until) - Date.parse(today)) / 86_400_000)
     : null;
   const reached = STEPS.findIndex((st) => st.key.includes(s));
+  // Causale precompilata: permette alla segreteria di abbinare il bonifico al socio
+  const reason = `Quota associativa Itaca Society ${new Date().getFullYear()} - ${member.card_number ?? ""} - ${member.last_name} ${member.first_name}`.replace(/\s+-\s+-/, " -");
 
   return (
     <>
@@ -120,10 +123,18 @@ export default async function MemberAreaPage({
                         La tua domanda è stata approvata: benvenuto! Il numero della tua tessera è <strong>{member.card_number}</strong>. Versa la quota
                         associativa di {fee} per attivarla.
                       </p>
-                      <div className="mt-6">
-                        <PayButton label={`Paga ${fee} con carta`} />
+                      {mode !== "disabled" && (
+                        <>
+                          <div className="mt-6">
+                            <PayButton label={`Paga ${fee} con carta`} />
+                          </div>
+                          {mode === "demo" && <p className="mt-3 text-xs text-tortora">Modalità di prova: nessun addebito reale.</p>}
+                          <p className="mt-6 text-sm text-tortora">Oppure con bonifico:</p>
+                        </>
+                      )}
+                      <div className="mt-4">
+                        <BankTransfer amount={fee} reason={reason} />
                       </div>
-                      {mode === "demo" && <p className="mt-3 text-xs text-tortora">Modalità di prova: nessun addebito reale.</p>}
                     </>
                   )}
                   {s === "rejected" && <p>La domanda non è stata accolta. Per chiarimenti scrivi a soci@itacasociety.com.</p>}
@@ -137,8 +148,13 @@ export default async function MemberAreaPage({
                 <p className="text-[0.9375rem]">
                   {s === "expired" ? "La tessera è scaduta." : `La tessera scade tra ${daysLeft} giorni.`} Rinnova per altri dodici mesi.
                 </p>
-                <div className="mt-4 flex justify-center">
-                  <PayButton label={`Rinnova · ${fee}`} />
+                {mode !== "disabled" && (
+                  <div className="mt-4 flex justify-center">
+                    <PayButton label={`Rinnova · ${fee}`} />
+                  </div>
+                )}
+                <div className="mt-4">
+                  <BankTransfer amount={fee} reason={reason} title={mode !== "disabled" ? "Oppure con bonifico" : "Rinnovo con bonifico"} />
                 </div>
               </div>
             )}
