@@ -20,6 +20,8 @@ export function Header({ member }: { member: HeaderMember }) {
 
   // Sulla homepage l'header sta sopra la copertina scura: testo e pillole in versione chiara
   const onDark = pathname === "/";
+  // Le anteprime di impaginazione hanno intestazione e chiusura proprie
+  if (pathname.startsWith("/anteprima")) return null;
   const pill = onDark ? "pill bg-calce text-carbone hover:bg-terracotta hover:text-calce" : "pill bg-carbone text-calce hover:bg-terracotta";
 
   return (

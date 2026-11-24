@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { BrandMark } from "@/components/ui/Logo";
 import { NewsletterForm } from "@/components/layout/NewsletterForm";
 
@@ -36,6 +37,9 @@ const columns = [
 
 /** Footer a colonne: marchio, link, contatti e lettere da Itaca. */
 export function Footer() {
+  const pathname = usePathname();
+  if (pathname.startsWith("/anteprima")) return null;
+
   return (
     <footer className="px-4 pb-6 sm:px-8">
       <div className="border-t border-carbone/20 pt-12">
