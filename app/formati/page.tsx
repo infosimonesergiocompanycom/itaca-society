@@ -4,7 +4,7 @@ import { FeatureCards, PageTitle, StatementBand } from "@/components/house/House
 
 export const metadata: Metadata = {
   title: "Formati",
-  description: "Il Banchetto di Itaca, Itaca Society Festival e Le Fasi di Itaca: un brand, più formati.",
+  description: "Le Fasi di Itaca, Il Banchetto di Itaca e Itaca Society Festival: un brand, più formati.",
 };
 
 export default function FormatsPage() {
@@ -21,8 +21,8 @@ export default function FormatsPage() {
         image={photos.tamburo}
       />
       <StatementBand
-        statement="Il Festival allarga, Le Fasi trattengono, il Banchetto consacra"
-        body="Itaca Society è la piattaforma di valori e la comunità. Sotto di essa, formati diversi rispondono a scopi diversi: alcuni aprono la porta a un pubblico ampio, altri custodiscono l'esperienza più alta. Ogni nuovo formato nasce solo quando il precedente è stabile."
+        statement="Le Fasi trattengono, il Banchetto consacra, il Festival allarga"
+        body="Itaca Society è la piattaforma di valori e la comunità. Sotto di essa, formati diversi rispondono a scopi diversi: alcuni tengono vivo il legame tra i soci durante tutto l'anno, altri custodiscono l'esperienza più alta o aprono la porta a un pubblico ampio. Ogni nuovo formato nasce solo quando il precedente è stabile."
         primary={{ label: "Diventa socio", href: "/diventa-socio" }}
         secondary={{ label: "Calendario eventi", href: "/eventi" }}
       />

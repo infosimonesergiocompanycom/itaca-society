@@ -134,7 +134,7 @@ export type NavLink = { label: string; href: string };
 
 export const drawerLinks: (NavLink & { note: string })[] = [
   { label: "Il Club", href: "/il-club", note: "Il nome, la missione, i sette ideali" },
-  { label: "Formati", href: "/formati", note: "Il Banchetto, il Festival, Le Fasi" },
+  { label: "Formati", href: "/formati", note: "Le Fasi, il Banchetto, il Festival" },
   { label: "Eventi", href: "/eventi", note: "Il calendario de Le Fasi di Itaca" },
   { label: "Diventa socio", href: "/diventa-socio", note: "Tessera associativa, 20 € l'anno" },
   { label: "Journal", href: "/journal", note: "Cronache, riflessioni, mestieri" },
@@ -154,9 +154,9 @@ export const footerColumns: { title: string; links: NavLink[] }[] = [
   {
     title: "Formati",
     links: [
+      { label: "Le Fasi di Itaca", href: "/formati/le-fasi-di-itaca" },
       { label: "Il Banchetto di Itaca", href: "/formati/il-banchetto-di-itaca" },
       { label: "Itaca Society Festival", href: "/formati/festival" },
-      { label: "Le Fasi di Itaca", href: "/formati/le-fasi-di-itaca" },
     ],
   },
   {
@@ -238,6 +238,53 @@ export type Format = {
 };
 
 export const formats: Format[] = [
+  {
+    slug: "le-fasi-di-itaca",
+    name: "Le Fasi di Itaca",
+    role: "Fidelizzazione",
+    status: "attivo",
+    tagline: "Un calendario che segue la luna: talk, mostre, cene, pratiche di benessere.",
+    summary: "Calendario ricorrente di eventi minori, scandito come cicli lunari: tiene viva la community tra un Banchetto e un Festival.",
+    card: brandPhotos.ritratto,
+    strip: [brandPhotos.ritratto, photos.lettura, photos.giradischi, photos.tornio, brandPhotos.ombra, photos.marmoCave, photos.procinto, photos.tavolaLunga],
+    statement:
+      "Un appuntamento per ogni fase: incontri piccoli e ricorrenti che tengono viva la comunità durante tutto l'anno",
+    body: "Le Fasi di Itaca sono il calendario dei soci: talk, mostre, cene e pratiche di benessere, distribuiti nel mese come cicli lunari. Ogni incontro porta un nome nella forma «Le Fasi di Itaca — tema».",
+    highlights: [
+      { icon: "library", label: "Talk" },
+      { icon: "palette", label: "Mostre" },
+      { icon: "utensils", label: "Cene" },
+      { icon: "leaf", label: "Benessere" },
+      { icon: "headphones", label: "Ascolti" },
+      { icon: "calendar", label: "Cadenza ricorrente" },
+      { icon: "users", label: "Riservate ai soci" },
+      { icon: "landmark", label: "Pietrasanta e Versilia" },
+    ],
+    features: [
+      {
+        title: "Talk e conoscenza",
+        text: "Incontri a numero chiuso su filosofia, arte e cinema: momenti culturali sempre presenti, mai decorativi.",
+        image: photos.biblioteca,
+      },
+      {
+        title: "Pratiche e cammini",
+        text: "Mattine di respiro e cammino tra il mare della Versilia e i sentieri delle Apuane.",
+        image: photos.procintoVetta,
+      },
+    ],
+    block: {
+      title: "Come partecipare",
+      text: "Le Fasi sono riservate ai soci: con la tessera associativa ti iscrivi al calendario e mostri il QR all'ingresso di ogni incontro.",
+      image: photos.tavolaLunga,
+    },
+    info: [
+      { label: "Formato", value: "Calendario ricorrente di eventi minori" },
+      { label: "Stato", value: "In arrivo: il primo ciclo apre nell'inverno 2026" },
+      { label: "Accesso", value: "Con tessera associativa" },
+    ],
+    about:
+      "Le Fasi di Itaca sono il formato di fidelizzazione di Itaca Society: un calendario ricorrente di talk, mostre, cene e pratiche di benessere, scandito come cicli lunari.",
+  },
   {
     slug: "il-banchetto-di-itaca",
     name: "Il Banchetto di Itaca",
@@ -332,53 +379,6 @@ export const formats: Format[] = [
     ],
     about:
       "L'Itaca Society Festival allarga la comunità: è il formato pubblico del brand, a doppia location, con musica, arte, benessere e cucina curata.",
-  },
-  {
-    slug: "le-fasi-di-itaca",
-    name: "Le Fasi di Itaca",
-    role: "Fidelizzazione",
-    status: "in arrivo",
-    tagline: "Un calendario che segue la luna: talk, mostre, cene, pratiche di benessere.",
-    summary: "Calendario ricorrente di eventi minori, scandito come cicli lunari: tiene viva la community tra un Banchetto e un Festival.",
-    card: brandPhotos.ritratto,
-    strip: [brandPhotos.ritratto, photos.lettura, photos.giradischi, photos.tornio, brandPhotos.ombra, photos.marmoCave, photos.procinto, photos.tavolaLunga],
-    statement:
-      "Un appuntamento per ogni fase: incontri piccoli e ricorrenti che tengono viva la comunità durante tutto l'anno",
-    body: "Le Fasi di Itaca sono il calendario dei soci: talk, mostre, cene e pratiche di benessere, distribuiti nel mese come cicli lunari. Ogni incontro porta un nome nella forma «Le Fasi di Itaca — tema».",
-    highlights: [
-      { icon: "library", label: "Talk" },
-      { icon: "palette", label: "Mostre" },
-      { icon: "utensils", label: "Cene" },
-      { icon: "leaf", label: "Benessere" },
-      { icon: "headphones", label: "Ascolti" },
-      { icon: "calendar", label: "Cadenza ricorrente" },
-      { icon: "users", label: "Riservate ai soci" },
-      { icon: "landmark", label: "Pietrasanta e Versilia" },
-    ],
-    features: [
-      {
-        title: "Talk e conoscenza",
-        text: "Incontri a numero chiuso su filosofia, arte e cinema: momenti culturali sempre presenti, mai decorativi.",
-        image: photos.biblioteca,
-      },
-      {
-        title: "Pratiche e cammini",
-        text: "Mattine di respiro e cammino tra il mare della Versilia e i sentieri delle Apuane.",
-        image: photos.procintoVetta,
-      },
-    ],
-    block: {
-      title: "Come partecipare",
-      text: "Le Fasi sono riservate ai soci: con la tessera associativa ti iscrivi al calendario e mostri il QR all'ingresso di ogni incontro.",
-      image: photos.tavolaLunga,
-    },
-    info: [
-      { label: "Formato", value: "Calendario ricorrente di eventi minori" },
-      { label: "Stato", value: "In arrivo: il primo ciclo apre nell'inverno 2026" },
-      { label: "Accesso", value: "Con tessera associativa" },
-    ],
-    about:
-      "Le Fasi di Itaca sono il formato di fidelizzazione di Itaca Society: un calendario ricorrente di talk, mostre, cene e pratiche di benessere, scandito come cicli lunari.",
   },
 ];
 
