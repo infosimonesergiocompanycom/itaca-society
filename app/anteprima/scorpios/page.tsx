@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { DM_Mono, Hanken_Grotesk, Newsreader } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import { brand, footerColumns, formats, introVideo, kavafis, manifesto, photos, publishedEvents } from "@/data/itacaData";
@@ -7,6 +8,22 @@ import { Carousel, HeroVideo, LetterForm, TopBar, type Slide } from "@/component
 import { currentMember } from "@/lib/server/auth";
 import { todayIso } from "@/lib/server/members";
 import { longDate } from "@/lib/format";
+
+/*
+ * Font di prova, solo per questa anteprima: alternative libere (SIL OFL) ai caratteri del riferimento.
+ * Newsreader al posto di Signifier (Klim), Hanken Grotesk al posto di FK Grotesk, DM Mono al posto di MabryMono.
+ */
+const serif = Newsreader({ subsets: ["latin"], variable: "--font-sc-serif", style: ["normal", "italic"], weight: ["300", "400", "500"] });
+const sans = Hanken_Grotesk({ subsets: ["latin"], variable: "--font-sc-sans", weight: ["400", "500", "600"] });
+const mono = DM_Mono({ subsets: ["latin"], variable: "--font-sc-mono", weight: ["400", "500"] });
+
+/* Sostituzioni locali: fondo bianco al posto del crema e font del riferimento al posto di quelli del brand book */
+const themeOverride = {
+  "--color-calce": "#ffffff",
+  "--font-serif": "var(--font-sc-serif)",
+  "--font-sans": "var(--font-sc-sans)",
+  "--font-mono": "var(--font-sc-mono)",
+} as React.CSSProperties;
 
 export const metadata: Metadata = {
   title: "Anteprima · versione editoriale",
@@ -19,7 +36,7 @@ const grain =
 
 function Label({ children, light = false }: { children: React.ReactNode; light?: boolean }) {
   return (
-    <p className={`text-[0.66rem] font-medium uppercase tracking-[0.22em] ${light ? "text-calce" : "text-carbone"}`}>
+    <p className={`font-mono text-[0.68rem] uppercase tracking-[0.14em] ${light ? "text-calce" : "text-carbone"}`}>
       <span className="mr-2 text-terracotta">/</span>
       {children}
     </p>
@@ -50,7 +67,7 @@ export default async function ScorpiosPreview() {
   const next = publishedEvents(todayIso())[0];
 
   return (
-    <div className="bg-calce text-carbone">
+    <div className={`${serif.variable} ${sans.variable} ${mono.variable} bg-white font-sans text-carbone`} style={themeOverride}>
       {/* 1 · Copertina a tutto schermo */}
       <section className="relative flex h-[100svh] min-h-[560px] items-center justify-center overflow-hidden bg-carbone">
         <TopBar member={headerMember} />
@@ -117,7 +134,7 @@ export default async function ScorpiosPreview() {
       </section>
 
       {/* 5 · I formati, capitoli scuri a tutto schermo */}
-      <div className="space-y-2.5 bg-calce">
+      <div className="space-y-2.5 bg-white">
         {formats.map((f, i) => (
           <section key={f.slug} className="relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-carbone px-5 py-24 text-center text-calce">
             <Image src={chapterImage[f.slug] ?? f.card} alt="" fill sizes="100vw" className="grade object-cover" />
@@ -165,11 +182,11 @@ export default async function ScorpiosPreview() {
       </section>
 
       {/* 8 · Footer scuro */}
-      <footer className="bg-carbone px-5 pb-10 pt-16 text-calce sm:px-16">
+      <footer className="border-t border-carbone/15 bg-white px-5 pb-10 pt-16 text-carbone sm:px-16">
         <div className="grid grid-cols-2 gap-x-6 gap-y-10 lg:grid-cols-[1.4fr_repeat(4,minmax(0,1fr))] lg:gap-12">
           <div className="col-span-2 max-w-xs lg:col-span-1">
-            <BrandMark tone="cream" width={120} />
-            <p className="mt-6 text-[0.8rem] leading-relaxed text-calce/80">{brand.positioning}</p>
+            <BrandMark tone="ink" width={120} />
+            <p className="mt-6 text-[0.8rem] leading-relaxed text-tortora">{brand.positioning}</p>
           </div>
           {footerColumns.map((c) => (
             <ul key={c.title} className="space-y-4">
@@ -183,7 +200,7 @@ export default async function ScorpiosPreview() {
             </ul>
           ))}
         </div>
-        <div className="mt-20 flex flex-wrap items-center justify-between gap-4 text-[0.68rem] uppercase tracking-[0.12em] text-calce/70">
+        <div className="mt-20 flex flex-wrap items-center justify-between gap-4 text-[0.68rem] uppercase tracking-[0.12em] text-tortora">
           <a href="mailto:info@itacasociety.com" className="hover:text-terracotta">
             info@itacasociety.com
           </a>
