@@ -26,6 +26,9 @@ export const brandPhotos = {
   acquerelli: "/foto/acquerelli.jpg",
   calligrafia: "/foto/calligrafia.jpg",
   amiche: "/foto/amiche-tramonto.jpg",
+  sax: "/foto/sax-giardino.jpg",
+  console: "/foto/console-dj.jpg",
+  djTramonto: "/foto/dj-tramonto.jpg",
 } as const;
 
 /** Immagini di supporto: luoghi del territorio (public/foto, Wikimedia Commons) e fotografie Unsplash ad alta risoluzione. */
@@ -61,6 +64,21 @@ export const photos = {
  * File attesi in public/video: trailer.mp4 (H.264), trailer.webm (facoltativo), trailer-poster.jpg.
  */
 export const introVideo: { mp4: string; webm?: string; poster: string } | null = null;
+
+/** Profili social ufficiali. */
+export const social = {
+  instagram: { handle: "itaca_society", url: "https://www.instagram.com/itaca_society/" },
+};
+
+/**
+ * Musica: link pubblici di Spotify (open.spotify.com), mostrati nella pagina /musica.
+ * Basta incollare l'indirizzo che Spotify dà con «Condividi → Copia link»: playlist, album, artista o brano
+ * diventano lettori incorporati; il profilo utente diventa un pulsante.
+ */
+export const music: { spotifyProfile: string | null; spotify: { title: string; url: string; note?: string }[] } = {
+  spotifyProfile: null,
+  spotify: [],
+};
 
 /* -------------------------------------------------------------------------- */
 /*  Identità                                                                   */
@@ -146,7 +164,7 @@ export const drawerLinks: (NavLink & { note: string })[] = [
   { label: "Formati", href: "/formati", note: "Le Fasi, il Banchetto, il Festival" },
   { label: "Eventi", href: "/eventi", note: "Il calendario de Le Fasi di Itaca" },
   { label: "Diventa socio", href: "/diventa-socio", note: "Tessera associativa, 10 € l'anno" },
-  { label: "Journal", href: "/journal", note: "Cronache, riflessioni, mestieri" },
+  { label: "Musica", href: "/musica", note: "Le playlist e i DJ set di Itaca" },
   { label: "Area Soci", href: "/area-soci", note: "La tua tessera digitale" },
 ];
 
@@ -157,7 +175,7 @@ export const footerColumns: { title: string; links: NavLink[] }[] = [
       { label: "Il Club", href: "/il-club" },
       { label: "Tesseramento", href: "/membership" },
       { label: "Diventa socio", href: "/diventa-socio" },
-      { label: "Journal", href: "/journal" },
+      { label: "Musica", href: "/musica" },
     ],
   },
   {
@@ -180,6 +198,7 @@ export const footerColumns: { title: string; links: NavLink[] }[] = [
     title: "Contatti",
     links: [
       { label: "Scrivici", href: "/contatti" },
+      { label: "Instagram", href: "https://www.instagram.com/itaca_society/" },
       { label: "Privacy", href: "/privacy" },
       { label: "Crediti fotografici", href: "/crediti" },
     ],

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { brand, footerColumns } from "@/data/itacaData";
+import { brand, footerColumns, social } from "@/data/itacaData";
 import { BrandMark } from "@/components/ui/Logo";
 import { LetterForm } from "./LetterForm";
 
@@ -25,9 +25,15 @@ export function Footer() {
               <ul className="space-y-4">
                 {c.links.map((l) => (
                   <li key={l.href + l.label}>
-                    <Link href={l.href} className="text-[0.7rem] font-medium uppercase tracking-[0.12em] hover:text-terracotta">
-                      {l.label}
-                    </Link>
+                    {l.href.startsWith("http") ? (
+                      <a href={l.href} target="_blank" rel="noopener noreferrer" className="text-[0.7rem] font-medium uppercase tracking-[0.12em] hover:text-terracotta">
+                        {l.label}
+                      </a>
+                    ) : (
+                      <Link href={l.href} className="text-[0.7rem] font-medium uppercase tracking-[0.12em] hover:text-terracotta">
+                        {l.label}
+                      </Link>
+                    )}
                   </li>
                 ))}
               </ul>
@@ -35,9 +41,14 @@ export function Footer() {
           ))}
         </div>
         <div className="mt-20 flex flex-wrap items-center justify-between gap-4 text-[0.68rem] uppercase tracking-[0.12em] text-tortora">
-          <a href="mailto:info@itacasociety.com" className="hover:text-terracotta">
-            info@itacasociety.com
-          </a>
+          <span className="flex flex-wrap gap-x-6 gap-y-2">
+            <a href="mailto:info@itacasociety.com" className="hover:text-terracotta">
+              info@itacasociety.com
+            </a>
+            <a href={social.instagram.url} target="_blank" rel="noopener noreferrer" className="hover:text-terracotta">
+              Instagram @{social.instagram.handle}
+            </a>
+          </span>
           <p className="normal-case tracking-normal">Itaca Society 2026 · Associazione culturale · Pietrasanta (LU) · «live the journey»</p>
         </div>
       </footer>

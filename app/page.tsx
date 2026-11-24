@@ -14,7 +14,7 @@ const btn =
   "inline-block border px-6 py-2.5 text-[0.7rem] font-medium uppercase tracking-[0.12em] transition-colors duration-300";
 
 const fasi: Slide[] = [
-  { title: "Musica", text: "Dischi ascoltati per intero, dal primo all'ultimo solco, e DJ set organici fino a tardi.", image: photos.tamburo, href: "/eventi" },
+  { title: "Musica", text: "Dischi ascoltati per intero, dal primo all'ultimo solco, e DJ set organici fino a tardi.", image: photos.tamburo, href: "/musica" },
   { title: "Talk", text: "Filosofia, cinema e letteratura: conversazioni che lasciano qualcosa, seguite da una cena.", image: photos.ritratto, href: "/eventi" },
   { title: "Wellness", text: "Respiro, meditazione e cammini all'alba, tra le Apuane e il mare d'inverno.", image: photos.yoga, href: "/eventi" },
   { title: "Arte", text: "Il marmo e la bottega: laboratori di scultura e fonderie artistiche di Pietrasanta.", image: photos.marmoParete, href: "/eventi" },

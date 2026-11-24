@@ -28,6 +28,8 @@ const nextConfig: NextConfig = {
       { source: "/portal", destination: "/area-soci", permanent: false },
       { source: "/membership/candidatura", destination: "/diventa-socio", permanent: false },
       { source: "/luoghi", destination: "/formati", permanent: false },
+      { source: "/journal/:path*", destination: "/musica", permanent: false },
+      { source: "/journal", destination: "/musica", permanent: false },
       { source: "/anteprima/:path*", destination: "/", permanent: false },
       { source: "/formati/retreats", destination: "/formati", permanent: false },
       { source: "/luoghi/:slug", destination: "/formati", permanent: false },

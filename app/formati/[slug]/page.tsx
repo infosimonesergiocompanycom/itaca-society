@@ -59,7 +59,7 @@ export default async function FormatPage({ params }: { params: Promise<Params> }
 
       <FeatureCards id="esperienza" items={f.features} />
 
-      <ColorBlock id="racconto" title={f.block.title} text={f.block.text} image={f.block.image} cta={{ label: "Il Journal", href: "/journal" }} />
+      <ColorBlock id="racconto" title={f.block.title} text={f.block.text} image={f.block.image} cta={{ label: "Calendario eventi", href: "/eventi" }} />
 
       <section id="patto" className="scroll-mt-16 px-4 py-16 sm:px-6 sm:py-20">
         <p className="eyebrow">Il Club</p>

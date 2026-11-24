@@ -9,6 +9,7 @@ export const pillNavLinks = [
   { label: "Il Club", href: "/il-club" },
   { label: "Formati", href: "/formati" },
   { label: "Eventi", href: "/eventi" },
+  { label: "Musica", href: "/musica" },
   { label: "Tesseramento", href: "/membership" },
   { label: "Contatti", href: "/contatti" },
 ];

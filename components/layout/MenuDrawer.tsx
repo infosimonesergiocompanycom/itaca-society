@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useCallback } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { X } from "lucide-react";
-import { drawerLinks, kavafis, photos } from "@/data/itacaData";
+import { drawerLinks, kavafis, photos, social } from "@/data/itacaData";
 import type { HeaderMember } from "./Header";
 import { useLockBody } from "@/lib/useLockBody";
 import { EASE } from "@/lib/motion";
@@ -79,6 +79,7 @@ export function MenuDrawer({ open, onClose, member }: { open: boolean; onClose: 
               )}
               <Link href="/regole" onClick={close} className="link-underline pb-1">Il patto tra soci</Link>
               <Link href="/contatti" onClick={close} className="link-underline pb-1">Contatti</Link>
+              <a href={social.instagram.url} target="_blank" rel="noopener noreferrer" className="link-underline pb-1">Instagram</a>
               <span className="ml-auto hidden sm:inline">Comunità · Cultura · Versilia</span>
             </div>
           </div>
