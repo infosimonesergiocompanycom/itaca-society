@@ -1,6 +1,7 @@
 import Stripe from "stripe";
 import { MEMBERSHIP_FEE_CENTS, siteUrl } from "./config";
-import { recordPayment, type Member } from "./members";
+import { findMemberById, recordPayment, type Member } from "./members";
+import { notifyActivated } from "./emails";
 
 let client: Stripe | null = null;
 
@@ -47,11 +48,15 @@ export async function confirmCheckoutSession(sessionId: string): Promise<{ paid:
   const session = await stripe().checkout.sessions.retrieve(sessionId);
   const memberId = session.metadata?.member_id ?? session.client_reference_id ?? undefined;
   if (session.payment_status !== "paid" || !memberId) return { paid: false, memberId };
-  await recordPayment({
+  const recorded = await recordPayment({
     memberId,
     amountCents: session.amount_total ?? MEMBERSHIP_FEE_CENTS,
     method: "stripe",
     stripeSessionId: session.id,
   });
+  if (recorded) {
+    const m = await findMemberById(memberId);
+    if (m) await notifyActivated(m);
+  }
   return { paid: true, memberId };
 }

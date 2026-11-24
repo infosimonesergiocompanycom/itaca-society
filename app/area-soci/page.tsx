@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { events, publishedEvents } from "@/data/itacaData";
+import { paymentReason } from "@/lib/payment-reason";
 import { logoutAction, startPaymentAction, updateConsentsAction } from "@/app/actions";
 import { consentNote, consentTexts } from "@/lib/consents";
 import { requireMember } from "@/lib/server/auth";
@@ -59,7 +60,7 @@ export default async function MemberAreaPage({
     : null;
   const reached = STEPS.findIndex((st) => st.key.includes(s));
   // Causale precompilata: permette alla segreteria di abbinare il bonifico al socio
-  const reason = `Quota associativa Itaca Society ${new Date().getFullYear()} - ${member.card_number ?? ""} - ${member.last_name} ${member.first_name}`.replace(/\s+-\s+-/, " -");
+  const reason = paymentReason(member);
 
   return (
     <>

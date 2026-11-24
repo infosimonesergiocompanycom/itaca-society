@@ -1,6 +1,8 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
+import { after } from "next/server";
+import { notifyActivated, notifyApproved, notifyNewApplication } from "@/lib/server/emails";
 import { redirect } from "next/navigation";
 import { endSession, hashPassword, requireAdmin, requireMember, startSession, verifyPassword } from "@/lib/server/auth";
 import { verifyCardToken } from "@/lib/server/card";
@@ -9,6 +11,7 @@ import {
   approveMember,
   createMember,
   findMemberByEmail,
+  findMemberById,
   recordCheckin,
   recordPayment,
   setConsents,
@@ -85,6 +88,8 @@ export async function registerAction(_prev: FormState, fd: FormData): Promise<Fo
     marketingConsent: fd.get("marketing") === "on",
     sponsorConsent: fd.get("sponsor") === "on",
   });
+  // Avviso alla segreteria dopo la risposta, senza rallentare l'iscrizione
+  after(() => notifyNewApplication(member));
   await startSession(member.id);
   redirect("/area-soci?benvenuto=1");
 }
@@ -131,7 +136,13 @@ export async function startPaymentAction() {
 
 export async function approveAction(fd: FormData) {
   const admin = await requireAdmin();
-  await approveMember(str(fd, "id"), admin.id);
+  const id = str(fd, "id");
+  if (await approveMember(id, admin.id)) {
+    after(async () => {
+      const m = await findMemberById(id);
+      if (m) await notifyApproved(m);
+    });
+  }
   revalidatePath("/admin");
 }
 
@@ -150,7 +161,13 @@ export async function suspendAction(fd: FormData) {
 export async function manualPaymentAction(fd: FormData) {
   const admin = await requireAdmin();
   const method = str(fd, "method") === "transfer" ? "transfer" : "cash";
-  await recordPayment({ memberId: str(fd, "id"), amountCents: MEMBERSHIP_FEE_CENTS, method, recordedBy: admin.id });
+  const id = str(fd, "id");
+  if (await recordPayment({ memberId: id, amountCents: MEMBERSHIP_FEE_CENTS, method, recordedBy: admin.id })) {
+    after(async () => {
+      const m = await findMemberById(id);
+      if (m) await notifyActivated(m);
+    });
+  }
   revalidatePath("/admin");
 }
 

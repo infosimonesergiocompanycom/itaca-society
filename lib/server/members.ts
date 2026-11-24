@@ -143,16 +143,18 @@ export async function listMembers(filter?: MemberStatus) {
   return sql<Member>(`SELECT ${COLUMNS} FROM members ORDER BY created_at DESC`);
 }
 
-export async function approveMember(id: string, adminId: string) {
+/** Accoglie la domanda e assegna il numero di tessera. Restituisce true solo se lo stato è cambiato. */
+export async function approveMember(id: string, adminId: string): Promise<boolean> {
   const seq = await one<{ n: string }>(`SELECT nextval('card_seq')::text AS n`);
   const year = new Date().getFullYear();
   const number = `IS-${year}-${String(seq?.n ?? "0").padStart(4, "0")}`;
-  await sql(
+  const rows = await sql(
     `UPDATE members SET status = 'approved', approved_at = now(), decided_by = $2,
        card_number = COALESCE(card_number, $3)
-     WHERE id = $1 AND status IN ('pending','rejected','suspended')`,
+     WHERE id = $1 AND status IN ('pending','rejected','suspended') RETURNING id`,
     [id, adminId, number],
   );
+  return rows.length > 0;
 }
 
 export async function setMemberStatus(id: string, status: "rejected" | "suspended", adminId: string) {
@@ -176,7 +178,7 @@ function addMonths(iso: string, months: number): string {
 /**
  * Registra il versamento della quota. La validità parte da oggi, oppure
  * dalla scadenza precedente se la tessera è ancora attiva (rinnovo anticipato).
- * Idempotente rispetto alla sessione Stripe.
+ * Idempotente rispetto alla sessione Stripe. Restituisce true se il versamento è stato registrato ora.
  */
 export async function recordPayment(opts: {
   memberId: string;
@@ -184,10 +186,10 @@ export async function recordPayment(opts: {
   method: "stripe" | "cash" | "transfer" | "demo";
   stripeSessionId?: string;
   recordedBy?: string;
-}) {
+}): Promise<boolean> {
   if (opts.stripeSessionId) {
     const existing = await one(`SELECT id FROM payments WHERE stripe_session_id = $1`, [opts.stripeSessionId]);
-    if (existing) return;
+    if (existing) return false;
   }
   const member = await findMemberById(opts.memberId);
   if (!member) throw new Error("Socio non trovato");
@@ -202,6 +204,7 @@ export async function recordPayment(opts: {
     [randomUUID(), opts.memberId, opts.amountCents, opts.method, opts.stripeSessionId ?? null, start, end, opts.recordedBy ?? null],
   );
   await sql(`UPDATE members SET paid_until = $2 WHERE id = $1`, [opts.memberId, end]);
+  return true;
 }
 
 export async function paymentsFor(memberId: string) {
