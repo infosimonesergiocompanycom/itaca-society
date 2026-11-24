@@ -13,6 +13,8 @@ const nextConfig: NextConfig = {
   serverExternalPackages: ["@electric-sql/pglite", "pg"],
   images: {
     unoptimized: cpanel,
+    // 85 per le fotografie a tutto schermo, 75 per il resto
+    qualities: [75, 85],
     remotePatterns: [
       {
         protocol: "https",

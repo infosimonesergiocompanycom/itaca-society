@@ -8,15 +8,24 @@
 export const unsplash = (id: string, width = 2000) =>
   `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${width}&q=80`;
 
-/** Fotografie del brand book (public/foto): luce naturale, toni caldi e desaturati. */
+/** Fotografie di Itaca Society (public/foto), dagli originali della prima edizione del Festival. */
 export const brandPhotos = {
-  mareScogli: "/foto/mare-scogli.jpg",
-  tamburo: "/foto/tamburo-tramonto.jpg",
-  ritratto: "/foto/ritratto-ombre.jpg",
-  fuoco: "/foto/fuoco.jpg",
-  cappello: "/foto/cappello-mare.jpg",
-  piatto: "/foto/tavola-piatto.jpg",
-  ombra: "/foto/ombra-specchio.jpg",
+  mareScogli: "/foto/mare-tramonto.jpg",
+  tamburo: "/foto/dj-giardino.jpg",
+  ritratto: "/foto/talk-giardino.jpg",
+  fuoco: "/foto/fuoco-tramonto.jpg",
+  cappello: "/foto/cappello-piscina.jpg",
+  piatto: "/foto/tavola-apparecchiata.jpg",
+  ombra: "/foto/sorriso-tramonto.jpg",
+  // Altri scatti originali della prima edizione dell'Itaca Society Festival
+  insegna: "/foto/insegna-itaca.jpg",
+  conversazione: "/foto/conversazione-tramonto.jpg",
+  spiaggia: "/foto/spiaggia-tramonto.jpg",
+  controluce: "/foto/controluce.jpg",
+  yoga: "/foto/yoga-giardino.jpg",
+  acquerelli: "/foto/acquerelli.jpg",
+  calligrafia: "/foto/calligrafia.jpg",
+  amiche: "/foto/amiche-tramonto.jpg",
 } as const;
 
 /** Immagini di supporto: luoghi del territorio (public/foto, Wikimedia Commons) e fotografie Unsplash ad alta risoluzione. */
@@ -503,7 +512,7 @@ export const events: ItacaEvent[] = [
     place: "Marina di Pietrasanta",
     room: "Sulla spiaggia",
     category: "Musica & Listening",
-    image: brandPhotos.tamburo,
+    image: brandPhotos.fuoco,
     excerpt: "Il tramonto d'inverno sul mare, un braciere acceso e percussioni dal vivo, fino al buio.",
     seats: 60,
   },
@@ -575,7 +584,7 @@ export const events: ItacaEvent[] = [
     place: "Pietrasanta",
     room: "Luogo comunicato ai soci",
     category: "Talk & Filosofia",
-    image: photos.poesia,
+    image: photos.calligrafia,
     excerpt: "Letture ad alta voce delle poesie del viaggio, accompagnate dal violoncello.",
     seats: 36,
   },

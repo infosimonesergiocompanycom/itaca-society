@@ -6,10 +6,6 @@ import { Carousel, HeroVideo, type Slide } from "@/components/home/Editorial";
 import { todayIso } from "@/lib/server/members";
 import { longDate } from "@/lib/format";
 
-/* Grana pellicola sopra le immagini scure */
-const grain =
-  "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)' opacity='0.55'/></svg>\")";
-
 function Label({ children }: { children: React.ReactNode }) {
   return <p className="eyebrow">{children}</p>;
 }
@@ -18,9 +14,9 @@ const btn =
   "inline-block border px-6 py-2.5 text-[0.7rem] font-medium uppercase tracking-[0.12em] transition-colors duration-300";
 
 const fasi: Slide[] = [
-  { title: "Musica", text: "Dischi ascoltati per intero, dal primo all'ultimo solco, e DJ set organici fino a tardi.", image: photos.vinile, href: "/eventi" },
-  { title: "Talk", text: "Filosofia, cinema e letteratura: conversazioni che lasciano qualcosa, seguite da una cena.", image: photos.biblioteca, href: "/eventi" },
-  { title: "Wellness", text: "Respiro, meditazione e cammini all'alba, tra le Apuane e il mare d'inverno.", image: photos.campana, href: "/eventi" },
+  { title: "Musica", text: "Dischi ascoltati per intero, dal primo all'ultimo solco, e DJ set organici fino a tardi.", image: photos.tamburo, href: "/eventi" },
+  { title: "Talk", text: "Filosofia, cinema e letteratura: conversazioni che lasciano qualcosa, seguite da una cena.", image: photos.ritratto, href: "/eventi" },
+  { title: "Wellness", text: "Respiro, meditazione e cammini all'alba, tra le Apuane e il mare d'inverno.", image: photos.yoga, href: "/eventi" },
   { title: "Arte", text: "Il marmo e la bottega: laboratori di scultura e fonderie artistiche di Pietrasanta.", image: photos.marmoParete, href: "/eventi" },
   { title: "Convivio", text: "Una tavola unica, pochi ospiti e la cura di ogni dettaglio, dall'aperitivo al fuoco.", image: photos.piatto, href: "/eventi" },
   { title: "Natura", text: "Il Procinto, il Monte Forato, la battigia di Marina: la Versilia a passo lento.", image: photos.procinto, href: "/eventi" },
@@ -28,7 +24,7 @@ const fasi: Slide[] = [
 
 const chapterImage: Record<string, string> = {
   "il-banchetto-di-itaca": photos.fuoco,
-  festival: photos.marinaTramonto,
+  festival: photos.insegna,
   "le-fasi-di-itaca": photos.procintoAlba,
 };
 
@@ -42,10 +38,9 @@ export default function HomePage() {
         {introVideo ? (
           <HeroVideo {...introVideo} />
         ) : (
-          <Image src={photos.fuoco} alt="" fill priority sizes="100vw" className="grade scale-110 object-cover blur-[6px]" />
+          <Image src={photos.controluce} alt="" fill priority sizes="100vw" quality={85} className="grade object-cover" />
         )}
-        <div className="absolute inset-0 bg-carbone/45" aria-hidden />
-        <div className="absolute inset-0 opacity-40 mix-blend-overlay" style={{ backgroundImage: grain }} aria-hidden />
+        <div className="absolute inset-0 bg-carbone/20" aria-hidden />
         <div className="relative">
           <BrandMark tone="cream" width={300} priority />
         </div>
@@ -86,7 +81,7 @@ export default function HomePage() {
         <div className="mt-14 grid items-center gap-10 sm:mt-20 lg:grid-cols-[1fr_2.6fr] lg:gap-16">
           <p className="font-serif text-[1.3rem] leading-[1.3] lg:text-[1.45rem]">{brand.missionLong}</p>
           <div className="relative aspect-[16/10] overflow-hidden bg-nebbia">
-            <Image src={photos.tamburo} alt="Percussioni al tramonto sulla spiaggia" fill sizes="(min-width: 1024px) 70vw, 100vw" className="grade object-cover" />
+            <Image src={photos.conversazione} alt="Soci e ospiti al tramonto, Itaca Society Festival" fill sizes="(min-width: 1024px) 70vw, 100vw" className="grade object-cover" />
           </div>
         </div>
       </section>
@@ -105,9 +100,8 @@ export default function HomePage() {
       <div className="space-y-2.5">
         {formats.map((f, i) => (
           <section key={f.slug} className="relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-carbone px-5 py-24 text-center text-calce">
-            <Image src={chapterImage[f.slug] ?? f.card} alt="" fill sizes="100vw" className="grade object-cover" />
+            <Image src={chapterImage[f.slug] ?? f.card} alt="" fill sizes="100vw" quality={85} className="grade object-cover" />
             <div className="absolute inset-0 bg-carbone/55" aria-hidden />
-            <div className="absolute inset-0 opacity-30 mix-blend-overlay" style={{ backgroundImage: grain }} aria-hidden />
             <div className="relative max-w-xl">
               <Label>
                 Formato {["I", "II", "III"][i]} · {f.role}
@@ -126,7 +120,7 @@ export default function HomePage() {
       <section className="px-5 py-24 sm:px-16 sm:py-40">
         <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-24">
           <div className="relative aspect-[5/3] overflow-hidden bg-nebbia">
-            <Image src={photos.mareScogli} alt="Scogli e mare della Versilia" fill sizes="(min-width: 1024px) 50vw, 100vw" className="grade object-cover" />
+            <Image src={photos.spiaggia} alt="Tramonto sulla spiaggia della Versilia" fill sizes="(min-width: 1024px) 50vw, 100vw" className="grade object-cover" />
           </div>
           <div className="mx-auto max-w-md text-center lg:mt-28">
             <Label>{manifesto.eyebrow}</Label>
