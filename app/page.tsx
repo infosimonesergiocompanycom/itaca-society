@@ -58,7 +58,8 @@ export default function HomePage() {
               <h1 className="mt-6 font-serif text-[2.4rem] font-normal normal-case leading-[1.02] sm:text-[3.4rem]">{next.title.replace("Le Fasi di Itaca — ", "")}</h1>
               <p className="mt-6 font-serif text-[1.05rem] leading-snug">{next.excerpt}</p>
               <p className="mt-5 font-serif text-[1.05rem] leading-snug">
-                {longDate(next.date)}, ore {next.time}
+                {longDate(next.date)}
+                {/^\d/.test(next.time) ? `, ore ${next.time}` : ""}
                 <br />
                 {next.place} · {next.room}
               </p>

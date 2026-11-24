@@ -429,7 +429,7 @@ export const houseRules: { title: string; text: string }[] = [
 /*  Eventi — Le Fasi di Itaca (calendario dimostrativo, da sostituire)        */
 /* -------------------------------------------------------------------------- */
 
-export const eventCategories = ["Tutti", "Musica & Listening", "Talk & Filosofia", "Arte & Design", "Wellness"] as const;
+export const eventCategories = ["Tutti", "Le Fasi di Itaca", "Musica & Listening", "Talk & Filosofia", "Arte & Design", "Wellness"] as const;
 
 export type EventCategory = Exclude<(typeof eventCategories)[number], "Tutti">;
 
@@ -457,7 +457,7 @@ export const calendar = {
   eyebrow: "Le Fasi di Itaca",
   title: "Il calendario d'inverno",
   intro:
-    "Da novembre a gennaio, tra Pietrasanta, il mare e le Apuane. Gli incontri sono a numero chiuso e riservati ai soci: all'ingresso basta mostrare la tessera digitale.",
+    "Gli appuntamenti de Le Fasi di Itaca, tra Pietrasanta, il mare e le Apuane. Sono a numero chiuso e riservati ai soci: all'ingresso basta mostrare la tessera digitale.",
 };
 
 /** Eventi pubblicati, dal più vicino; con `today` (aaaa-mm-gg) solo quelli da oggi in poi. */
@@ -469,6 +469,19 @@ export function publishedEvents(today?: string): ItacaEvent[] {
 
 export const events: ItacaEvent[] = [
   {
+    slug: "itaca-house",
+    title: "Itaca House",
+    date: "2026-12-20",
+    time: "orario in arrivo",
+    place: "Versilia",
+    room: "luogo comunicato ai soci",
+    category: "Le Fasi di Itaca",
+    image: brandPhotos.insegna,
+    excerpt: "Il prossimo appuntamento de Le Fasi di Itaca. Programma, luogo e orari saranno comunicati ai soci nei prossimi giorni.",
+    seats: 40,
+  },
+  /* Esempi di calendario: restano come bozze (non visibili) e si possono riusare cambiando date e testi. */
+  {
     slug: "fasi-ascolto-integrale",
     title: "Le Fasi di Itaca — Ascolto",
     date: "2026-11-21",
@@ -478,6 +491,7 @@ export const events: ItacaEvent[] = [
     category: "Musica & Listening",
     image: photos.giradischi,
     excerpt: "Un disco ascoltato per intero, dal primo all'ultimo solco, con le luci basse e i telefoni lasciati all'ingresso.",
+    bozza: true,
     seats: 24,
   },
   {
@@ -490,6 +504,7 @@ export const events: ItacaEvent[] = [
     category: "Talk & Filosofia",
     image: photos.lettura,
     excerpt: "Una conversazione su Seneca e sulla brevità della vita, seguita da una cena alla stessa tavola.",
+    bozza: true,
     seats: 30,
   },
   {
@@ -502,6 +517,7 @@ export const events: ItacaEvent[] = [
     category: "Arte & Design",
     image: photos.marmoParete,
     excerpt: "Una mattina tra laboratori di scultura e fonderie artistiche, con chi lavora la pietra da generazioni.",
+    bozza: true,
     seats: 16,
   },
   {
@@ -514,6 +530,7 @@ export const events: ItacaEvent[] = [
     category: "Musica & Listening",
     image: brandPhotos.fuoco,
     excerpt: "Il tramonto d'inverno sul mare, un braciere acceso e percussioni dal vivo, fino al buio.",
+    bozza: true,
     seats: 60,
   },
   {
@@ -526,6 +543,7 @@ export const events: ItacaEvent[] = [
     category: "Wellness",
     image: photos.procintoAlba,
     excerpt: "Tre ore di cammino con una guida, colazione in quota e respirazione guidata davanti alla valle.",
+    bozza: true,
     seats: 12,
   },
   {
@@ -538,6 +556,7 @@ export const events: ItacaEvent[] = [
     category: "Talk & Filosofia",
     image: photos.pellicola,
     excerpt: "Proiezione del film di Roberto Rossellini del 1954, introdotta da un critico e seguita da un bicchiere insieme.",
+    bozza: true,
     seats: 40,
   },
   {
@@ -550,6 +569,7 @@ export const events: ItacaEvent[] = [
     category: "Arte & Design",
     image: photos.tornio,
     excerpt: "Un pomeriggio al tornio con una ceramista del territorio. I pezzi vengono cotti e consegnati dopo due settimane.",
+    bozza: true,
     seats: 10,
   },
   {
@@ -562,6 +582,7 @@ export const events: ItacaEvent[] = [
     category: "Musica & Listening",
     image: brandPhotos.piatto,
     excerpt: "Una cena a tavola lunga per salutare l'anno, con un trio acustico tra una portata e l'altra.",
+    bozza: true,
     seats: 40,
   },
   {
@@ -574,6 +595,7 @@ export const events: ItacaEvent[] = [
     category: "Wellness",
     image: photos.monteForato,
     excerpt: "Cammino, meditazione e un pranzo consumato in silenzio. Alla sera, il cerchio della parola accanto al fuoco.",
+    bozza: true,
     seats: 14,
   },
   {
@@ -586,6 +608,7 @@ export const events: ItacaEvent[] = [
     category: "Talk & Filosofia",
     image: photos.calligrafia,
     excerpt: "Letture ad alta voce delle poesie del viaggio, accompagnate dal violoncello.",
+    bozza: true,
     seats: 36,
   },
   {
@@ -598,6 +621,7 @@ export const events: ItacaEvent[] = [
     category: "Wellness",
     image: brandPhotos.mareScogli,
     excerpt: "Respiro, bagno freddo e colazione calda: il mare della Versilia nella sua stagione più silenziosa.",
+    bozza: true,
     seats: 16,
   },
 ];

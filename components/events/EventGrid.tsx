@@ -9,10 +9,10 @@ import { EventCard } from "./EventCard";
 
 type Filter = (typeof eventCategories)[number];
 
-export function EventFilters({ value, onChange }: { value: Filter; onChange: (f: Filter) => void }) {
+export function EventFilters({ value, onChange, options = eventCategories }: { value: Filter; onChange: (f: Filter) => void; options?: readonly Filter[] }) {
   return (
     <div role="tablist" aria-label="Filtra per categoria" className="no-scrollbar -mx-4 flex gap-2 overflow-x-auto px-4 sm:mx-0 sm:flex-wrap sm:px-0">
-      {eventCategories.map((c) => {
+      {options.map((c) => {
         const active = c === value;
         return (
           <button
@@ -57,9 +57,11 @@ export function EventGrid({
     return typeof limit === "number" ? filtered.slice(0, limit) : filtered;
   }, [events, filter, limit]);
 
+  // Filtri solo per le categorie presenti, e solo se ce n'è più d'una
+  const present = eventCategories.filter((c) => c === "Tutti" || events.some((e) => e.category === c));
   return (
     <div>
-      <EventFilters value={filter} onChange={setFilter} />
+      {present.length > 2 && <EventFilters value={filter} onChange={setFilter} options={present} />}
       <motion.div layout className="mt-10 grid gap-x-1.5 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
         <AnimatePresence mode="popLayout">
           {list.map((e, i) => (
