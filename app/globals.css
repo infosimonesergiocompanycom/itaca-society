@@ -1,26 +1,28 @@
 @import "tailwindcss";
 
 /*
- * Design system Itaca Society (brand book, agosto 2026) su impianto editoriale "house page":
- * fondi crema e ink, terracotta come colore-firma per i soli dettagli,
- * Jost per titoli e testo, Playfair Display per le citazioni, IM Fell English per il wordmark.
+ * Design system Itaca Society (brand book, revisione novembre 2026), impianto editoriale:
+ * fondo bianco, ink per testo e fasce scure, terracotta come colore-firma per i soli dettagli.
+ * Newsreader per titoli e testi lunghi, Hanken Grotesk per testo di servizio, navigazione e statement,
+ * DM Mono per le etichette, IM Fell English solo per il wordmark.
  */
 @theme {
-  /* Palette da brand book: ink e creme dominanti, terracotta solo per i dettagli */
-  --color-calce: #f8f4e9; /* Cream Light — fondo pagina */
-  --color-travertino: #f4efed; /* Cream Warm — fasce alternate */
-  --color-nebbia: #efe8e3; /* riquadri e note */
-  --color-pesca: #f4efed;
+  /* Palette: bianco e ink dominanti, terracotta solo per i dettagli */
+  --color-calce: #ffffff; /* Bianco — fondo pagina */
+  --color-travertino: #ffffff;
+  --color-nebbia: #f7f6f4; /* riquadri, note, attesa delle immagini */
+  --color-pesca: #ffffff;
   --color-ardesia: #231f20; /* fasce scure */
   --color-carbone: #231f20; /* Ink — testo */
   --color-tortora: #5d5755;
   --color-pineta: #231f20;
   --color-ottone: #b5613a;
   --color-terracotta: #b5613a; /* colore-firma: filetti, sovratitoli, richiami */
-  --color-linea: #e0d7cf;
+  --color-linea: #e4e1dc;
 
-  --font-sans: var(--font-jost), "Jost", system-ui, sans-serif;
-  --font-serif: var(--font-playfair), "Playfair Display", Georgia, serif;
+  --font-sans: var(--font-hanken), "Hanken Grotesk", system-ui, sans-serif;
+  --font-serif: var(--font-newsreader), "Newsreader", Georgia, serif;
+  --font-mono: var(--font-dmmono), "DM Mono", ui-monospace, monospace;
   --font-fell: var(--font-imfell), "IM Fell English", Georgia, serif;
 
   --ease-editorial: cubic-bezier(0.22, 1, 0.36, 1);
@@ -41,18 +43,18 @@
     font-size: 1rem;
   }
 
-  /* Titoli: Jost maiuscolo (brand book) */
+  /* Titoli: Newsreader in tondo, peso regolare */
   h1,
   h2,
   h3 {
-    font-family: var(--font-sans);
-    font-weight: 500;
-    text-transform: uppercase;
-    letter-spacing: 0.04em;
-    line-height: 1.08;
+    font-family: var(--font-serif);
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: -0.005em;
+    line-height: 1.05;
   }
 
-  /* Parole d'enfasi nei titoli: Playfair Display corsivo (momenti di intensità emotiva) */
+  /* Parole d'enfasi nei titoli: Newsreader corsivo */
   h1 em,
   h2 em,
   h3 em,
@@ -60,25 +62,16 @@
     font-family: var(--font-serif);
     font-style: italic;
     font-weight: 400;
-    letter-spacing: 0;
   }
 
-  /* Citazioni: Playfair in tondo o corsivo, senza maiuscolo */
-  h1.normal-case,
-  h2.normal-case,
-  h3.normal-case,
-  h1.font-serif.italic,
-  h2.font-serif.italic,
-  h3.font-serif.italic {
-    text-transform: none;
-    letter-spacing: 0;
-  }
-
-  /* Titoli in sans grassetto (es. "Diventa socio" di chiusura) */
+  /* Statement in bastoni maiuscolo (es. il titolo del club in homepage) */
   h1.font-sans,
   h2.font-sans,
   h3.font-sans {
     font-family: var(--font-sans);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.01em;
   }
 
   ::selection {
@@ -93,13 +86,18 @@
 }
 
 @layer components {
-  /* Sovratitolo: terracotta, maiuscolo molto spaziato */
+  /* Etichetta: DM Mono maiuscolo, preceduta da una barra terracotta */
   .eyebrow {
-    font-family: var(--font-sans);
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.2em;
+    font-family: var(--font-mono);
+    font-size: 0.68rem;
+    font-weight: 400;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
+    color: inherit;
+  }
+  .eyebrow::before {
+    content: "/";
+    margin-right: 0.6em;
     color: var(--color-terracotta);
   }
 
@@ -112,17 +110,17 @@
     text-transform: uppercase;
   }
 
-  /* Pillola scura della navigazione */
+  /* Pulsante rettangolare (il nome resta per compatibilità con i componenti) */
   .pill {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    border-radius: 9999px;
-    padding: 0.55rem 1.05rem;
+    border-radius: 0;
+    padding: 0.62rem 1.2rem;
     font-family: var(--font-sans);
-    font-size: 0.66rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
+    font-size: 0.68rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     white-space: nowrap;
     transition: background-color 0.3s, color 0.3s;
@@ -169,7 +167,7 @@
 
   .field {
     width: 100%;
-    background: #fffdf8;
+    background: #ffffff;
     border: 1px solid var(--color-linea);
     padding: 0.8rem 1rem;
     margin-top: 0.4rem;

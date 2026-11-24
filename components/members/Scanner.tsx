@@ -125,7 +125,7 @@ export function Scanner({ events, counts }: { events: EventOption[]; counts: Rec
                 type="button"
                 onClick={start}
                 disabled={camera === "starting"}
-                className="rounded-full bg-calce px-6 py-3 text-[0.875rem] font-semibold text-carbone disabled:opacity-60"
+                className="bg-calce px-6 py-3 text-[0.875rem] font-semibold text-carbone disabled:opacity-60"
               >
                 {camera === "starting" ? "Avvio…" : "Avvia la fotocamera"}
               </button>
@@ -148,7 +148,7 @@ export function Scanner({ events, counts }: { events: EventOption[]; counts: Rec
             className="field mt-0 flex-1"
             aria-label="Numero tessera"
           />
-          <button type="submit" className="shrink-0 rounded-full border border-carbone px-5 text-[0.8125rem] font-semibold hover:bg-carbone hover:text-calce">
+          <button type="submit" className="shrink-0 border border-carbone px-5 text-[0.8125rem] font-semibold hover:bg-carbone hover:text-calce">
             Verifica
           </button>
         </form>

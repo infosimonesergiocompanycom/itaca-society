@@ -6,7 +6,7 @@ type Variant = "solid" | "outline" | "light" | "ghost";
 
 /* Bottoni a pillola, piccoli, in tondo e senza maiuscolo */
 const base =
-  "group inline-flex items-center justify-center gap-2 rounded-full px-7 py-3 text-[0.68rem] font-semibold uppercase tracking-[0.08em] transition-colors duration-300 ease-editorial disabled:cursor-not-allowed disabled:opacity-40";
+  "group inline-flex items-center justify-center gap-2 px-7 py-3 text-[0.68rem] font-semibold uppercase tracking-[0.08em] transition-colors duration-300 ease-editorial disabled:cursor-not-allowed disabled:opacity-40";
 
 const variants: Record<Variant, string> = {
   solid: "bg-carbone text-calce hover:bg-terracotta",

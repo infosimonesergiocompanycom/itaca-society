@@ -19,7 +19,7 @@ export default function RulesPage() {
             <li key={r.title} className="border-b border-linea">
               <Reveal delay={i * 0.05} className="grid gap-4 py-10 sm:grid-cols-[5rem_16rem_1fr]">
                 <span className="font-serif text-2xl italic text-ottone">0{i + 1}</span>
-                <h2 className="text-[1.15rem] tracking-[0.14em]">{r.title}</h2>
+                <h2 className="text-[1.15rem]">{r.title}</h2>
                 <p className="text-[0.98rem] leading-relaxed text-tortora">{r.text}</p>
               </Reveal>
             </li>

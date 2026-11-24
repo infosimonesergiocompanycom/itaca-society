@@ -1,20 +1,22 @@
 import type { Metadata, Viewport } from "next";
-import { IM_Fell_English, Jost, Playfair_Display } from "next/font/google";
+import { DM_Mono, Hanken_Grotesk, IM_Fell_English, Newsreader } from "next/font/google";
 import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { unstable_rethrow } from "next/navigation";
 import { currentMember } from "@/lib/server/auth";
 import "./globals.css";
 
-// Tipografia da brand book: Jost (titoli e testo), Playfair Display (citazioni), IM Fell English (solo wordmark)
-const jost = Jost({ subsets: ["latin"], variable: "--font-jost", display: "swap" });
-
-const playfair = Playfair_Display({
+// Tipografia (brand book, revisione novembre 2026): Newsreader per titoli e testi, Hanken Grotesk per
+// navigazione e testo di servizio, DM Mono per le etichette, IM Fell English solo per il wordmark
+const newsreader = Newsreader({
   subsets: ["latin"],
   style: ["normal", "italic"],
-  variable: "--font-playfair",
+  weight: ["300", "400", "500"],
+  variable: "--font-newsreader",
   display: "swap",
 });
+const hanken = Hanken_Grotesk({ subsets: ["latin"], weight: ["400", "500", "600"], variable: "--font-hanken", display: "swap" });
+const dmMono = DM_Mono({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-dmmono", display: "swap" });
 
 const fell = IM_Fell_English({ subsets: ["latin"], weight: "400", variable: "--font-imfell", display: "swap" });
 
@@ -28,7 +30,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#F8F4E9",
+  themeColor: "#FFFFFF",
 };
 
 export default async function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -41,7 +43,7 @@ export default async function RootLayout({ children }: Readonly<{ children: Reac
     console.error("Sessione non disponibile:", err);
   }
   return (
-    <html lang="it" className={`${jost.variable} ${playfair.variable} ${fell.variable}`}>
+    <html lang="it" className={`${newsreader.variable} ${hanken.variable} ${dmMono.variable} ${fell.variable}`}>
       <body className="min-h-screen bg-calce font-sans text-carbone">
         <Header member={member ? { firstName: member.first_name, role: member.role } : null} />
         <main>{children}</main>

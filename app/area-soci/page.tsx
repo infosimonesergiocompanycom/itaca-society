@@ -32,7 +32,7 @@ function PayButton({ label }: { label: string }) {
     <form action={startPaymentAction}>
       <button
         type="submit"
-        className="rounded-full bg-carbone px-6 py-3 text-[0.875rem] font-semibold text-calce transition-colors duration-300 hover:bg-carbone/80"
+        className="bg-carbone px-6 py-3 text-[0.875rem] font-semibold text-calce transition-colors duration-300 hover:bg-carbone/80"
       >
         {label}
       </button>
@@ -206,7 +206,7 @@ export default async function MemberAreaPage({
                           {e.place} · {e.time}
                         </span>
                       </span>
-                      {attended && <span className="rounded-full bg-carbone px-3 py-1 text-xs text-calce">Presente</span>}
+                      {attended && <span className="bg-carbone px-3 py-1 text-xs text-calce">Presente</span>}
                     </li>
                   );
                 })}
@@ -269,7 +269,7 @@ export default async function MemberAreaPage({
                 })}
                 <button
                   type="submit"
-                  className="rounded-full border border-carbone px-5 py-2.5 text-[0.75rem] font-semibold uppercase tracking-[0.06em] transition-colors duration-300 hover:bg-carbone hover:text-calce"
+                  className="border border-carbone px-5 py-2.5 text-[0.75rem] font-semibold uppercase tracking-[0.06em] transition-colors duration-300 hover:bg-carbone hover:text-calce"
                 >
                   Salva le preferenze
                 </button>
@@ -278,7 +278,7 @@ export default async function MemberAreaPage({
 
             <div className="flex flex-wrap items-center gap-4 border-t border-linea pt-6">
               {member.role === "admin" && (
-                <Link href="/admin" className="rounded-full border border-carbone px-5 py-2.5 text-[0.8125rem] font-semibold hover:bg-carbone hover:text-calce">
+                <Link href="/admin" className="border border-carbone px-5 py-2.5 text-[0.8125rem] font-semibold hover:bg-carbone hover:text-calce">
                   Amministrazione
                 </Link>
               )}

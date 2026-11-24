@@ -19,7 +19,7 @@ const FILTERS: { key: Standing | "all"; label: string }[] = [
   { key: "all", label: "Tutti" },
 ];
 
-const btn = "rounded-full border px-3 py-1.5 text-xs font-semibold transition-colors duration-300";
+const btn = "border px-3 py-1.5 text-xs font-semibold transition-colors duration-300";
 
 export default async function AdminPage({ searchParams }: { searchParams: Promise<{ stato?: string; q?: string }> }) {
   await requireAdmin();
@@ -42,22 +42,22 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
           </p>
         </div>
         <div className="flex flex-wrap gap-3">
-          <Link href="/admin/ingressi" className="rounded-full bg-carbone px-5 py-2.5 text-[0.8125rem] font-semibold text-calce hover:bg-carbone/80">
+          <Link href="/admin/ingressi" className="bg-carbone px-5 py-2.5 text-[0.8125rem] font-semibold text-calce hover:bg-carbone/80">
             Controllo ingressi
           </Link>
-          <a href="/admin/export" className="rounded-full border border-carbone px-5 py-2.5 text-[0.8125rem] font-semibold hover:bg-carbone hover:text-calce">
+          <a href="/admin/export" className="border border-carbone px-5 py-2.5 text-[0.8125rem] font-semibold hover:bg-carbone hover:text-calce">
             Esporta libro soci (CSV)
           </a>
           <a
             href="/admin/export?tipo=sponsor"
-            className="rounded-full border border-carbone px-5 py-2.5 text-[0.8125rem] font-semibold hover:bg-carbone hover:text-calce"
+            className="border border-carbone px-5 py-2.5 text-[0.8125rem] font-semibold hover:bg-carbone hover:text-calce"
             title="Solo i soci che hanno acconsentito alla comunicazione dei dati a sponsor e partner"
           >
             Contatti per sponsor ({sponsorCount})
           </a>
           <a
             href="/admin/export?tipo=newsletter"
-            className="rounded-full border border-carbone px-5 py-2.5 text-[0.8125rem] font-semibold hover:bg-carbone hover:text-calce"
+            className="border border-carbone px-5 py-2.5 text-[0.8125rem] font-semibold hover:bg-carbone hover:text-calce"
             title="Iscritti alle Lettere da Itaca e soci con consenso alle comunicazioni promozionali"
           >
             Destinatari newsletter ({newsletterCount})
@@ -88,7 +88,7 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
               key={f.key}
               href={`/admin?stato=${f.key}${q ? `&q=${encodeURIComponent(q)}` : ""}`}
               className={cn(
-                "shrink-0 rounded-full border px-4 py-2 text-[0.8125rem] font-medium",
+                "shrink-0 border px-4 py-2 text-[0.8125rem] font-medium",
                 stato === f.key ? "border-carbone bg-carbone text-calce" : "border-carbone/30 hover:border-carbone",
               )}
             >
@@ -129,7 +129,7 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
                   <td className="py-4 pr-4">
                     <p className="font-medium">
                       {m.first_name} {m.last_name}
-                      {m.role === "admin" && <span className="ml-2 rounded-full bg-nebbia px-2 py-0.5 text-xs">admin</span>}
+                      {m.role === "admin" && <span className="ml-2 bg-nebbia px-2 py-0.5 text-xs">admin</span>}
                     </p>
                     <p className="text-tortora">{m.email}</p>
                     {m.phone && <p className="text-tortora">{m.phone}</p>}
@@ -146,10 +146,10 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
                     {m.interests && <p className="mt-1 text-xs text-tortora">Interessi: {m.interests}</p>}
                     {m.motivation && <p className="mt-1 max-w-xs text-xs italic text-tortora">«{m.motivation}»</p>}
                     <p className="mt-2 flex flex-wrap gap-1.5 text-[0.68rem]">
-                      <span className={cn("rounded-full px-2 py-0.5", m.marketing_consent ? "bg-carbone text-calce" : "bg-nebbia text-tortora")}>
+                      <span className={cn("px-2 py-0.5", m.marketing_consent ? "bg-carbone text-calce" : "bg-nebbia text-tortora")}>
                         Promozioni {m.marketing_consent ? "sì" : "no"}
                       </span>
-                      <span className={cn("rounded-full px-2 py-0.5", m.sponsor_consent ? "bg-carbone text-calce" : "bg-nebbia text-tortora")}>
+                      <span className={cn("px-2 py-0.5", m.sponsor_consent ? "bg-carbone text-calce" : "bg-nebbia text-tortora")}>
                         Sponsor {m.sponsor_consent ? "sì" : "no"}
                       </span>
                     </p>
@@ -161,7 +161,7 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
                   <td className="py-4 pr-4">
                     <span
                       className={cn(
-                        "inline-block rounded-full px-3 py-1 text-xs font-medium",
+                        "inline-block px-3 py-1 text-xs font-medium",
                         s === "active" ? "bg-[#3d6b4f] text-calce" : s === "pending" ? "bg-pesca" : "bg-nebbia",
                       )}
                     >

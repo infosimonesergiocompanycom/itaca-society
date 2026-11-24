@@ -9,7 +9,7 @@ export function EventCard({ event, action }: { event: ItacaEvent; action?: React
     <article className="group flex h-full flex-col">
       <div className="relative">
         <ZoomImage src={event.image} alt={event.title} className="aspect-[4/3]" />
-        <div className="absolute left-3 top-3 flex flex-col items-center rounded-full bg-calce px-3 py-2 text-carbone">
+        <div className="absolute left-3 top-3 flex flex-col items-center bg-calce px-3 py-2 text-carbone">
           <span className="font-serif text-xl leading-none">{d.day}</span>
           <span className="mt-0.5 text-[0.65rem] font-medium">{d.monthShort}</span>
         </div>

@@ -68,7 +68,7 @@ export default async function FormatPage({ params }: { params: Promise<Params> }
         <div className="mt-10 grid gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
           {houseRules.map((r, i) => (
             <Reveal key={r.title} delay={(i % 3) * 0.05} className="border-t border-carbone pt-4">
-              <h3 className="text-[0.85rem] tracking-[0.14em]">{r.title}</h3>
+              <h3 className="text-[0.85rem]">{r.title}</h3>
               <p className="mt-2 text-[0.9375rem] font-light leading-relaxed">{r.text}</p>
             </Reveal>
           ))}

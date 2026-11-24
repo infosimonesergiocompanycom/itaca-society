@@ -60,7 +60,7 @@ export function RegistrationForm() {
               <label
                 key={p}
                 className={cn(
-                  "cursor-pointer rounded-full border px-4 py-2 text-[0.8125rem] font-medium transition-colors duration-300",
+                  "cursor-pointer border px-4 py-2 text-[0.8125rem] font-medium transition-colors duration-300",
                   on ? "border-carbone bg-carbone text-calce" : "border-carbone/30 hover:border-carbone",
                 )}
               >
@@ -138,7 +138,7 @@ export function RegistrationForm() {
         <button
           type="submit"
           disabled={pending}
-          className="rounded-full bg-carbone px-6 py-3 text-[0.875rem] font-semibold text-calce transition-colors duration-300 hover:bg-carbone/80 disabled:opacity-50"
+          className="bg-carbone px-6 py-3 text-[0.875rem] font-semibold text-calce transition-colors duration-300 hover:bg-carbone/80 disabled:opacity-50"
         >
           {pending ? "Invio in corso…" : "Invia la domanda di ammissione"}
         </button>

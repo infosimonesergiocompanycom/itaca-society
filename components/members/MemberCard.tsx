@@ -39,7 +39,7 @@ export function MemberCard({
           <p className="font-medium">{validUntil ? shortDate(validUntil) : "—"}</p>
         </div>
       </div>
-      <p className={cn("mt-5 rounded-full px-3 py-1.5 text-center text-xs font-semibold", active ? "bg-[#3d6b4f] text-calce" : "bg-calce/15")}>
+      <p className={cn("mt-5 px-3 py-1.5 text-center text-xs font-semibold", active ? "bg-[#3d6b4f] text-calce" : "bg-calce/15")}>
         {active ? "Socio in regola" : "Tessera non valida: rinnova la quota"}
       </p>
     </div>

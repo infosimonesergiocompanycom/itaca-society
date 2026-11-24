@@ -20,8 +20,7 @@ export function Header({ member }: { member: HeaderMember }) {
 
   // Sulla homepage l'header sta sopra la copertina scura: testo e pillole in versione chiara
   const onDark = pathname === "/";
-  // Le anteprime di impaginazione hanno intestazione e chiusura proprie
-  if (pathname.startsWith("/anteprima")) return null;
+
   const pill = onDark ? "pill bg-calce text-carbone hover:bg-terracotta hover:text-calce" : "pill bg-carbone text-calce hover:bg-terracotta";
 
   return (
@@ -45,7 +44,8 @@ export function Header({ member }: { member: HeaderMember }) {
             </button>
           </div>
 
-          <Logo className="text-[0.85rem] sm:text-[1.15rem]" />
+          {/* In homepage il marchio è già al centro della copertina */}
+          {onDark ? <span aria-hidden /> : <Logo className="text-[0.85rem] sm:text-[1.15rem]" />}
 
           <div className="flex items-center justify-end gap-2">
             {member ? (

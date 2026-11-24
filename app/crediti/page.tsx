@@ -30,7 +30,7 @@ export default function CreditsPage() {
       />
       <section className="py-16 sm:py-24">
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
-          <h2 className="text-[1.15rem] tracking-[0.14em]">Il territorio</h2>
+          <h2 className="text-[1.15rem]">Il territorio</h2>
           <p className="mt-3 max-w-2xl text-[0.95rem] leading-relaxed text-tortora">
             Da Wikimedia Commons. Le immagini sono state ridimensionate per il web; le versioni adattate restano soggette alla stessa licenza dell&apos;originale.
           </p>
@@ -52,7 +52,7 @@ export default function CreditsPage() {
               </li>
             ))}
           </ul>
-          <h2 className="mt-16 text-[1.15rem] tracking-[0.14em]">Altre immagini</h2>
+          <h2 className="mt-16 text-[1.15rem]">Altre immagini</h2>
           <p className="mt-3 max-w-2xl text-[0.95rem] leading-relaxed text-tortora">
             Le fotografie dedicate ai temi delle serate (musica, libri, cinema, ceramica, benessere, convivio) provengono da{" "}
             <a href="https://unsplash.com" target="_blank" rel="noopener noreferrer" className="link-underline">

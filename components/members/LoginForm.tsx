@@ -20,7 +20,7 @@ export function LoginForm({ next }: { next?: string }) {
       <button
         type="submit"
         disabled={pending}
-        className="w-full rounded-full bg-carbone px-6 py-3 text-[0.875rem] font-semibold text-calce transition-colors duration-300 hover:bg-carbone/80 disabled:opacity-50"
+        className="w-full bg-carbone px-6 py-3 text-[0.875rem] font-semibold text-calce transition-colors duration-300 hover:bg-carbone/80 disabled:opacity-50"
       >
         {pending ? "Accesso in corso…" : "Accedi"}
       </button>

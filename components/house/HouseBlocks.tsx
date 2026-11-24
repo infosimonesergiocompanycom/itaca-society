@@ -122,7 +122,7 @@ export function FeatureCards({
               </div>
               <div className="pr-4 pt-4">
                 {it.meta && <p className="eyebrow mb-2">{it.meta}</p>}
-                <h3 className="text-[0.95rem] font-medium tracking-[0.12em]">{it.title}</h3>
+                <h3 className="text-[0.95rem] font-medium">{it.title}</h3>
                 <p className="mt-3 text-[0.98rem] font-light leading-relaxed">{it.text}</p>
                 {it.href && (
                   <Link href={it.href} className="mt-3 inline-block text-[0.72rem] font-medium uppercase tracking-[0.2em] text-terracotta hover:underline hover:underline-offset-4">
@@ -185,7 +185,7 @@ export function InfoBlock({
           <Image src={image} alt="" fill sizes="(min-width: 768px) 45vw, 100vw" className="grade object-cover" />
         </div>
         <div className="bg-nebbia px-8 py-8">
-          <h2 className="text-center text-[1.05rem] tracking-[0.16em]">Informazioni importanti</h2>
+          <h2 className="text-center text-[1.05rem]">Informazioni importanti</h2>
           <dl className="mt-6 space-y-6">
             {rows.map((r) => (
               <div key={r.label}>

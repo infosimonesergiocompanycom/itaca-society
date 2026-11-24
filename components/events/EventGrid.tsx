@@ -22,14 +22,14 @@ export function EventFilters({ value, onChange }: { value: Filter; onChange: (f:
             type="button"
             onClick={() => onChange(c)}
             className={cn(
-              "relative shrink-0 whitespace-nowrap rounded-full border px-4 py-2 text-[0.8125rem] font-medium transition-colors duration-300 ease-editorial",
+              "relative shrink-0 whitespace-nowrap border px-4 py-2 text-[0.8125rem] font-medium transition-colors duration-300 ease-editorial",
               active ? "border-carbone text-calce" : "border-carbone/30 text-carbone hover:border-carbone",
             )}
           >
             {active && (
               <motion.span
                 layoutId="event-filter"
-                className="absolute inset-0 rounded-full bg-carbone"
+                className="absolute inset-0 bg-carbone"
                 transition={{ duration: 0.7, ease: EASE }}
               />
             )}
