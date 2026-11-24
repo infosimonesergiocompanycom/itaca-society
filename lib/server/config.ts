@@ -1,6 +1,6 @@
 /** Parametri dell'associazione e dei servizi esterni, letti dalle variabili d'ambiente. */
 
-export const MEMBERSHIP_FEE_CENTS = Number(process.env.MEMBERSHIP_FEE_CENTS ?? 2000);
+export const MEMBERSHIP_FEE_CENTS = Number(process.env.MEMBERSHIP_FEE_CENTS ?? 1000);
 export const MEMBERSHIP_MONTHS = 12;
 
 export function siteUrl(): string {

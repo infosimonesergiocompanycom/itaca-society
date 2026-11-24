@@ -50,7 +50,7 @@ export default async function FormatPage({ params }: { params: Promise<Params> }
         id="formato"
         statement={f.statement}
         body={f.body}
-        fee="La tessera associativa costa 20 € l'anno"
+        fee="La tessera associativa costa 10 € l'anno"
         primary={{ label: "Diventa socio", href: "/diventa-socio" }}
         secondary={{ label: "Calendario eventi", href: "/eventi" }}
       />

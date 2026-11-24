@@ -9,7 +9,7 @@ Next.js 16 (App Router) · TypeScript · Tailwind CSS 4 · PostgreSQL · Stripe.
    (anagrafica, codice fiscale, residenza), email e password, accettazione di statuto e privacy.
 2. **Approvazione** (`/admin`): il Consiglio Direttivo approva o respinge la domanda.
    All'approvazione viene assegnato il numero di tessera (`IS-AAAA-0001`).
-3. **Quota** (`/area-soci`): il socio approvato paga 20 € con carta su Stripe Checkout.
+3. **Quota** (`/area-soci`): il socio approvato paga 10 € con carta su Stripe Checkout.
    In alternativa un amministratore registra un versamento in contanti o con bonifico.
 4. **Tessera digitale** (`/area-soci`): nome, numero, scadenza e QR firmato. Vale 12 mesi
    dal pagamento; il rinnovo anticipato allunga la validità dalla scadenza precedente.

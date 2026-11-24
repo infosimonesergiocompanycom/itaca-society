@@ -145,7 +145,7 @@ export const drawerLinks: (NavLink & { note: string })[] = [
   { label: "Il Club", href: "/il-club", note: "Il nome, la missione, i sette ideali" },
   { label: "Formati", href: "/formati", note: "Le Fasi, il Banchetto, il Festival" },
   { label: "Eventi", href: "/eventi", note: "Il calendario de Le Fasi di Itaca" },
-  { label: "Diventa socio", href: "/diventa-socio", note: "Tessera associativa, 20 € l'anno" },
+  { label: "Diventa socio", href: "/diventa-socio", note: "Tessera associativa, 10 € l'anno" },
   { label: "Journal", href: "/journal", note: "Cronache, riflessioni, mestieri" },
   { label: "Area Soci", href: "/area-soci", note: "La tua tessera digitale" },
 ];
@@ -606,7 +606,7 @@ export const events: ItacaEvent[] = [
 /*  Tesseramento                                                              */
 /* -------------------------------------------------------------------------- */
 
-export const membershipFee = "20 €";
+export const membershipFee = "10 €";
 
 /** Coordinate per il versamento della quota con bonifico (dati pubblici destinati ai soci). */
 export const bankTransfer = {
@@ -629,7 +629,7 @@ export const admission = [
   {
     step: "3",
     title: "Versa la quota",
-    text: "Una volta approvata la domanda, versi la quota associativa di 20 € con bonifico bancario o con carta, seguendo le indicazioni nella tua Area Soci.",
+    text: "Una volta approvata la domanda, versi la quota associativa di 10 € con bonifico bancario o con carta, seguendo le indicazioni nella tua Area Soci.",
   },
   {
     step: "4",
@@ -641,7 +641,7 @@ export const admission = [
 export const faqs: { q: string; a: string }[] = [
   {
     q: "Quanto costa associarsi?",
-    a: "La quota associativa è di 20 € l'anno e dà accesso alle attività riservate ai soci, a partire da Le Fasi di Itaca. Alcuni eventi, come il Banchetto, possono prevedere un contributo a parte, sempre indicato nel calendario.",
+    a: "La quota associativa è di 10 € l'anno e dà accesso alle attività riservate ai soci, a partire da Le Fasi di Itaca. Alcuni eventi, come il Banchetto, possono prevedere un contributo a parte, sempre indicato nel calendario.",
   },
   {
     q: "Chi può diventare socio?",

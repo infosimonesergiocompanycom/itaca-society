@@ -6,14 +6,14 @@ import { Reveal } from "@/components/ui/Reveal";
 
 export const metadata: Metadata = {
   title: "Tesseramento",
-  description: "Come diventare socio di Itaca Society: registrazione online, approvazione del Consiglio Direttivo, quota di 20 € l'anno e tessera digitale.",
+  description: "Come diventare socio di Itaca Society: registrazione online, approvazione del Consiglio Direttivo, quota di 10 € l'anno e tessera digitale.",
 };
 
 export default function MembershipPage() {
   return (
     <>
       <PageTitle
-        eyebrow="Quota associativa 20 € l'anno"
+        eyebrow="Quota associativa 10 € l'anno"
         title="Tesseramento"
         image={photos.brindisi}
         tabs={[
@@ -27,7 +27,7 @@ export default function MembershipPage() {
         id="tessera"
         statement="Itaca Society è un'associazione culturale: con la tessera partecipi a incontri, ascolti, laboratori e cammini, e contribuisci a sostenerli"
         body="La quota associativa vale dodici mesi e comprende l'accesso a tutte le attività riservate ai soci. La tessera è digitale: la trovi nella tua Area Soci e la mostri dal telefono all'ingresso di ogni evento."
-        fee="Quota associativa: 20 € l'anno"
+        fee="Quota associativa: 10 € l'anno"
         primary={{ label: "Diventa socio", href: "/diventa-socio" }}
         secondary={{ label: "Accedi", href: "/accedi" }}
       />

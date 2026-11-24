@@ -89,7 +89,7 @@ export function RegistrationForm() {
               <Link href="/regole" className="underline underline-offset-4" target="_blank">
                 statuto e il regolamento
               </Link>{" "}
-              e di impegnarmi a versare la quota associativa annuale di 20 € dopo l&apos;approvazione.
+              e di impegnarmi a versare la quota associativa annuale di 10 € dopo l&apos;approvazione.
             </span>
           </label>
           {e.statute && <p className="text-xs text-red-800" role="alert">{e.statute}</p>}
