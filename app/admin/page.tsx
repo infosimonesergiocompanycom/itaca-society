@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { subscriberCount } from "@/lib/server/newsletter";
+import { activeSubscribers } from "@/lib/server/newsletter";
 import Link from "next/link";
 import { approveAction, manualPaymentAction, rejectAction, suspendAction } from "@/app/actions";
 import { requireAdmin } from "@/lib/server/auth";
@@ -24,7 +24,11 @@ const btn = "border px-3 py-1.5 text-xs font-semibold transition-colors duration
 export default async function AdminPage({ searchParams }: { searchParams: Promise<{ stato?: string; q?: string }> }) {
   await requireAdmin();
   const { stato = "pending", q = "" } = await searchParams;
-  const [all, stats, newsletterCount] = await Promise.all([listMembers(), memberStats(), subscriberCount()]);
+  const [all, stats, subs] = await Promise.all([listMembers(), memberStats(), activeSubscribers()]);
+  // Destinatari newsletter: iscritti dal sito più soci con consenso alle comunicazioni, senza doppioni (come nell'export)
+  const recipients = new Set(subs.map((x) => x.email.toLowerCase()));
+  for (const m of all) if (m.marketing_consent && m.status !== "rejected" && m.status !== "suspended") recipients.add(m.email.toLowerCase());
+  const newsletterCount = recipients.size;
   const sponsorCount = all.filter((m) => m.sponsor_consent && m.status !== "rejected" && m.status !== "suspended").length;
   const query = q.trim().toLowerCase();
   const rows = all
