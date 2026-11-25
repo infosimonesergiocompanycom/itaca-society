@@ -124,10 +124,10 @@ export default function HomePage() {
       {/* 6 · Il nome */}
       <section className="px-5 py-24 sm:px-16 sm:py-40">
         <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-24">
-          <div className="relative aspect-[5/3] overflow-hidden bg-nebbia">
-            <Image src={photos.spiaggia} alt="Tramonto sulla spiaggia della Versilia" fill sizes="(min-width: 1024px) 50vw, 100vw" className="grade object-cover" />
+          <div className="relative aspect-[4/5] overflow-hidden bg-nebbia lg:max-w-[560px]">
+            <Image src={photos.piediPontile} alt="Piedi nudi che avanzano su un pontile di legno" fill sizes="(min-width: 1024px) 560px, 100vw" className="grade object-cover" />
           </div>
-          <div className="mx-auto max-w-md text-center lg:mt-28">
+          <div className="mx-auto max-w-md text-center lg:self-center">
             <Label>{manifesto.eyebrow}</Label>
             <h2 className="mt-6 font-serif text-[2.6rem] font-normal normal-case leading-none sm:text-[3.4rem]">{manifesto.title}</h2>
             <p className="mt-10 font-serif text-[1.05rem] italic leading-snug">«{kavafis.opening}»</p>

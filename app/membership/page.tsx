@@ -50,7 +50,7 @@ export default function MembershipPage() {
       <ColorBlock
         title="La tessera digitale"
         text="Nome, numero di tessera, scadenza e un codice QR firmato. All'ingresso lo staff lo inquadra con il telefono: la verifica è immediata e la presenza viene registrata."
-        image={photos.piediPontile}
+        image={photos.soleIntreccio}
         cta={{ label: "Registrati", href: "/diventa-socio" }}
       />
 
