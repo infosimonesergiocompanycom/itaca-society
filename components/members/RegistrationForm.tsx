@@ -96,8 +96,8 @@ export function RegistrationForm() {
             <input type="checkbox" name="statute" defaultChecked={v.statute === "on"} className="mt-1 h-4 w-4 shrink-0 accent-black" />
             <span>
               Chiedo di essere ammesso/a come socio/a di Itaca Society. Dichiaro di aver letto e di accettare lo{" "}
-              <Link href="/regole" className="underline underline-offset-4" target="_blank">
-                statuto e il regolamento
+              <Link href="/statuto" className="underline underline-offset-4" target="_blank">
+                statuto dell&apos;associazione
               </Link>{" "}
               e di impegnarmi a versare la quota associativa annuale di 10 € dopo l&apos;approvazione.
             </span>

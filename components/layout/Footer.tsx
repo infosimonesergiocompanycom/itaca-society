@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { brand, footerColumns, social } from "@/data/itacaData";
+import { association } from "@/data/statuto";
 import { BrandMark } from "@/components/ui/Logo";
 import { LetterForm } from "./LetterForm";
 
@@ -49,7 +50,9 @@ export function Footer() {
               Instagram @{social.instagram.handle}
             </a>
           </span>
-          <p className="normal-case tracking-normal">Itaca Society 2026 · Associazione culturale · Pietrasanta (LU) · «live the journey»</p>
+          <p className="normal-case tracking-normal">
+            © 2026 {association.name} · {association.address} · C.F. {association.fiscalCode} · P.IVA {association.vat}
+          </p>
         </div>
       </footer>
     </>

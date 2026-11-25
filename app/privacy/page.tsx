@@ -6,7 +6,7 @@ export const metadata: Metadata = { title: "Privacy" };
 const sections = [
   {
     title: "Titolare del trattamento",
-    text: "Itaca Society, associazione culturale con sede a Pietrasanta (LU). Per ogni richiesta relativa ai dati personali, compresa la revoca dei consensi, è possibile scrivere a info@itacasociety.com.",
+    text: "Itaca Society Associazione Culturale, con sede legale in Piazza Carducci 22, 55045 Pietrasanta (LU), codice fiscale 91067300466, partita IVA 02766870469, in persona del Presidente e legale rappresentante. Per ogni richiesta relativa ai dati personali, compresa la revoca dei consensi, è possibile scrivere a info@itacasociety.com.",
   },
   {
     title: "Dati raccolti",

@@ -190,6 +190,7 @@ export const footerColumns: { title: string; links: NavLink[] }[] = [
     title: "Il Club",
     links: [
       { label: "Il patto tra soci", href: "/regole" },
+      { label: "Statuto", href: "/statuto" },
       { label: "Eventi", href: "/eventi" },
       { label: "Area Soci", href: "/area-soci" },
     ],

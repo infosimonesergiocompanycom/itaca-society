@@ -8,7 +8,7 @@ export const metadata: Metadata = { title: "Contatti" };
 const contacts = [
   { label: "Informazioni", value: "info@itacasociety.com", note: "Collaborazioni, stampa, partner e richieste generali" },
   { label: "Soci e tesseramento", value: "soci@itacasociety.com", note: "Domande di ammissione, quote, tessera digitale" },
-  { label: "Dove", value: "Pietrasanta · Versilia", note: "I luoghi degli incontri vengono comunicati ai soci" },
+  { label: "Sede", value: "Pietrasanta · Versilia", note: "Piazza Carducci 22, 55045 Pietrasanta (LU). I luoghi degli incontri vengono comunicati ai soci" },
   { label: "Instagram", value: `@${social.instagram.handle}`, note: "Immagini, annunci e retroscena degli incontri", href: social.instagram.url },
 ];
 
