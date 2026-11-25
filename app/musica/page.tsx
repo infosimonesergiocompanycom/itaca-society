@@ -69,7 +69,7 @@ export default function MusicPage() {
       <section className="grid gap-2.5 px-5 pb-24 sm:grid-cols-3 sm:px-16 sm:pb-32">
         {[
           { src: photos.tamburo, alt: "DJ set in giardino, Itaca Society Festival" },
-          { src: photos.sax, alt: "Sassofono dal vivo, Itaca Society Festival" },
+          { src: photos.console, alt: "La console del DJ set, Itaca Society Festival" },
           { src: photos.djNotte, alt: "DJ set notturno tra le luci, Itaca Society" },
         ].map((p) => (
           <div key={p.src} className="relative aspect-[3/4] overflow-hidden bg-nebbia">

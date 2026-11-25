@@ -24,9 +24,12 @@ const fasi: Slide[] = [
 
 const chapterImage: Record<string, string> = {
   "il-banchetto-di-itaca": photos.fuoco,
-  festival: photos.insegna,
+  festival: photos.sax,
   "le-fasi-di-itaca": photos.scoglio,
 };
+
+/** Punto focale delle foto verticali nei capitoli a tutto schermo. */
+const chapterFocus: Record<string, string> = { festival: "object-[50%_30%]" };
 
 export default function HomePage() {
   const next = publishedEvents(todayIso())[0];
@@ -105,7 +108,7 @@ export default function HomePage() {
       <div className="space-y-2.5">
         {formats.map((f, i) => (
           <section key={f.slug} className="relative flex min-h-[100svh] items-center justify-center overflow-hidden bg-carbone px-5 py-24 text-center text-calce">
-            <Image src={chapterImage[f.slug] ?? f.card} alt="" fill sizes="100vw" quality={85} className="grade object-cover" />
+            <Image src={chapterImage[f.slug] ?? f.card} alt="" fill sizes="100vw" quality={85} className={`grade object-cover ${chapterFocus[f.slug] ?? ""}`} />
             <div className="absolute inset-0 bg-carbone/55" aria-hidden />
             <div className="relative max-w-xl">
               <Label>
