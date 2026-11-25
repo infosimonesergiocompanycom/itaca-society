@@ -370,7 +370,7 @@ export const formats: Format[] = [
       { icon: "users", label: "Pochi ospiti" },
       { icon: "sunset", label: "Dalle 19:00 alle 00:30" },
       { icon: "key", label: "Polsino d'ingresso" },
-      { icon: "landmark", label: "Marina di Pietrasanta" },
+      { icon: "landmark", label: "Versilia" },
     ],
     features: [
       {
@@ -386,12 +386,12 @@ export const formats: Format[] = [
     ],
     block: {
       title: "La prima edizione",
-      text: "24 luglio 2026, Tennis Versiliana, Marina di Pietrasanta. Una corte da tennis in terra rossa trasformata in banchetto romano-greco: illuminazione scenica perimetrale, un tavolo unico lungo l'intero campo, bracieri, polsini come meccanismo d'ingresso, coppe in stile kylix.",
+      text: "24 luglio 2026, Panama by Borsalino. Lo spazio trasformato in banchetto romano-greco: illuminazione scenica perimetrale, un tavolo unico che lo attraversa da un capo all'altro, bracieri, polsini come meccanismo d'ingresso, coppe in stile kylix.",
       image: brandPhotos.fuoco,
     },
     info: [
       { label: "Formato", value: "Evento serale in tre atti: Aperitivo, Convivium, Symposion" },
-      { label: "Prima edizione", value: "24 luglio 2026 · Tennis Versiliana, Marina di Pietrasanta" },
+      { label: "Prima edizione", value: "24 luglio 2026 · Panama by Borsalino" },
       { label: "Accesso", value: "Su invito e per i soci, a posti limitati" },
     ],
     about:
@@ -790,18 +790,18 @@ export type Article = {
 
 export const articles: Article[] = [
   {
-    slug: "il-banchetto-di-itaca-tennis-versiliana",
+    slug: "il-banchetto-di-itaca-prima-edizione",
     title: "Una sera in tre atti",
     category: "Cronache",
     author: "Redazione Itaca",
     date: "2026-08-05",
     readTime: "5 minuti",
     excerpt:
-      "Il 24 luglio una corte da tennis in terra rossa, a Marina di Pietrasanta, è diventata un banchetto romano-greco. Il racconto della prima edizione.",
+      "Il 24 luglio il Panama by Borsalino è diventato un banchetto romano-greco. Il racconto della prima edizione.",
     image: brandPhotos.fuoco,
     pullQuote: "«Ogni Banchetto è una dimostrazione, non una prova generale.»",
     body: [
-      "Alle sette di sera la terra rossa del Tennis Versiliana ha cambiato funzione. Un'illuminazione scenica disegnava il perimetro del campo, i bracieri erano accesi, e un unico tavolo correva da una linea di fondo all'altra.",
+      "Alle sette di sera il Panama by Borsalino ha cambiato volto. Un'illuminazione scenica disegnava il perimetro dello spazio, i bracieri erano accesi, e un unico tavolo lo attraversava da un capo all'altro.",
       "Il primo atto è stato l'Aperitivo: l'accoglienza, il polsino al braccio come segno d'ingresso, le coppe in stile kylix tra le mani. Poi il Convivium, la cena a tavola lunga, interrotta tre volte da interventi performativi: il fuoco, la danza, la magia.",
       "Dopo le dieci la sera ha cambiato registro. Il Symposion ha trasformato la tavola in club, con un DJ set fino a mezzanotte e mezza. Nessuno aveva fretta di andarsene.",
       "Il Banchetto di Itaca resta il punto di riferimento per ogni formato futuro: il luogo dove gli ideali di bellezza e armonia smettono di essere parole e diventano una sera da vivere insieme.",
