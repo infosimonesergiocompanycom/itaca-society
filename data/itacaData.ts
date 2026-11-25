@@ -51,6 +51,7 @@ export const brandPhotos = {
   talk: "/foto/talk-festival.jpg",
   convivio: "/foto/convivio-tavola.jpg",
   palmeControluce: "/foto/palme-controluce.jpg",
+  soleFestival: "/foto/sole-festival.jpg",
 } as const;
 
 /** Immagini di supporto: luoghi del territorio (public/foto, Wikimedia Commons) e fotografie Unsplash ad alta risoluzione. */
@@ -403,7 +404,7 @@ export const formats: Format[] = [
     status: "attivo",
     tagline: "La giornata del benessere, la sera del club: il primo incontro con Itaca.",
     summary: "Formato pubblico a doppia location, con ticket accessibile: il primo incontro con il brand per un pubblico ampio.",
-    card: brandPhotos.cappello,
+    card: brandPhotos.soleFestival,
     strip: [brandPhotos.cappello, brandPhotos.mareScogli, brandPhotos.aranciaMare, brandPhotos.tamburo, brandPhotos.acqua, brandPhotos.vialePalme, brandPhotos.ritratto, brandPhotos.soleIntreccio],
     statement:
       "Una giornata in due tempi: di giorno benessere, workshop e arte, la sera musica e club, in due luoghi diversi",
