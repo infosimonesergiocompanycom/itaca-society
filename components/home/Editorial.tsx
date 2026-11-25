@@ -4,23 +4,39 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 
-/** Video della copertina: muto, in loop, fermo per chi riduce le animazioni. */
+/**
+ * Video della copertina: muto, in loop, fermo per chi riduce le animazioni.
+ * Il trailer è verticale: sugli schermi larghi il video nitido resta in una colonna centrale poco tagliata
+ * e ai lati lo stesso filmato, sfocato e scurito, riempie lo spazio. Sul telefono occupa tutto lo schermo.
+ */
 export function HeroVideo({ mp4, webm, poster }: { mp4: string; webm?: string; poster: string }) {
-  const ref = useRef<HTMLVideoElement>(null);
+  const main = useRef<HTMLVideoElement>(null);
+  const back = useRef<HTMLVideoElement>(null);
   useEffect(() => {
-    const v = ref.current;
-    if (!v) return;
+    const vs = [main.current, back.current].filter((v): v is HTMLVideoElement => !!v);
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const sync = () => (reduce.matches ? v.pause() : void v.play().catch(() => undefined));
+    const sync = () => vs.forEach((v) => (reduce.matches ? v.pause() : void v.play().catch(() => undefined)));
     sync();
     reduce.addEventListener("change", sync);
     return () => reduce.removeEventListener("change", sync);
   }, []);
-  return (
-    <video ref={ref} className="absolute inset-0 h-full w-full object-cover" poster={poster} muted loop playsInline preload="metadata" aria-hidden tabIndex={-1}>
+  const sources = (
+    <>
       {webm && <source src={webm} type="video/webm" />}
       <source src={mp4} type="video/mp4" />
-    </video>
+    </>
+  );
+  return (
+    <>
+      <video ref={back} className="absolute inset-0 h-full w-full scale-110 object-cover blur-2xl brightness-75" poster={poster} muted loop playsInline preload="metadata" aria-hidden tabIndex={-1}>
+        {sources}
+      </video>
+      <div className="absolute inset-y-0 left-1/2 w-full max-w-[max(80svh,448px)] -translate-x-1/2 [@media(min-aspect-ratio:1/1)]:[mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
+        <video ref={main} className="h-full w-full object-cover" poster={poster} muted loop playsInline preload="metadata" aria-hidden tabIndex={-1}>
+          {sources}
+        </video>
+      </div>
+    </>
   );
 }
 
