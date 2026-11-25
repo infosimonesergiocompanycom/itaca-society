@@ -52,6 +52,12 @@ export const brandPhotos = {
   convivio: "/foto/convivio-tavola.jpg",
   palmeControluce: "/foto/palme-controluce.jpg",
   soleFestival: "/foto/sole-festival.jpg",
+  // Il Banchetto di Itaca, prima edizione al Panama by Borsalino
+  banchettoInsegna: "/foto/banchetto-insegna.jpg",
+  banchettoRosso: "/foto/banchetto-rosso.jpg",
+  banchettoBallo: "/foto/banchetto-ballo.jpg",
+  banchettoConsole: "/foto/banchetto-console.jpg",
+  banchettoPiscina: "/foto/banchetto-piscina.jpg",
 } as const;
 
 /** Immagini di supporto: luoghi del territorio (public/foto, Wikimedia Commons) e fotografie Unsplash ad alta risoluzione. */
@@ -357,8 +363,8 @@ export const formats: Format[] = [
     status: "attivo",
     tagline: "Un rito prima che un evento: il fuoco, il vino, la tavola condivisa.",
     summary: "Evento serale in formato banchetto: pochi ospiti, cura massima, il brand nella sua versione più pura.",
-    card: brandPhotos.fuoco,
-    strip: [brandPhotos.fuoco, brandPhotos.piatto, brandPhotos.fuocoDanza, brandPhotos.tamburo, brandPhotos.luceOmbra, brandPhotos.ombra, brandPhotos.fuocoSpirale, brandPhotos.ritratto],
+    card: brandPhotos.banchettoInsegna,
+    strip: [brandPhotos.banchettoInsegna, brandPhotos.banchettoConsole, brandPhotos.banchettoBallo, brandPhotos.banchettoPiscina, brandPhotos.banchettoRosso],
     statement:
       "Il cuore della community: una sera in tre atti, una tavola unica, pochi ospiti e la cura di ogni dettaglio",
     body: "Il Banchetto di Itaca reinterpreta il simposio greco-romano nella Versilia di oggi. Si comincia con l'accoglienza, si siede alla stessa tavola, si resta per la musica. È il luogo dove i valori dell'associazione diventano messa in scena concreta.",
@@ -376,18 +382,18 @@ export const formats: Format[] = [
       {
         title: "Convivium",
         text: "La cena a tavola lunga, un unico tavolo che attraversa lo spazio. Tra una portata e l'altra, tre interventi performativi: fuoco, danza, magia.",
-        image: brandPhotos.piatto,
+        image: brandPhotos.banchettoPiscina,
       },
       {
         title: "Symposion",
         text: "Dopo la cena la sera cambia registro: la tavola lascia spazio al club, con un DJ set organico fino a tardi.",
-        image: brandPhotos.tamburo,
+        image: brandPhotos.banchettoBallo,
       },
     ],
     block: {
       title: "La prima edizione",
       text: "24 luglio 2026, Panama by Borsalino. Lo spazio trasformato in banchetto romano-greco: illuminazione scenica perimetrale, un tavolo unico che lo attraversa da un capo all'altro, bracieri, polsini come meccanismo d'ingresso, coppe in stile kylix.",
-      image: brandPhotos.fuoco,
+      image: brandPhotos.banchettoRosso,
     },
     info: [
       { label: "Formato", value: "Evento serale in tre atti: Aperitivo, Convivium, Symposion" },

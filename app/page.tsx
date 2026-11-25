@@ -23,7 +23,7 @@ const fasi: Slide[] = [
 ];
 
 const chapterImage: Record<string, string> = {
-  "il-banchetto-di-itaca": photos.fuoco,
+  "il-banchetto-di-itaca": photos.banchettoConsole,
   festival: photos.sax,
   "le-fasi-di-itaca": photos.scoglio,
 };
