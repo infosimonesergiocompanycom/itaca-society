@@ -109,6 +109,7 @@ export const clubIntro = {
 /** Profili social ufficiali. */
 export const social = {
   instagram: { handle: "itaca_society", url: "https://www.instagram.com/itaca_society/" },
+  spotify: { url: "https://open.spotify.com/user/31tq65mu6jbbgisoebjez7ahm2ym" },
 };
 
 /**
@@ -116,8 +117,13 @@ export const social = {
  * Basta incollare l'indirizzo che Spotify dà con «Condividi → Copia link»: playlist, album, artista o brano
  * diventano lettori incorporati; il profilo utente diventa un pulsante.
  */
-export const music: { spotifyProfile: string | null; spotify: { title: string; url: string; note?: string }[] } = {
-  spotifyProfile: null,
+export const music: {
+  spotifyProfile: string | null;
+  resident: { name: string; role: string } | null;
+  spotify: { title: string; url: string; note?: string }[];
+} = {
+  spotifyProfile: "https://open.spotify.com/user/31tq65mu6jbbgisoebjez7ahm2ym",
+  resident: { name: "Seirios", role: "DJ resident" },
   spotify: [],
 };
 
@@ -241,6 +247,7 @@ export const footerColumns: { title: string; links: NavLink[] }[] = [
     links: [
       { label: "Scrivici", href: "/contatti" },
       { label: "Instagram", href: "https://www.instagram.com/itaca_society/" },
+      { label: "Spotify", href: "https://open.spotify.com/user/31tq65mu6jbbgisoebjez7ahm2ym" },
       { label: "Privacy", href: "/privacy" },
       { label: "Crediti fotografici", href: "/crediti" },
     ],

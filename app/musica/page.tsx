@@ -50,14 +50,26 @@ export default function MusicPage() {
           </div>
         ) : (
           <div className="mx-auto max-w-2xl border-y border-linea py-14 text-center">
-            <p className="font-serif text-[1.6rem] italic leading-snug sm:text-[2rem]">Le playlist di Itaca arrivano a breve.</p>
-            <p className="mt-4 text-[0.95rem] text-tortora">Nel frattempo, la musica delle serate passa anche dal nostro profilo Instagram.</p>
-            <a href={social.instagram.url} target="_blank" rel="noopener noreferrer" className={`${btn} mt-8`}>
-              Instagram @{social.instagram.handle}
-            </a>
+            {music.spotifyProfile ? (
+              <>
+                <p className="font-serif text-[1.6rem] italic leading-snug sm:text-[2rem]">Le playlist di Itaca sono su Spotify.</p>
+                <p className="mt-4 text-[0.95rem] text-tortora">Segui il profilo per ascoltare la musica delle nostre serate e ricevere le nuove selezioni.</p>
+                <a href={music.spotifyProfile} target="_blank" rel="noopener noreferrer" className={`${btn} mt-8`}>
+                  Itaca Society su Spotify
+                </a>
+              </>
+            ) : (
+              <>
+                <p className="font-serif text-[1.6rem] italic leading-snug sm:text-[2rem]">Le playlist di Itaca arrivano a breve.</p>
+                <p className="mt-4 text-[0.95rem] text-tortora">Nel frattempo, la musica delle serate passa anche dal nostro profilo Instagram.</p>
+                <a href={social.instagram.url} target="_blank" rel="noopener noreferrer" className={`${btn} mt-8`}>
+                  Instagram @{social.instagram.handle}
+                </a>
+              </>
+            )}
           </div>
         )}
-        {music.spotifyProfile && (
+        {music.spotifyProfile && players.length > 0 && (
           <p className="mt-12 text-center">
             <a href={music.spotifyProfile} target="_blank" rel="noopener noreferrer" className={btn}>
               Segui Itaca Society su Spotify
@@ -65,6 +77,16 @@ export default function MusicPage() {
           </p>
         )}
       </section>
+
+      {music.resident && (
+        <section className="px-5 pb-24 text-center sm:px-16 sm:pb-32">
+          <p className="eyebrow">{music.resident.role}</p>
+          <h2 className="mt-6 text-[2.6rem] leading-none sm:text-[3.6rem]">{music.resident.name}</h2>
+          <p className="mx-auto mt-6 max-w-lg font-serif text-[1.05rem] leading-snug">
+            È la voce musicale di Itaca Society: firma i set delle nostre serate, dal tramonto fino a tardi.
+          </p>
+        </section>
+      )}
 
       <section className="grid gap-2.5 px-5 pb-24 sm:grid-cols-3 sm:px-16 sm:pb-32">
         {[

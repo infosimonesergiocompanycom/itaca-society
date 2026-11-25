@@ -49,6 +49,9 @@ export function Footer() {
             <a href={social.instagram.url} target="_blank" rel="noopener noreferrer" className="hover:text-terracotta">
               Instagram @{social.instagram.handle}
             </a>
+            <a href={social.spotify.url} target="_blank" rel="noopener noreferrer" className="hover:text-terracotta">
+              Spotify
+            </a>
           </span>
           <p className="normal-case tracking-normal">
             © 2026 {association.name} · {association.address} · C.F. {association.fiscalCode} · P.IVA {association.vat}
