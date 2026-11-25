@@ -99,3 +99,33 @@ export function Carousel({ slides, label }: { slides: Slide[]; label: string }) 
     </div>
   );
 }
+
+/**
+ * Video breve in loop, muto: parte solo quando entra nello schermo e si ferma quando esce.
+ * Chi riduce le animazioni vede il fotogramma di copertina.
+ */
+export function LoopVideo({ src, poster, label, className = "" }: { src: string; poster: string; label: string; className?: string }) {
+  const ref = useRef<HTMLVideoElement>(null);
+  useEffect(() => {
+    const v = ref.current;
+    if (!v) return;
+    const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let visible = false;
+    const sync = () => (visible && !reduce.matches ? void v.play().catch(() => undefined) : v.pause());
+    const io = new IntersectionObserver(([e]) => {
+      visible = e.isIntersecting;
+      sync();
+    }, { threshold: 0.25 });
+    io.observe(v);
+    reduce.addEventListener("change", sync);
+    return () => {
+      io.disconnect();
+      reduce.removeEventListener("change", sync);
+    };
+  }, []);
+  return (
+    <video ref={ref} className={className} poster={poster} muted loop playsInline preload="none" aria-label={label}>
+      <source src={src} type="video/mp4" />
+    </video>
+  );
+}

@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { music, photos, social } from "@/data/itacaData";
+import { music, social } from "@/data/itacaData";
 import { spotifyEmbed } from "@/lib/spotify";
+import { LoopVideo } from "@/components/home/Editorial";
 
 export const metadata: Metadata = {
   title: "Musica",
@@ -96,12 +97,12 @@ export default function MusicPage() {
 
       <section className="grid gap-2.5 px-5 pb-24 sm:grid-cols-3 sm:px-16 sm:pb-32">
         {[
-          { src: photos.tamburo, alt: "DJ set in giardino, Itaca Society Festival" },
-          { src: photos.console, alt: "La console del DJ set, Itaca Society Festival" },
-          { src: photos.djNotte, alt: "DJ set notturno tra le luci, Itaca Society" },
-        ].map((p) => (
-          <div key={p.src} className="relative aspect-[3/4] overflow-hidden bg-nebbia">
-            <Image src={p.src} alt={p.alt} fill sizes="(min-width: 640px) 33vw, 100vw" className="grade object-cover" />
+          { n: 1, label: "Pista piena sotto le luci, una serata di Itaca Society" },
+          { n: 2, label: "Luci rosse e blu sopra la consolle durante il DJ set" },
+          { n: 3, label: "Braccia alzate sotto l'insegna al neon, una serata di Itaca Society" },
+        ].map((v) => (
+          <div key={v.n} className="relative aspect-[3/4] overflow-hidden bg-carbone">
+            <LoopVideo src={`/video/musica-${v.n}.mp4`} poster={`/video/musica-${v.n}.jpg`} label={v.label} className="absolute inset-0 h-full w-full object-cover" />
           </div>
         ))}
       </section>
