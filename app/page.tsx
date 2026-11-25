@@ -14,18 +14,18 @@ const btn =
   "inline-block border px-6 py-2.5 text-[0.7rem] font-medium uppercase tracking-[0.12em] transition-colors duration-300";
 
 const fasi: Slide[] = [
-  { title: "Musica", text: "Dischi ascoltati per intero, dal primo all'ultimo solco, e DJ set organici fino a tardi.", image: photos.tamburo, href: "/musica" },
+  { title: "Musica", text: "Dischi ascoltati per intero, dal primo all'ultimo solco, e DJ set organici fino a tardi.", image: photos.djNotte, href: "/musica" },
   { title: "Talk", text: "Filosofia, cinema e letteratura: conversazioni che lasciano qualcosa, seguite da una cena.", image: photos.ritratto, href: "/eventi" },
   { title: "Wellness", text: "Respiro, meditazione e cammini all'alba, tra le Apuane e il mare d'inverno.", image: photos.yoga, href: "/eventi" },
-  { title: "Arte", text: "Il marmo e la bottega: laboratori di scultura e fonderie artistiche di Pietrasanta.", image: photos.marmoParete, href: "/eventi" },
+  { title: "Arte", text: "Il marmo e la bottega: laboratori di scultura e fonderie artistiche di Pietrasanta.", image: photos.portico, href: "/eventi" },
   { title: "Convivio", text: "Una tavola unica, pochi ospiti e la cura di ogni dettaglio, dall'aperitivo al fuoco.", image: photos.piatto, href: "/eventi" },
-  { title: "Natura", text: "Il Procinto, il Monte Forato, la battigia di Marina: la Versilia a passo lento.", image: photos.procinto, href: "/eventi" },
+  { title: "Natura", text: "Il Procinto, il Monte Forato, la battigia di Marina: la Versilia a passo lento.", image: photos.battigia, href: "/eventi" },
 ];
 
 const chapterImage: Record<string, string> = {
   "il-banchetto-di-itaca": photos.fuoco,
   festival: photos.insegna,
-  "le-fasi-di-itaca": photos.procintoAlba,
+  "le-fasi-di-itaca": photos.scoglio,
 };
 
 export default function HomePage() {
@@ -40,7 +40,7 @@ export default function HomePage() {
         ) : (
           <Image src={photos.controluce} alt="" fill priority sizes="100vw" quality={85} className="grade object-cover" />
         )}
-        <div className="absolute inset-0 bg-carbone/20" aria-hidden />
+        <div className={`absolute inset-0 ${introVideo ? "bg-carbone/30" : "bg-carbone/20"}`} aria-hidden />
         <div className="relative">
           <BrandMark tone="cream" width={300} priority />
         </div>

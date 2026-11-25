@@ -15,7 +15,7 @@ export default function MembershipPage() {
       <PageTitle
         eyebrow="Quota associativa 10 € l'anno"
         title="Tesseramento"
-        image={photos.brindisi}
+        image={photos.mani}
         tabs={[
           { label: "La tessera", href: "#tessera" },
           { label: "Come funziona", href: "#passaggi" },
@@ -50,7 +50,7 @@ export default function MembershipPage() {
       <ColorBlock
         title="La tessera digitale"
         text="Nome, numero di tessera, scadenza e un codice QR firmato. All'ingresso lo staff lo inquadra con il telefono: la verifica è immediata e la presenza viene registrata."
-        image={photos.tavolaLunga}
+        image={photos.luceOmbra}
         cta={{ label: "Registrati", href: "/diventa-socio" }}
       />
 

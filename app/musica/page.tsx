@@ -70,7 +70,7 @@ export default function MusicPage() {
         {[
           { src: photos.tamburo, alt: "DJ set in giardino, Itaca Society Festival" },
           { src: photos.sax, alt: "Sassofono dal vivo, Itaca Society Festival" },
-          { src: photos.insegna, alt: "DJ set al tramonto sotto l'insegna di Itaca" },
+          { src: photos.djNotte, alt: "DJ set notturno tra le luci, Itaca Society" },
         ].map((p) => (
           <div key={p.src} className="relative aspect-[3/4] overflow-hidden bg-nebbia">
             <Image src={p.src} alt={p.alt} fill sizes="(min-width: 640px) 33vw, 100vw" className="grade object-cover" />

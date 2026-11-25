@@ -29,6 +29,25 @@ export const brandPhotos = {
   sax: "/foto/sax-giardino.jpg",
   console: "/foto/console-dj.jpg",
   djTramonto: "/foto/dj-tramonto.jpg",
+  // Seconda selezione: Cala Marella opening e scatti di stagione
+  scoglio: "/foto/scoglio-mare.jpg",
+  aranciaMare: "/foto/arancio-mare.jpg",
+  cappelloBn: "/foto/cappello-bn.jpg",
+  sandali: "/foto/sandali-pontile.jpg",
+  battigia: "/foto/passi-battigia.jpg",
+  portico: "/foto/portico-statua.jpg",
+  colonne: "/foto/colonne-cielo.jpg",
+  djNotte: "/foto/dj-notte.jpg",
+  mani: "/foto/mani-intrecciate.jpg",
+  luceOmbra: "/foto/luce-ombra.jpg",
+  fuocoDanza: "/foto/fuoco-danza.jpg",
+  fuocoSpirale: "/foto/fuoco-spirale.jpg",
+  riposo: "/foto/riposo.jpg",
+  piediPontile: "/foto/piedi-pontile.jpg",
+  vialePalme: "/foto/viale-palme.jpg",
+  acqua: "/foto/acqua.jpg",
+  soleIntreccio: "/foto/sole-intreccio.jpg",
+  palma: "/foto/palma.jpg",
 } as const;
 
 /** Immagini di supporto: luoghi del territorio (public/foto, Wikimedia Commons) e fotografie Unsplash ad alta risoluzione. */
@@ -63,7 +82,11 @@ export const photos = {
  * Video di sfondo della copertina in homepage (trailer). Lasciare `null` per la copertina ink senza video.
  * File attesi in public/video: trailer.mp4 (H.264), trailer.webm (facoltativo), trailer-poster.jpg.
  */
-export const introVideo: { mp4: string; webm?: string; poster: string } | null = null;
+export const introVideo: { mp4: string; webm?: string; poster: string } | null = {
+  mp4: "/video/trailer.mp4",
+  webm: "/video/trailer.webm",
+  poster: "/video/trailer-poster.jpg",
+};
 
 /** Profili social ufficiali. */
 export const social = {
@@ -275,7 +298,7 @@ export const formats: Format[] = [
     tagline: "Un calendario che segue la luna: talk, mostre, cene, pratiche di benessere.",
     summary: "Calendario ricorrente di eventi minori, scandito come cicli lunari: tiene viva la community tra un Banchetto e un Festival.",
     card: brandPhotos.ritratto,
-    strip: [brandPhotos.ritratto, photos.lettura, photos.giradischi, photos.tornio, brandPhotos.ombra, photos.marmoCave, photos.procinto, photos.tavolaLunga],
+    strip: [brandPhotos.ritratto, brandPhotos.cappelloBn, brandPhotos.djNotte, brandPhotos.portico, brandPhotos.ombra, brandPhotos.battigia, brandPhotos.colonne, brandPhotos.mani],
     statement:
       "Un appuntamento per ogni fase: incontri piccoli e ricorrenti che tengono viva la comunità durante tutto l'anno",
     body: "Le Fasi di Itaca sono il calendario dei soci: talk, mostre, cene e pratiche di benessere, distribuiti nel mese come cicli lunari. Ogni incontro porta un nome nella forma «Le Fasi di Itaca — tema».",
@@ -293,18 +316,18 @@ export const formats: Format[] = [
       {
         title: "Talk e conoscenza",
         text: "Incontri a numero chiuso su filosofia, arte e cinema: momenti culturali sempre presenti, mai decorativi.",
-        image: photos.biblioteca,
+        image: brandPhotos.cappelloBn,
       },
       {
         title: "Pratiche e cammini",
         text: "Mattine di respiro e cammino tra il mare della Versilia e i sentieri delle Apuane.",
-        image: photos.procintoVetta,
+        image: brandPhotos.battigia,
       },
     ],
     block: {
       title: "Come partecipare",
       text: "Le Fasi sono riservate ai soci: con la tessera associativa ti iscrivi al calendario e mostri il QR all'ingresso di ogni incontro.",
-      image: photos.tavolaLunga,
+      image: brandPhotos.mani,
     },
     info: [
       { label: "Formato", value: "Calendario ricorrente di eventi minori" },
@@ -323,7 +346,7 @@ export const formats: Format[] = [
     tagline: "Un rito prima che un evento: il fuoco, il vino, la tavola condivisa.",
     summary: "Evento serale in formato banchetto: pochi ospiti, cura massima, il brand nella sua versione più pura.",
     card: brandPhotos.fuoco,
-    strip: [brandPhotos.fuoco, brandPhotos.piatto, photos.tavolaLunga, brandPhotos.tamburo, photos.brindisi, brandPhotos.ombra, photos.vignaCalice, brandPhotos.ritratto],
+    strip: [brandPhotos.fuoco, brandPhotos.piatto, brandPhotos.fuocoDanza, brandPhotos.tamburo, brandPhotos.luceOmbra, brandPhotos.ombra, brandPhotos.fuocoSpirale, brandPhotos.ritratto],
     statement:
       "Il cuore della community: una sera in tre atti, una tavola unica, pochi ospiti e la cura di ogni dettaglio",
     body: "Il Banchetto di Itaca reinterpreta il simposio greco-romano nella Versilia di oggi. Si comincia con l'accoglienza, si siede alla stessa tavola, si resta per la musica. È il luogo dove i valori dell'associazione diventano messa in scena concreta.",
@@ -370,7 +393,7 @@ export const formats: Format[] = [
     tagline: "La giornata del benessere, la sera del club: il primo incontro con Itaca.",
     summary: "Formato pubblico a doppia location, con ticket accessibile: il primo incontro con il brand per un pubblico ampio.",
     card: brandPhotos.cappello,
-    strip: [brandPhotos.cappello, brandPhotos.mareScogli, photos.marinaTramonto, brandPhotos.tamburo, photos.marinaOnde, photos.pontile, brandPhotos.ritratto, photos.marmoCave],
+    strip: [brandPhotos.cappello, brandPhotos.mareScogli, brandPhotos.aranciaMare, brandPhotos.tamburo, brandPhotos.acqua, brandPhotos.vialePalme, brandPhotos.ritratto, brandPhotos.soleIntreccio],
     statement:
       "Una giornata in due tempi: di giorno benessere, workshop e arte, la sera musica e club, in due luoghi diversi",
     body: "Il Festival è la porta d'ingresso a Itaca Society: un formato aperto, con un ticket accessibile, pensato per chi incontra il brand per la prima volta. Da qui si arriva alla community e alle esperienze riservate ai soci.",
@@ -393,7 +416,7 @@ export const formats: Format[] = [
       {
         title: "La sera",
         text: "Il club: musica selezionata tra ambient, elettronica soft e world music, e stand food & beverage curati.",
-        image: photos.marinaTramonto,
+        image: brandPhotos.djNotte,
       },
     ],
     block: {
