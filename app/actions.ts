@@ -2,6 +2,7 @@
 
 import { revalidatePath } from "next/cache";
 import { after } from "next/server";
+import { normalizeCf, verifyCf } from "@/lib/codiceFiscale";
 import { notifyActivated, notifyApproved, notifyNewApplication, sendPasswordReset } from "@/lib/server/emails";
 import { consumeResetToken, createResetToken, RESET_TTL_MINUTES } from "@/lib/server/passwordReset";
 import { redirect } from "next/navigation";
@@ -45,7 +46,7 @@ export async function registerAction(_prev: FormState, fd: FormData): Promise<Fo
     lastName: str(fd, "lastName"),
     birthDate: str(fd, "birthDate"),
     birthPlace: str(fd, "birthPlace"),
-    fiscalCode: str(fd, "fiscalCode").toUpperCase().replace(/\s/g, ""),
+    fiscalCode: normalizeCf(str(fd, "fiscalCode")),
     address: str(fd, "address"),
     city: str(fd, "city"),
     phone: str(fd, "phone"),
@@ -63,7 +64,12 @@ export async function registerAction(_prev: FormState, fd: FormData): Promise<Fo
   else if (ageOn(v.birthDate) < 18) e.birthDate = "La registrazione online è riservata ai maggiorenni. Per i minori scrivi alla segreteria.";
   else if (ageOn(v.birthDate) > 110) e.birthDate = "Controlla la data inserita.";
   if (!v.birthPlace) e.birthPlace = "Indica il luogo di nascita.";
-  if (!/^[A-Z0-9]{16}$/.test(v.fiscalCode)) e.fiscalCode = "Il codice fiscale deve avere 16 caratteri.";
+  if (v.fiscalCode.length !== 16) e.fiscalCode = "Il codice fiscale deve avere 16 caratteri.";
+  else if (!e.firstName && !e.lastName && !e.birthDate) {
+    // Confronto con cognome, nome e data di nascita (con il metodo di calcolo ufficiale)
+    const cf = verifyCf({ fiscalCode: v.fiscalCode, firstName: v.firstName, lastName: v.lastName, birthDate: v.birthDate });
+    if (!cf.ok) e.fiscalCode = `${cf.message} Se il codice è corretto, controlla nome, cognome e data di nascita.`;
+  }
   if (!v.address) e.address = "Indica l'indirizzo di residenza.";
   if (!v.city) e.city = "Indica il comune di residenza.";
   if (!/^\S+@\S+\.\S+$/.test(v.email)) e.email = "Serve un indirizzo email valido.";
@@ -78,7 +84,13 @@ export async function registerAction(_prev: FormState, fd: FormData): Promise<Fo
   if (Object.keys(e).length > 0) {
     return {
       fieldErrors: e,
-      values: { ...v, marketing: fd.get("marketing") === "on" ? "on" : "", sponsor: fd.get("sponsor") === "on" ? "on" : "" },
+      values: {
+        ...v,
+        marketing: fd.get("marketing") === "on" ? "on" : "",
+        sponsor: fd.get("sponsor") === "on" ? "on" : "",
+        statute: fd.get("statute") === "on" ? "on" : "",
+        privacy: fd.get("privacy") === "on" ? "on" : "",
+      },
     };
   }
 

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useActionState, useState } from "react";
+import { useActionState, useEffect, useRef, useState } from "react";
 import { registerAction, type FormState } from "@/app/actions";
 import { passions } from "@/data/itacaData";
 import { consentNote, consentTexts } from "@/lib/consents";
@@ -16,9 +16,19 @@ export function RegistrationForm() {
 
   const toggle = (p: string) => setPicked((cur) => (cur.includes(p) ? cur.filter((x) => x !== p) : [...cur, p]));
   const hasErrors = Object.keys(e).length > 0;
+  const formRef = useRef<HTMLFormElement>(null);
+
+  // Dopo un invio con errori porta la vista sul primo campo da correggere
+  useEffect(() => {
+    const first = Object.keys(state.fieldErrors ?? {})[0];
+    if (!first) return;
+    const el = formRef.current?.querySelector<HTMLElement>(`[name="${first}"]`);
+    el?.scrollIntoView({ behavior: "smooth", block: "center" });
+    el?.focus({ preventScroll: true });
+  }, [state]);
 
   return (
-    <form action={action} noValidate className="space-y-14">
+    <form ref={formRef} action={action} noValidate className="space-y-14">
       {hasErrors && (
         <p className="border border-red-800 px-4 py-3 text-sm text-red-900" role="alert">
           Alcuni campi vanno completati o corretti: li trovi evidenziati qui sotto.
@@ -83,7 +93,7 @@ export function RegistrationForm() {
         <legend className="font-serif text-[1.8rem]">4. Domanda di ammissione</legend>
         <div className="mt-6 space-y-4 text-[0.9375rem] leading-relaxed">
           <label className="flex items-start gap-3">
-            <input type="checkbox" name="statute" className="mt-1 h-4 w-4 shrink-0 accent-black" />
+            <input type="checkbox" name="statute" defaultChecked={v.statute === "on"} className="mt-1 h-4 w-4 shrink-0 accent-black" />
             <span>
               Chiedo di essere ammesso/a come socio/a di Itaca Society. Dichiaro di aver letto e di accettare lo{" "}
               <Link href="/regole" className="underline underline-offset-4" target="_blank">
@@ -94,7 +104,7 @@ export function RegistrationForm() {
           </label>
           {e.statute && <p className="text-xs text-red-800" role="alert">{e.statute}</p>}
           <label className="flex items-start gap-3">
-            <input type="checkbox" name="privacy" className="mt-1 h-4 w-4 shrink-0 accent-black" />
+            <input type="checkbox" name="privacy" defaultChecked={v.privacy === "on"} className="mt-1 h-4 w-4 shrink-0 accent-black" />
             <span>
               Dichiaro di aver letto l&apos;{" "}
               <Link href="/privacy" className="underline underline-offset-4" target="_blank">
@@ -128,6 +138,13 @@ export function RegistrationForm() {
         </div>
       </fieldset>
 
+      {hasErrors && (
+        <ul className="space-y-1 border border-red-800 px-4 py-3 text-sm text-red-900" role="alert">
+          {Object.values(e).map((msg) => (
+            <li key={msg}>{msg}</li>
+          ))}
+        </ul>
+      )}
       <div className="flex flex-col gap-4 border-t border-linea pt-8 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-sm text-tortora">
           Hai già un account?{" "}

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { verifyCf } from "@/lib/codiceFiscale";
 import { activeSubscribers } from "@/lib/server/newsletter";
 import Link from "next/link";
 import { approveAction, manualPaymentAction, rejectAction, suspendAction } from "@/app/actions";
@@ -140,7 +141,17 @@ export default async function AdminPage({ searchParams }: { searchParams: Promis
                     <p className="mt-1 text-xs text-tortora">Domanda del {shortDate(m.created_at.slice(0, 10))}</p>
                   </td>
                   <td className="py-4 pr-4">
-                    <p>{m.fiscal_code}</p>
+                    <p className="flex flex-wrap items-center gap-2">
+                      {m.fiscal_code}
+                      {(() => {
+                        const cf = verifyCf({ fiscalCode: m.fiscal_code, firstName: m.first_name, lastName: m.last_name, birthDate: m.birth_date });
+                        return cf.ok ? null : (
+                          <span className="border border-terracotta px-2 py-0.5 text-[0.7rem] text-terracotta" title={cf.message}>
+                            Da verificare: {cf.message.replace("Il codice fiscale ", "").replace(/\.$/, "")}
+                          </span>
+                        );
+                      })()}
+                    </p>
                     <p className="text-tortora">
                       Nato/a il {shortDate(m.birth_date)} a {m.birth_place}
                     </p>
