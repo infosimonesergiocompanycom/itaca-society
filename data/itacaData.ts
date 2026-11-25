@@ -474,7 +474,7 @@ export const houseRules: { title: string; text: string }[] = [
   },
   {
     title: "Rispetto dei luoghi",
-    text: "Ogni luogo che ci ospita va restituito com'era, o migliore. Voce bassa, cura degli spazi e di chi lavora per noi.",
+    text: "Ogni luogo che ci ospita va restituito com'era, o migliore. Cura degli spazi e di chi lavora per noi.",
   },
   {
     title: "Nessun titolo",
