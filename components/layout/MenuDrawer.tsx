@@ -91,7 +91,7 @@ export function MenuDrawer({ open, onClose, member }: { open: boolean; onClose: 
             transition={{ duration: 1.2, ease: EASE }}
             className="relative hidden overflow-hidden lg:block"
           >
-            <Image src={photos.cappello} alt="Una figura con cappello di paglia sulla spiaggia" fill sizes="50vw" className="grade object-cover" />
+            <Image src={photos.palma} alt="Foglie di palma in controluce" fill sizes="50vw" className="grade object-cover" />
             <div className="absolute inset-0 bg-gradient-to-t from-carbone/75 via-carbone/10 to-transparent" />
             <div className="absolute inset-x-0 bottom-0 p-12 text-calce">
               <div className="mb-8"><BrandMark tone="cream" width={140} /></div>
