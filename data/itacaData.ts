@@ -383,7 +383,7 @@ export const formats: Format[] = [
       { icon: "flame", label: "Fuoco, danza, magia" },
       { icon: "users", label: "Pochi ospiti" },
       { icon: "sunset", label: "Dalle 19:00 alle 00:30" },
-      { icon: "key", label: "Polsino d'ingresso" },
+      { icon: "key", label: "Su invito e per i soci" },
       { icon: "landmark", label: "Versilia" },
     ],
     features: [
@@ -400,7 +400,7 @@ export const formats: Format[] = [
     ],
     block: {
       title: "La prima edizione",
-      text: "24 luglio 2026, Panama by Borsalino. Lo spazio trasformato in banchetto romano-greco: illuminazione scenica perimetrale, un tavolo unico che lo attraversa da un capo all'altro, bracieri, polsini come meccanismo d'ingresso, coppe in stile kylix.",
+      text: "24 luglio 2026, Panama by Borsalino. Lo spazio trasformato in banchetto romano-greco: illuminazione scenica perimetrale, un tavolo unico che lo attraversa da un capo all'altro, bracieri e coppe in stile kylix.",
       image: brandPhotos.banchettoRosso,
     },
     info: [
@@ -816,7 +816,7 @@ export const articles: Article[] = [
     pullQuote: "«Ogni Banchetto è una dimostrazione, non una prova generale.»",
     body: [
       "Alle sette di sera il Panama by Borsalino ha cambiato volto. Un'illuminazione scenica disegnava il perimetro dello spazio, i bracieri erano accesi, e un unico tavolo lo attraversava da un capo all'altro.",
-      "Il primo atto è stato l'Aperitivo: l'accoglienza, il polsino al braccio come segno d'ingresso, le coppe in stile kylix tra le mani. Poi il Convivium, la cena a tavola lunga, interrotta tre volte da interventi performativi: il fuoco, la danza, la magia.",
+      "Il primo atto è stato l'Aperitivo: l'accoglienza, le coppe in stile kylix tra le mani. Poi il Convivium, la cena a tavola lunga, interrotta tre volte da interventi performativi: il fuoco, la danza, la magia.",
       "Dopo le dieci la sera ha cambiato registro. Il Symposion ha trasformato la tavola in club, con un DJ set fino a mezzanotte e mezza. Nessuno aveva fretta di andarsene.",
       "Il Banchetto di Itaca resta il punto di riferimento per ogni formato futuro: il luogo dove gli ideali di bellezza e armonia smettono di essere parole e diventano una sera da vivere insieme.",
     ],
