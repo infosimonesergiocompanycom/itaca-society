@@ -17,8 +17,8 @@ export function EventCard({ event, action }: { event: ItacaEvent; action?: React
       <div className="flex flex-1 flex-col pr-4 pt-4">
         <div className="flex items-center justify-between gap-4">
           <span className="text-sm text-tortora">{event.category}</span>
-          <span className="text-xs capitalize text-tortora">
-            {d.weekday} · {event.time}
+          <span className="text-xs text-tortora">
+            {d.weekday.charAt(0).toUpperCase() + d.weekday.slice(1)} · {event.time}
           </span>
         </div>
         <h3 className="mt-2 font-sans text-[0.9375rem] font-medium leading-snug">{event.title}</h3>

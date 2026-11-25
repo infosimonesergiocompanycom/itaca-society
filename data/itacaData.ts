@@ -298,7 +298,7 @@ export const formats: Format[] = [
     tagline: "Un calendario che segue la luna: talk, mostre, cene, pratiche di benessere.",
     summary: "Calendario ricorrente di eventi minori, scandito come cicli lunari: tiene viva la community tra un Banchetto e un Festival.",
     card: brandPhotos.ritratto,
-    strip: [brandPhotos.ritratto, brandPhotos.cappelloBn, brandPhotos.djNotte, brandPhotos.portico, brandPhotos.ombra, brandPhotos.battigia, brandPhotos.colonne, brandPhotos.mani],
+    strip: [brandPhotos.ritratto, brandPhotos.cappelloBn, brandPhotos.djNotte, brandPhotos.portico, brandPhotos.ombra, brandPhotos.battigia, brandPhotos.riposo, brandPhotos.mani],
     statement:
       "Un appuntamento per ogni fase: incontri piccoli e ricorrenti che tengono viva la comunità durante tutto l'anno",
     body: "Le Fasi di Itaca sono il calendario dei soci: talk, mostre, cene e pratiche di benessere, distribuiti nel mese come cicli lunari. Ogni incontro porta un nome nella forma «Le Fasi di Itaca — tema».",
@@ -519,7 +519,7 @@ export const events: ItacaEvent[] = [
     place: "Versilia",
     room: "luogo comunicato ai soci",
     category: "Le Fasi di Itaca",
-    image: brandPhotos.insegna,
+    image: brandPhotos.colonne,
     excerpt: "Il prossimo appuntamento de Le Fasi di Itaca. Programma, luogo e orari saranno comunicati ai soci nei prossimi giorni.",
     seats: 40,
   },
