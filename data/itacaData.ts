@@ -48,6 +48,7 @@ export const brandPhotos = {
   acqua: "/foto/acqua.jpg",
   soleIntreccio: "/foto/sole-intreccio.jpg",
   palma: "/foto/palma.jpg",
+  talk: "/foto/talk-festival.jpg",
 } as const;
 
 /** Immagini di supporto: luoghi del territorio (public/foto, Wikimedia Commons) e fotografie Unsplash ad alta risoluzione. */
@@ -324,7 +325,7 @@ export const formats: Format[] = [
       {
         title: "Talk e conoscenza",
         text: "Incontri a numero chiuso su filosofia, arte e cinema: momenti culturali sempre presenti, mai decorativi.",
-        image: brandPhotos.cappelloBn,
+        image: brandPhotos.talk,
       },
       {
         title: "Pratiche e cammini",
