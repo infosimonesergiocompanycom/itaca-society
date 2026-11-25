@@ -59,6 +59,8 @@ export const brandPhotos = {
   banchettoConsole: "/foto/banchetto-console.jpg",
   banchettoPiscina: "/foto/banchetto-piscina.jpg",
   banchettoTavola: "/foto/banchetto-tavola.jpg",
+  meditazione: "/foto/meditazione-giardino.jpg",
+  statua: "/foto/statua-cielo.jpg",
 } as const;
 
 /** Immagini di supporto: luoghi del territorio (public/foto, Wikimedia Commons) e fotografie Unsplash ad alta risoluzione. */
@@ -437,18 +439,18 @@ export const formats: Format[] = [
       {
         title: "Il giorno",
         text: "Pratiche di benessere, workshop e installazioni immersive, con una selezione musicale che accompagna senza imporsi.",
-        image: brandPhotos.mareScogli,
+        image: brandPhotos.meditazione,
       },
       {
         title: "La sera",
         text: "Il club: musica selezionata tra ambient, elettronica soft e world music, e stand food & beverage curati.",
-        image: brandPhotos.djNotte,
+        image: brandPhotos.fuocoDanza,
       },
     ],
     block: {
       title: "Ritmo",
       text: "Il programma alterna intensità e pausa, musica e silenzio, socialità e raccoglimento. Mai un unico registro per l'intera durata: è l'armonia, uno dei sette ideali, tradotta in calendario.",
-      image: brandPhotos.cappello,
+      image: brandPhotos.statua,
     },
     info: [
       { label: "Formato", value: "Evento pubblico a doppia location: giorno/wellness e sera/club" },
