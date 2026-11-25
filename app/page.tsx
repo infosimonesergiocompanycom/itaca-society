@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { brand, formats, introVideo, kavafis, manifesto, photos, publishedEvents } from "@/data/itacaData";
+import { clubIntro, formats, introVideo, kavafis, manifesto, photos, publishedEvents } from "@/data/itacaData";
 import { BrandMark } from "@/components/ui/Logo";
 import { Carousel, HeroVideo, type Slide } from "@/components/home/Editorial";
 import { todayIso } from "@/lib/server/members";
@@ -76,13 +76,17 @@ export default function HomePage() {
         <div className="border-t border-carbone/30 pt-5">
           <p className="text-[0.8rem] uppercase tracking-[0.06em]">Il club</p>
         </div>
-        <h2 className="mt-14 font-sans text-[1.65rem] leading-[1.08] sm:ml-[25%] sm:text-[2.6rem]">
-          Itaca Society è il luogo in cui le domande antiche diventano incontri: a tavola, in cammino, davanti al mare.
-        </h2>
-        <div className="mt-14 grid items-center gap-10 sm:mt-20 lg:grid-cols-[1fr_2.6fr] lg:gap-16">
-          <p className="font-serif text-[1.3rem] leading-[1.3] lg:text-[1.45rem]">{brand.missionLong}</p>
-          <div className="relative aspect-[16/10] overflow-hidden bg-nebbia">
-            <Image src={photos.conversazione} alt="Soci e ospiti al tramonto, Itaca Society Festival" fill sizes="(min-width: 1024px) 70vw, 100vw" className="grade object-cover" />
+        <h2 className="mt-14 font-sans text-[1.65rem] leading-[1.08] sm:ml-[25%] sm:text-[2.6rem]">«{clubIntro.quote}»</h2>
+        <div className="mt-14 grid items-center gap-12 sm:mt-20 lg:grid-cols-[1.25fr_1fr] lg:gap-24">
+          <div className="max-w-xl">
+            <p className="font-serif text-[1.2rem] leading-[1.45] lg:text-[1.3rem]">{clubIntro.text}</p>
+            <div className="mt-12">
+              <Label>Visione</Label>
+              <p className="mt-5 font-serif text-[1.2rem] italic leading-[1.45] lg:text-[1.3rem]">{clubIntro.vision}</p>
+            </div>
+          </div>
+          <div className="relative aspect-[4/5] overflow-hidden bg-nebbia lg:max-w-[560px]">
+            <Image src={photos.mani} alt="Due soci si tengono per mano all'opening di Cala Marella" fill sizes="(min-width: 1024px) 560px, 100vw" className="grade object-cover" />
           </div>
         </div>
       </section>

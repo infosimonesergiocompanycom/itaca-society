@@ -88,6 +88,14 @@ export const introVideo: { mp4: string; webm?: string; poster: string } | null =
   poster: "/video/trailer-poster.jpg",
 };
 
+/** Presentazione del club in homepage. */
+export const clubIntro = {
+  text: "Itaca Society è un circolo culturale per soci di nuova generazione, nato a Pietrasanta per una comunità curiosa, colta e in movimento. Accogliamo con la cura di una casa antica, crediamo nella convivialità come forma di cultura e custodiamo con riservatezza ciò che accade tra i nostri soci. Il nostro approccio è misurato: mettiamo in dialogo musica, arte, benessere e conoscenza, e diamo spazio a sguardi diversi e personali. Itaca Society sfugge alle definizioni, segue un proprio ritmo e risveglia in ognuno il desiderio di partire, e quello di ritrovarsi.",
+  quote: "Itaca Society crea le premesse per incontri che valgono il viaggio.",
+  vision:
+    "Una nuova generazione di circolo culturale per soci, radicato in Versilia e aperto al mondo: un luogo in cui bellezza, armonia e conoscenza tornano a essere un'esperienza condivisa, e in cui ogni incontro diventa parte di un viaggio comune.",
+};
+
 /** Profili social ufficiali. */
 export const social = {
   instagram: { handle: "itaca_society", url: "https://www.instagram.com/itaca_society/" },
@@ -327,7 +335,7 @@ export const formats: Format[] = [
     block: {
       title: "Come partecipare",
       text: "Le Fasi sono riservate ai soci: con la tessera associativa ti iscrivi al calendario e mostri il QR all'ingresso di ogni incontro.",
-      image: brandPhotos.mani,
+      image: brandPhotos.sandali,
     },
     info: [
       { label: "Formato", value: "Calendario ricorrente di eventi minori" },
