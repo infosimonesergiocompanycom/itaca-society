@@ -81,9 +81,15 @@ export default function MusicPage() {
       {music.resident && (
         <section className="px-5 pb-24 text-center sm:px-16 sm:pb-32">
           <p className="eyebrow">{music.resident.role}</p>
-          <h2 className="mt-6 text-[2.6rem] leading-none sm:text-[3.6rem]">{music.resident.name}</h2>
-          <p className="mx-auto mt-6 max-w-lg font-serif text-[1.05rem] leading-snug">
-            È la voce musicale di Itaca Society: firma i set delle nostre serate, dal tramonto fino a tardi.
+          {music.resident.logo ? (
+            <h2 className="mt-10">
+              <Image src={music.resident.logo} alt={music.resident.name} width={900} height={771} className="mx-auto h-auto w-[220px] sm:w-[260px]" />
+            </h2>
+          ) : (
+            <h2 className="mt-6 text-[2.6rem] leading-none sm:text-[3.6rem]">{music.resident.name}</h2>
+          )}
+          <p className="mx-auto mt-10 max-w-lg font-serif text-[1.05rem] leading-snug">
+            {music.resident.name} è la voce musicale di Itaca Society: firma i set delle nostre serate, dal tramonto fino a tardi.
           </p>
         </section>
       )}

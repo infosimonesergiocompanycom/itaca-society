@@ -120,11 +120,11 @@ export const social = {
  */
 export const music: {
   spotifyProfile: string | null;
-  resident: { name: string; role: string } | null;
+  resident: { name: string; role: string; logo?: string } | null;
   spotify: { title: string; url: string; note?: string }[];
 } = {
   spotifyProfile: "https://open.spotify.com/user/31tq65mu6jbbgisoebjez7ahm2ym",
-  resident: { name: "Seirios", role: "DJ resident" },
+  resident: { name: "Seirios", role: "DJ resident", logo: "/loghi/seirios.png" },
   spotify: [],
 };
 
