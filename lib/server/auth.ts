@@ -75,14 +75,15 @@ export async function currentMember(): Promise<Member | null> {
   return syncRole(member);
 }
 
-export async function requireMember(): Promise<Member> {
+export async function requireMember(next?: string): Promise<Member> {
   const m = await currentMember();
-  if (!m) redirect("/accedi");
+  if (!m) redirect(next ? `/accedi?next=${encodeURIComponent(next)}` : "/accedi");
   return m;
 }
 
 export async function requireAdmin(): Promise<Member> {
-  const m = await requireMember();
-  if (m.role !== "admin") redirect("/area-soci");
+  const m = await requireMember("/admin");
+  // Account senza permessi: l'Area Soci spiega perché e permette di cambiare account
+  if (m.role !== "admin") redirect("/area-soci?admin=negato");
   return m;
 }

@@ -109,9 +109,10 @@ export async function loginAction(_prev: FormState, fd: FormData): Promise<FormS
   redirect(next.startsWith("/") && !next.startsWith("//") ? next : "/area-soci");
 }
 
-export async function logoutAction() {
+export async function logoutAction(fd?: FormData) {
   await endSession();
-  redirect("/");
+  const next = fd ? str(fd, "next") : "";
+  redirect(next.startsWith("/") && !next.startsWith("//") ? next : "/");
 }
 
 /* -------------------------------- Pagamento ------------------------------- */

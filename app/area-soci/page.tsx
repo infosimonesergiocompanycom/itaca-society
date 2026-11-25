@@ -44,7 +44,7 @@ function PayButton({ label }: { label: string }) {
 export default async function MemberAreaPage({
   searchParams,
 }: {
-  searchParams: Promise<{ benvenuto?: string; pagamento?: string; consensi?: string; password?: string }>;
+  searchParams: Promise<{ benvenuto?: string; pagamento?: string; consensi?: string; password?: string; admin?: string }>;
 }) {
   const member = await requireMember();
   const params = await searchParams;
@@ -71,6 +71,20 @@ export default async function MemberAreaPage({
           <p className="mb-8 bg-travertino px-5 py-4 text-[0.9375rem]" role="status">
             Abbiamo ricevuto la tua domanda di ammissione. Il Consiglio Direttivo la esaminerà a breve: segui qui lo stato.
           </p>
+        )}
+        {params.admin === "negato" && member.role !== "admin" && (
+          <div className="mb-8 flex flex-wrap items-center justify-between gap-4 border border-terracotta/50 px-5 py-4 text-[0.9375rem]" role="alert">
+            <p>
+              Sei collegato come <strong>{member.email}</strong>, un account senza accesso all&apos;amministrazione. Esci e accedi con
+              l&apos;indirizzo amministratore.
+            </p>
+            <form action={logoutAction}>
+              <input type="hidden" name="next" value="/accedi?next=/admin" />
+              <button type="submit" className="bg-carbone px-5 py-2.5 text-[0.75rem] font-medium uppercase tracking-[0.12em] text-calce hover:bg-terracotta">
+                Esci e cambia account
+              </button>
+            </form>
+          </div>
         )}
         {params.password === "ok" && (
           <p className="mb-8 border border-linea px-5 py-4 text-[0.9375rem]" role="status">
