@@ -58,6 +58,7 @@ export const brandPhotos = {
   banchettoBallo: "/foto/banchetto-ballo.jpg",
   banchettoConsole: "/foto/banchetto-console.jpg",
   banchettoPiscina: "/foto/banchetto-piscina.jpg",
+  banchettoTavola: "/foto/banchetto-tavola.jpg",
 } as const;
 
 /** Immagini di supporto: luoghi del territorio (public/foto, Wikimedia Commons) e fotografie Unsplash ad alta risoluzione. */
@@ -371,7 +372,7 @@ export const formats: Format[] = [
     tagline: "Un rito prima che un evento: il fuoco, il vino, la tavola condivisa.",
     summary: "Evento serale in formato banchetto: pochi ospiti, cura massima, il brand nella sua versione più pura.",
     card: brandPhotos.banchettoInsegna,
-    strip: [brandPhotos.banchettoInsegna, brandPhotos.banchettoConsole, brandPhotos.banchettoBallo, brandPhotos.banchettoPiscina, brandPhotos.banchettoRosso],
+    strip: [brandPhotos.banchettoTavola, brandPhotos.banchettoInsegna, brandPhotos.banchettoConsole, brandPhotos.banchettoBallo, brandPhotos.banchettoPiscina, brandPhotos.banchettoRosso],
     statement:
       "Il cuore della community: una sera in tre atti, una tavola unica, pochi ospiti e la cura di ogni dettaglio",
     body: "Il Banchetto di Itaca reinterpreta il simposio greco-romano nella Versilia di oggi. Si comincia con l'accoglienza, si siede alla stessa tavola, si resta per la musica. È il luogo dove i valori dell'associazione diventano messa in scena concreta.",
@@ -389,7 +390,7 @@ export const formats: Format[] = [
       {
         title: "Convivium",
         text: "La cena a tavola lunga, un unico tavolo che attraversa lo spazio. Tra una portata e l'altra, tre interventi performativi: fuoco, danza, magia.",
-        image: brandPhotos.banchettoPiscina,
+        image: brandPhotos.banchettoTavola,
       },
       {
         title: "Symposion",
