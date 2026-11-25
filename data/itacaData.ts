@@ -308,7 +308,7 @@ export const formats: Format[] = [
     status: "attivo",
     tagline: "Un calendario che segue la luna: talk, mostre, cene, pratiche di benessere.",
     summary: "Calendario ricorrente di eventi minori, scandito come cicli lunari: tiene viva la community tra un Banchetto e un Festival.",
-    card: brandPhotos.ritratto,
+    card: brandPhotos.acquerelli,
     strip: [brandPhotos.ritratto, brandPhotos.cappelloBn, brandPhotos.djNotte, brandPhotos.portico, brandPhotos.ombra, brandPhotos.battigia, brandPhotos.riposo, brandPhotos.mani],
     statement:
       "Un appuntamento per ogni fase: incontri piccoli e ricorrenti che tengono viva la comunità durante tutto l'anno",
