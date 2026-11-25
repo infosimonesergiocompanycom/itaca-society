@@ -44,7 +44,7 @@ function PayButton({ label }: { label: string }) {
 export default async function MemberAreaPage({
   searchParams,
 }: {
-  searchParams: Promise<{ benvenuto?: string; pagamento?: string; consensi?: string }>;
+  searchParams: Promise<{ benvenuto?: string; pagamento?: string; consensi?: string; password?: string }>;
 }) {
   const member = await requireMember();
   const params = await searchParams;
@@ -70,6 +70,11 @@ export default async function MemberAreaPage({
         {params.benvenuto && (
           <p className="mb-8 bg-travertino px-5 py-4 text-[0.9375rem]" role="status">
             Abbiamo ricevuto la tua domanda di ammissione. Il Consiglio Direttivo la esaminerà a breve: segui qui lo stato.
+          </p>
+        )}
+        {params.password === "ok" && (
+          <p className="mb-8 border border-linea px-5 py-4 text-[0.9375rem]" role="status">
+            Password aggiornata. Da ora entri con quella nuova.
           </p>
         )}
         {params.pagamento && notices[params.pagamento] && (

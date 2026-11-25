@@ -25,11 +25,9 @@ export function LoginForm({ next }: { next?: string }) {
         {pending ? "Accesso in corso…" : "Accedi"}
       </button>
       <p className="text-sm text-tortora">
-        Password dimenticata? Scrivi a{" "}
-        <a href="mailto:soci@itacasociety.com" className="underline underline-offset-4">
-          soci@itacasociety.com
-        </a>
-        .
+        <Link href="/password-dimenticata" className="underline underline-offset-4 hover:text-carbone">
+          Password dimenticata?
+        </Link>
       </p>
       <p className="border-t border-linea pt-5 text-sm">
         Non sei ancora socio?{" "}

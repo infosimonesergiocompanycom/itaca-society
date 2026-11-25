@@ -91,3 +91,17 @@ export async function notifyActivated(m: Member) {
   );
   return sendMail({ to: m.email, subject: "La tua tessera Itaca Society è attiva", ...body });
 }
+
+/** Al socio: link per scegliere una nuova password. */
+export async function sendPasswordReset(m: Member, token: string, ttlMinutes: number) {
+  const link = `${siteUrl()}/password-reset?t=${encodeURIComponent(token)}`;
+  const body = build(
+    "Reimposta la tua password",
+    [
+      `Ciao ${m.first_name}, abbiamo ricevuto una richiesta per reimpostare la password del tuo account Itaca Society.`,
+      `Il link qui sotto vale ${ttlMinutes} minuti e si può usare una sola volta. Se non sei stato tu a chiederlo, ignora questa email: la tua password resta quella di prima.`,
+    ],
+    { label: "Scegli una nuova password", href: link },
+  );
+  return sendMail({ to: m.email, subject: "Reimposta la password di Itaca Society", ...body });
+}

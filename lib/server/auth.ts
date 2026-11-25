@@ -68,7 +68,11 @@ export async function currentMember(): Promise<Member | null> {
   if (!safeEqual(sig, sign(`${id}.${expires}`, "session"))) return null;
   if (Number(expires) < Date.now()) return null;
   const member = await findMemberById(id);
-  return member ? syncRole(member) : null;
+  if (!member) return null;
+  // Dopo un cambio password valgono solo le sessioni aperte da quel momento in poi
+  const issuedAt = Number(expires) - SESSION_DAYS * 24 * 60 * 60 * 1000;
+  if (member.password_changed_ms && issuedAt < Number(member.password_changed_ms) - 1000) return null;
+  return syncRole(member);
 }
 
 export async function requireMember(): Promise<Member> {

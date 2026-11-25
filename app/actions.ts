@@ -2,7 +2,8 @@
 
 import { revalidatePath } from "next/cache";
 import { after } from "next/server";
-import { notifyActivated, notifyApproved, notifyNewApplication } from "@/lib/server/emails";
+import { notifyActivated, notifyApproved, notifyNewApplication, sendPasswordReset } from "@/lib/server/emails";
+import { consumeResetToken, createResetToken, RESET_TTL_MINUTES } from "@/lib/server/passwordReset";
 import { redirect } from "next/navigation";
 import { endSession, hashPassword, requireAdmin, requireMember, startSession, verifyPassword } from "@/lib/server/auth";
 import { verifyCardToken } from "@/lib/server/card";
@@ -246,4 +247,32 @@ export async function unsubscribeNewsletterAction(fd: FormData) {
   const token = str(fd, "t");
   const ok = token ? await unsubscribe(token) : false;
   redirect(`/newsletter/disiscrizione?t=${encodeURIComponent(token)}&esito=${ok ? "ok" : "errore"}`);
+}
+
+/* --------------------------- Password dimenticata -------------------------- */
+
+export type ResetRequestState = { done?: boolean; error?: string; email?: string };
+
+export async function requestPasswordResetAction(_prev: ResetRequestState, fd: FormData): Promise<ResetRequestState> {
+  const email = str(fd, "email").toLowerCase();
+  if (!/^\S+@\S+\.\S+$/.test(email)) return { error: "Inserisci l'indirizzo email con cui ti sei registrato.", email };
+  const created = await createResetToken(email);
+  if (created) after(() => sendPasswordReset(created.member, created.token, RESET_TTL_MINUTES));
+  // Stessa risposta in ogni caso, per non rivelare quali indirizzi sono registrati
+  return { done: true, email };
+}
+
+export async function resetPasswordAction(_prev: FormState, fd: FormData): Promise<FormState> {
+  const token = str(fd, "t");
+  const password = String(fd.get("password") ?? "");
+  const password2 = String(fd.get("password2") ?? "");
+  const e: Record<string, string> = {};
+  if (password.length < 8) e.password = "La password deve avere almeno 8 caratteri.";
+  else if (password !== password2) e.password2 = "Le due password non coincidono.";
+  if (Object.keys(e).length > 0) return { fieldErrors: e };
+  const changedAt = Date.now();
+  const memberId = await consumeResetToken(token, await hashPassword(password), changedAt);
+  if (!memberId) return { error: "Il link non è più valido. Chiedine uno nuovo dalla pagina «Password dimenticata»." };
+  await startSession(memberId);
+  redirect("/area-soci?password=ok");
 }

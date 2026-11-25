@@ -28,6 +28,8 @@ export type Member = {
   marketing_consent_at: string | null;
   sponsor_consent: boolean;
   sponsor_consent_at: string | null;
+  /** Millisecondi dell'ultimo cambio password (stringa numerica), per invalidare le sessioni precedenti. */
+  password_changed_ms: string | null;
 };
 
 /** Stato effettivo, combinando l'esito della domanda con la validità della quota. */
@@ -37,7 +39,8 @@ const COLUMNS = `id, email, role, first_name, last_name, birth_date::text AS bir
   fiscal_code, address, city, phone, interests, motivation, status, card_number,
   paid_until::text AS paid_until, approved_at::text AS approved_at, created_at::text AS created_at,
   marketing_consent, marketing_consent_at::text AS marketing_consent_at,
-  sponsor_consent, sponsor_consent_at::text AS sponsor_consent_at`;
+  sponsor_consent, sponsor_consent_at::text AS sponsor_consent_at,
+  (extract(epoch from password_changed_at) * 1000)::bigint::text AS password_changed_ms`;
 
 /** Data odierna (aaaa-mm-gg) secondo il fuso di Pietrasanta, non quello del server. */
 export function todayIso(): string {
