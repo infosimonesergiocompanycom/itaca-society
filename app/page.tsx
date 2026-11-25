@@ -18,7 +18,7 @@ const fasi: Slide[] = [
   { title: "Talk", text: "Filosofia, cinema e letteratura: conversazioni che lasciano qualcosa, seguite da una cena.", image: photos.talk, href: "/eventi" },
   { title: "Wellness", text: "Respiro, meditazione e cammini all'alba, tra le Apuane e il mare d'inverno.", image: photos.yoga, href: "/eventi" },
   { title: "Arte", text: "Il marmo e la bottega: laboratori di scultura e fonderie artistiche di Pietrasanta.", image: photos.portico, href: "/eventi" },
-  { title: "Convivio", text: "Una tavola unica, pochi ospiti e la cura di ogni dettaglio, dall'aperitivo al fuoco.", image: photos.piatto, href: "/eventi" },
+  { title: "Convivio", text: "Una tavola unica, pochi ospiti e la cura di ogni dettaglio, dall'aperitivo al fuoco.", image: photos.convivio, href: "/eventi" },
   { title: "Natura", text: "Il Procinto, il Monte Forato, la battigia di Marina: la Versilia a passo lento.", image: photos.battigia, href: "/eventi" },
 ];
 

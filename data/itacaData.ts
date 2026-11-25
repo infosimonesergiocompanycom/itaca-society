@@ -49,6 +49,7 @@ export const brandPhotos = {
   soleIntreccio: "/foto/sole-intreccio.jpg",
   palma: "/foto/palma.jpg",
   talk: "/foto/talk-festival.jpg",
+  convivio: "/foto/convivio-tavola.jpg",
 } as const;
 
 /** Immagini di supporto: luoghi del territorio (public/foto, Wikimedia Commons) e fotografie Unsplash ad alta risoluzione. */
