@@ -18,7 +18,7 @@ export default function FormatsPage() {
           </>
         }
         tabs={formats.map((f) => ({ label: f.name, href: `/formati/${f.slug}` }))}
-        image={photos.tamburo}
+        image={photos.palmeControluce}
       />
       <StatementBand
         statement="Le Fasi trattengono, il Banchetto consacra, il Festival allarga"

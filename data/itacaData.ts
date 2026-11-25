@@ -50,6 +50,7 @@ export const brandPhotos = {
   palma: "/foto/palma.jpg",
   talk: "/foto/talk-festival.jpg",
   convivio: "/foto/convivio-tavola.jpg",
+  palmeControluce: "/foto/palme-controluce.jpg",
 } as const;
 
 /** Immagini di supporto: luoghi del territorio (public/foto, Wikimedia Commons) e fotografie Unsplash ad alta risoluzione. */
