@@ -7,7 +7,7 @@ import Link from "next/link";
 /**
  * Video della copertina: muto, in loop, fermo per chi riduce le animazioni.
  * Il trailer è verticale: sugli schermi larghi il video nitido resta in una colonna centrale poco tagliata
- * e ai lati lo stesso filmato, sfocato e scurito, riempie lo spazio. Sul telefono occupa tutto lo schermo.
+ * che sfuma in un cerchio; attorno lo stesso filmato, sfocato e scurito, riempie lo spazio. Sul telefono occupa tutto lo schermo.
  */
 export function HeroVideo({ mp4, webm, poster }: { mp4: string; webm?: string; poster: string }) {
   const main = useRef<HTMLVideoElement>(null);
@@ -31,8 +31,8 @@ export function HeroVideo({ mp4, webm, poster }: { mp4: string; webm?: string; p
       <video ref={back} className="absolute inset-0 h-full w-full scale-110 object-cover blur-2xl brightness-75" poster={poster} muted loop playsInline preload="metadata" aria-hidden tabIndex={-1}>
         {sources}
       </video>
-      <div className="absolute inset-y-0 left-1/2 w-full max-w-[max(80svh,448px)] -translate-x-1/2 [@media(min-aspect-ratio:1/1)]:[mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-        <video ref={main} className="h-full w-full object-cover" poster={poster} muted loop playsInline preload="metadata" aria-hidden tabIndex={-1}>
+      <div className="absolute inset-y-0 left-1/2 w-full max-w-[max(105svh,448px)] -translate-x-1/2 [@media(min-aspect-ratio:1/1)]:[mask-image:radial-gradient(closest-side,black_62%,transparent)]">
+        <video ref={main} className="h-full w-full object-cover object-[50%_35%]" poster={poster} muted loop playsInline preload="metadata" aria-hidden tabIndex={-1}>
           {sources}
         </video>
       </div>
